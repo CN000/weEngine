@@ -1,0 +1,144 @@
+{template 'Comm/header', 'pz_guanhuai'}
+<!-- Left side column. contains the logo and sidebar -->
+{template 'Comm/sidebar-left', 'pz_guanhuai'}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        {template 'Comm/module_content_header' , 'pz_guanhuai'}
+
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+        <div class="row">
+            <div class="col-md-6" id="left_panel">
+                <div class="col-md-12 boxs" >
+                    <div class="overlay"> <i class="fa fa-spinner fa-spin"></i> 加载中...</div>
+                </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-md-6 hide" id="right_panel" >
+                <div class="col-md-12 boxs" >
+                    <div class="overlay"> <i class="fa fa-spinner fa-spin"></i> 加载中...</div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<style>
+    .box-body {
+        -ms-word-wrap: break-word;
+        word-wrap: break-word;
+    }
+</style>
+
+{template 'Comm/modal' , 'pz_guanhuai'}
+{template 'Comm/footer' , 'pz_guanhuai'}
+<script>
+
+    var left_next_page = right_next_page = 1 ;
+
+    var interval = setInterval(function () {
+        if( left_next_page > 2 ){
+            clearInterval(interval);
+        }else{
+            ajax_html('loadmore' , 1 );
+        }
+
+    }, 10 * 1000 );
+
+    $(document).ready(function(){
+        var target = '#left_panel';
+        ajax_html('loadmore' , left_next_page , target , '' );
+
+        $(document).on("click" , ".loadmore" , function(){
+            var that = this;
+            $(that).html('<div class="overlay"> <i class="fa fa-spinner fa-spin"></i> 加载中...</div>') ;
+            if( $(that).parents("#left_panel").attr("id") == 'left_panel' ){
+                var target = '#left_panel';
+                if( left_next_page == 1 ){
+                    left_next_page++;
+                }
+                ajax_html('loadmore' , left_next_page , target , '');
+            }else{
+                var target = '#right_panel';
+                ajax_html('loadmore' , right_next_page , target , $(that).data("openid"));
+            }
+
+        });
+
+        $(document).on("click" , ".history" , function(){
+            var offset = $(this).offset();
+            var target = '#right_panel';
+            $(target).addClass('hide');
+            ajax_html('loadmore' , 1 , target , $(this).data("openid") , offset);
+            //$(document).scrollTop(0);
+        });
+
+        $(document).on("click" , ".js-close" , function(){
+            $("#right_panel").addClass("hide");
+        });
+
+
+
+    });
+
+    function ajax_html( op , page , target , openid , offset ){
+        if( target != '#right_panel'){
+            target = "#left_panel";
+        }
+        $.ajax({
+            url:"{php echo $this->createWebUrl('Ajax'  ); }",
+            method:"GET",
+            datetype:"html",
+            data: {
+                op:op,
+                openid:openid,
+                page:page,
+                m:'pz_guanhuai_plugin_realtimemessage'
+            },
+            success:function (data) {
+                if( data.length == 0 || data == '' || data == null ){
+                    $(target + ' .loadmore').remove();
+                    return false;
+                }
+                if(target == '#right_panel'){
+                    $(target).css('margin-top' , offset.top - 110 );
+                    $(target).removeClass('hide');
+
+                }
+                $( target + " .boxs>.overlay").remove();
+                if( page == 1 ){
+                    $( target + " .boxs").html(data);
+                    if( target == '#right_panel'){
+                        right_next_page++;
+                        $( target + " .boxs").append('<div class="overlay text-center loadmore" id="" data-openid="'+ openid +'" data-page="'+right_next_page+'" > 加载更多...</div>');
+                    }else{
+                        next_page = left_next_page + 1;
+                        $( target + " .boxs").append('<div class="overlay text-center loadmore" id="" data-page="'+next_page+'" > 加载更多...</div>');
+                    }
+                }else{
+                    if( target == '#right_panel'){
+                        right_next_page++;
+                        $( target + " .boxs").remove(".loadmore").append(data).append('<div class="overlay text-center loadmore" id="" data-openid="'+openid+'" data-page="'+ right_next_page +'" > 加载更多...</div>');
+                    }else{
+                        left_next_page++;
+                        $( target + " .boxs").remove(".loadmore").append(data).append('<div class="overlay text-center loadmore" id="" data-page="'+ left_next_page +'" > 加载更多...</div>');
+                    }
+
+                }
+
+            }
+        });
+    }
+
+
+
+
+
+</script>
