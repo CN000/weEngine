@@ -338,12 +338,12 @@
         }
     </style>
 
-	
-	
+
+
     <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
     <script src="{$_W['siteroot']}addons/wx_lbsmap/template/mobile/example.js"></script>
-	
+
     <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=XAshfSy1j96X1nFGnScMf7ejDbpQfrgB"></script>
     <script type="text/javascript" src="{$http_type}api.map.baidu.com/getscript?v=2.0&ak=XAshfSy1j96X1nFGnScMf7ejDbpQfrgB&services=&t=20170707103901"></script>
     <script src="{$_W['siteroot']}addons/wx_lbsmap/js/jquery-1.11.0.min.js"></script>
@@ -446,27 +446,27 @@
 				$(this).children(".new-sub").slideDown("fast"); //展示当前的二级菜单
 			}
 		});
-		
+
    $('#showIOSActionSheet').on('click', function () {
         weui.picker([
 		<!-- {loop $category $row} -->
-                
+
 		{
             label: '{$row['catename']}',
             value: '{$row['id']}'
         },
         <!-- {/loop} -->
 		 ],{
-           
+
             onConfirm: function (result) {
-               //window.location.href="<?php echo $this->createMobileUrl('getlbs', array('catenameid' => ".?>"+result+"<?php ."));?>";	
+               //window.location.href="<?php echo $this->createMobileUrl('getlbs', array('catenameid' => ".?>"+result+"<?php ."));?>";
 			   window.location.href="{$_W['siteroot']}app/index.php?i={$_W['uniacid']}&c=entry&do=getlbs&m=wx_lbsmap&catenameid="+result;
             }
         });
     });
-   
 
-	
+
+
 function initMap() {
     createMap();//创建地图
     setMapEvent();//设置地图事件
@@ -500,7 +500,7 @@ function createMap() {
     geolocationControl.addEventListener("locationSuccess", function (e) {
         // 定位成功事件
         var address = '';
-		
+
         address += e.addressComponent.province;
         address += e.addressComponent.city;
         address += e.addressComponent.district;

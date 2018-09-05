@@ -37,4 +37,5 @@ $_GPC['m'] = $entry['module'];
 $_GPC['do'] = $entry['do'];
 
 $_W['current_module'] = $modules[$entry['module']];
+
 define('IN_MODULE', $entry['module']);

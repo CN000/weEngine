@@ -109,7 +109,7 @@ function tpl_form_field_daterange($name, $value = array(), $time = false) {
 	} else {
 		$value['starttime'] = '请选择';
 	}
-	
+
 	if ($value['endtime'] !== false && $value['end'] !== false) {
 		if($value['end']) {
 			$value['endtime'] = empty($time) ? date('Y-m-d',strtotime($value['end'])) : date('Y-m-d H:i',strtotime($value['end']));
@@ -293,7 +293,7 @@ function tpl_form_field_category_2level($name, $parents, $children, $parentid, $
 						<option value="' . $row['id'] . '" ' . (($row['id'] == $parentid) ? 'selected="selected"' : '') . '>' . $row['name'] . '</option>';
 				}
 			}
-			
+
 			$html .= '
 				</select>
 			</div>
