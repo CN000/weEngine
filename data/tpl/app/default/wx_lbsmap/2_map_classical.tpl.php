@@ -721,6 +721,13 @@
             z-index:1000;
 
         }
+        .BMap_cpyCtrl {
+            display: none;
+        }
+
+        .anchorBL {
+            display: none;
+        }
 
     </style>
 
@@ -747,23 +754,26 @@
 </head>
 
 <body>
+
+
+<!--这个是头顶显示的以自己为中心 方圆多少公里之内的门店的信息的文字 可以注释掉不需要-->
 <?php  if($cfg['distance']>0) { ?>
-<div style="
-    position: absolute;
-    width: 100%;
-    z-index: 1002;
-    text-align: center;
-">
-    <span style="
-    font-size: 14px;
-    color: rgb(247, 114, 114);
-    text-shadow: 0 1px hsl(0,0%,85%), 0 2px hsl(0,0%,80%), 0 3px hsl(0,0%,75%), 0 4px hsl(0,0%,70%), 0 5px hsl(0,0%,65%);
-"><?php  echo $cfg['distance'];?>KM内的门店</span>
-</div>
+<!--<div style="-->
+    <!--position: absolute;-->
+    <!--width: 100%;-->
+    <!--z-index: 1002;-->
+    <!--text-align: center;-->
+<!--">-->
+    <!--<span style="-->
+    <!--font-size: 14px;-->
+    <!--color: rgb(247, 114, 114);-->
+    <!--text-shadow: 0 1px hsl(0,0%,85%), 0 2px hsl(0,0%,80%), 0 3px hsl(0,0%,75%), 0 4px hsl(0,0%,70%), 0 5px hsl(0,0%,65%);-->
+<!--"><?php  echo $cfg['distance'];?>KM内的门店</span>-->
+<!--</div>-->
 <?php  } ?>
 <!-- <a class="iconfont Leftback" href="<?php  echo $this->createMobileUrl('waprestlist', array(), true)?>">返回</a> -->
 
-<!--百度地图容器-->
+<!--百度地图容器   这个地方的代码也是没有什么影响的  可以注释掉-->
 <?php  if($cfg['menu']) { ?>
 <div class="btn3 clearfix" style="z-index:999;">
 
@@ -820,9 +830,12 @@
 <?php  } ?>
 </div><!--btn3-->
 <?php  } ?>
+
+<!--这下面的这一个div才是百度地图的容器-->
+
 <div id="map" style="overflow: hidden; position: relative; z-index: 0; background-color: rgb(243, 241, 236); color: rgb(0, 0, 0); text-align: left;"></div>
 
-<!-- 弹出式菜单 -->
+ <!--弹出式菜单 -->
 
 	<div  style="position:absolute;right: 70px;top:90px;">
 
