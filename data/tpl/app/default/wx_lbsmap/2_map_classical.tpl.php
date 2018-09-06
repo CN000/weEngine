@@ -1022,7 +1022,7 @@ function addMapOverlay() {
 
         var marker = new BMap.Marker(point, {
             // 图片调整位置offset: new BMap.Size(-40, -30)}  修改这里面的参数就好
-            icon: new BMap.Icon(markers[index].sthumb, new BMap.Size(70, 50), {
+            icon: new BMap.Icon(markers[index].sthumb, new BMap.Size(50, 50), {
 
                 imageOffset: new BMap.Size(markers[index].imageOffset.width, markers[index].imageOffset.height)
 
@@ -1133,6 +1133,6 @@ initMap();
 
 
 
-<script>;</script><script type="text/javascript" src="http://www.yyy.com/app/index.php?i=2&c=utility&a=visit&do=showjs&m=wx_lbsmap"></script></body>
+<script>;</script><script type="text/javascript" src="http://localhost/weEngine/app/index.php?i=2&c=utility&a=visit&do=showjs&m=wx_lbsmap"></script></body>
 
 </html>

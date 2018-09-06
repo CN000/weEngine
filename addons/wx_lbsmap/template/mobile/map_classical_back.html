@@ -10,8 +10,8 @@
 
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
-	<link rel="stylesheet" href="{$_W['siteroot']}addons/wx_lbsmap/template/mobile/style/weui.css"/>
-	<link rel="stylesheet" href="{$_W['siteroot']}addons/wx_lbsmap/css/style_menu.css"/>
+    <link rel="stylesheet" href="{$_W['siteroot']}addons/wx_lbsmap/template/mobile/style/weui.css"/>
+    <link rel="stylesheet" href="{$_W['siteroot']}addons/wx_lbsmap/css/style_menu.css"/>
     <link rel="stylesheet" href="{$_W['siteroot']}addons/wx_lbsmap/template/mobile/example.css"/>
 
     <style type="text/css">
@@ -741,7 +741,7 @@
     <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
 
     <!--<script src="{$_W['siteroot']}addons/wx_lbsmap/template/mobile/example.js"></script>-->
-	<script type="text/javascript">//弹出垂直菜单</script>
+    <script type="text/javascript">//弹出垂直菜单</script>
 
 
 
@@ -759,15 +759,15 @@
 <!--这个是头顶显示的以自己为中心 方圆多少公里之内的门店的信息的文字 可以注释掉不需要-->
 <!--{if $cfg['distance']>0}-->
 <!--<div style="-->
-    <!--position: absolute;-->
-    <!--width: 100%;-->
-    <!--z-index: 1002;-->
-    <!--text-align: center;-->
+<!--position: absolute;-->
+<!--width: 100%;-->
+<!--z-index: 1002;-->
+<!--text-align: center;-->
 <!--">-->
-    <!--<span style="-->
-    <!--font-size: 14px;-->
-    <!--color: rgb(247, 114, 114);-->
-    <!--text-shadow: 0 1px hsl(0,0%,85%), 0 2px hsl(0,0%,80%), 0 3px hsl(0,0%,75%), 0 4px hsl(0,0%,70%), 0 5px hsl(0,0%,65%);-->
+<!--<span style="-->
+<!--font-size: 14px;-->
+<!--color: rgb(247, 114, 114);-->
+<!--text-shadow: 0 1px hsl(0,0%,85%), 0 2px hsl(0,0%,80%), 0 3px hsl(0,0%,75%), 0 4px hsl(0,0%,70%), 0 5px hsl(0,0%,65%);-->
 <!--">{$cfg['distance']}KM内的门店</span>-->
 <!--</div>-->
 <!--{/if}-->
@@ -777,57 +777,57 @@
 {if $cfg['menu']}
 <div class="btn3 clearfix" style="z-index:999;">
 
-{if !empty($menu[0])}
+    {if !empty($menu[0])}
     <div class="menu" style="width:{$width}%;">
         <div class="bt-name"><a href="{if empty($sub_menu[0])}{$menu[0]['url']}{else}javascript:;{/if}">{$menu[0]['name']}</a></div>
-		{if !empty($sub_menu[0])}
+        {if !empty($sub_menu[0])}
         <div class="sanjiao"></div>
         <div class="new-sub">
             <ul >
-				{loop $sub_menu[0] $row}
+                {loop $sub_menu[0] $row}
                 <li><a href="{$row['url']}">{$row['name']}</a></li>
-				{/loop}
+                {/loop}
             </ul>
             <div class="tiggle"></div>
             <div class="innertiggle"></div>
         </div>
-		{/if}
+        {/if}
     </div><!--menu-->
-{/if}
-{if !empty($menu[1])}
+    {/if}
+    {if !empty($menu[1])}
     <div class="menu" style="width:{$width}%;">
         <div class="bt-name"><a href="{if empty($sub_menu[1])}{$menu[1]['url']}{else}javascript:;{/if}">{$menu[1]['name']}</a></div>
-		{if !empty($sub_menu[1])}
+        {if !empty($sub_menu[1])}
         <div class="sanjiao"></div>
         <div class="new-sub">
             <ul >
-				{loop $sub_menu[1] $row}
+                {loop $sub_menu[1] $row}
                 <li><a href="{$row['url']}">{$row['name']}</a></li>
-				{/loop}
+                {/loop}
             </ul>
             <div class="tiggle"></div>
             <div class="innertiggle"></div>
         </div>
-		{/if}
+        {/if}
     </div><!--menu-->
-{/if}
-{if !empty($menu[2])}
+    {/if}
+    {if !empty($menu[2])}
     <div class="menu" style="width:{$width}%;">
-		<div class="bt-name"><a href="{if empty($sub_menu[2])}{$menu[2]['url']}{else}javascript:;{/if}">{$menu[2]['name']}</a></div>
-		{if !empty($sub_menu[2])}
+        <div class="bt-name"><a href="{if empty($sub_menu[2])}{$menu[2]['url']}{else}javascript:;{/if}">{$menu[2]['name']}</a></div>
+        {if !empty($sub_menu[2])}
         <div class="sanjiao"></div>
         <div class="new-sub">
             <ul >
-				{loop $sub_menu[2] $row}
+                {loop $sub_menu[2] $row}
                 <li><a href="{$row['url']}">{$row['name']}</a></li>
-				{/loop}
+                {/loop}
             </ul>
             <div class="tiggle"></div>
             <div class="innertiggle"></div>
         </div>
-		{/if}
+        {/if}
     </div><!--menu-->
-{/if}
+    {/if}
 </div><!--btn3-->
 {/if}
 
@@ -835,13 +835,13 @@
 
 <div id="map" style="overflow: hidden; position: relative; z-index: 0; background-color: rgb(243, 241, 236); color: rgb(0, 0, 0); text-align: left;"></div>
 
- <!--弹出式菜单 -->
+<!--弹出式菜单 -->
 
-	<div  style="position:absolute;right: 70px;top:90px;">
+<div  style="position:absolute;right: 70px;top:90px;">
 
-        <div href="javascript:;"  style="width:30px;height:30px;background:url('{$_W['siteroot']}/addons/wx_lbsmap/images/menu.png') center no-repeat;background-size:contain;" id="showIOSActionSheet"></div>
+    <div href="javascript:;"  style="width:30px;height:30px;background:url('{$_W['siteroot']}/addons/wx_lbsmap/images/menu.png') center no-repeat;background-size:contain;" id="showIOSActionSheet"></div>
 
-    </div>
+</div>
 
 <!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑3列菜单end↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 
@@ -851,36 +851,36 @@
 
 <script type="text/javascript">
 
-		$(".menu").click(function(){
-		console.log("helloworld");
-			if ($(this).hasClass("cura")) {
-				$(this).children(".new-sub").hide(); //当前菜单下的二级菜单隐藏
-				$(".menu").removeClass("cura"); //同一级的菜单项
-			} else {
-				$(".menu").removeClass("cura"); //移除所有的样式
-				$(this).addClass("cura"); //给当前菜单添加特定样式
-				$(".menu").children(".new-sub").slideUp("fast"); //隐藏所有的二级菜单
-				$(this).children(".new-sub").slideDown("fast"); //展示当前的二级菜单
-			}
-		});
+    $(".menu").click(function(){
+        console.log("helloworld");
+        if ($(this).hasClass("cura")) {
+            $(this).children(".new-sub").hide(); //当前菜单下的二级菜单隐藏
+            $(".menu").removeClass("cura"); //同一级的菜单项
+        } else {
+            $(".menu").removeClass("cura"); //移除所有的样式
+            $(this).addClass("cura"); //给当前菜单添加特定样式
+            $(".menu").children(".new-sub").slideUp("fast"); //隐藏所有的二级菜单
+            $(this).children(".new-sub").slideDown("fast"); //展示当前的二级菜单
+        }
+    });
 
 
 
-		$('#showIOSActionSheet').on('click', function () {
+    $('#showIOSActionSheet').on('click', function () {
         weui.picker([
-		<!-- {loop $category $row} -->
-		{
-            label: '{$row['catename']}',
-            value: '{$row['id']}'
-        },
-        <!-- {/loop} -->
-		 ],{
+            <!-- {loop $category $row} -->
+            {
+                label: '{$row['catename']}',
+                value: '{$row['id']}'
+            },
+            <!-- {/loop} -->
+        ],{
 
             onConfirm: function (result) {
 
-               // window.location.href="<?php echo $this->createMobileUrl('getlbs', array('catenameid' => ".?>"+result+"<?php ."));?>";
+                // window.location.href="<?php echo $this->createMobileUrl('getlbs', array('catenameid' => ".?>"+result+"<?php ."));?>";
 
-			   window.location.href="{$_W['siteroot']}app/index.php?i={$_W['uniacid']}&c=entry&do=getlbs&m=wx_lbsmap&catenameid="+result;
+                window.location.href="{$_W['siteroot']}app/index.php?i={$_W['uniacid']}&c=entry&do=getlbs&m=wx_lbsmap&catenameid="+result;
 
             }
 
@@ -897,235 +897,235 @@
 
 
 
-   //创建和初始化地图函数：
+    //创建和初始化地图函数：
 
-function initMap() {
-    createMap();//创建地图
+    function initMap() {
+        createMap();//创建地图
 
-    setMapEvent();//设置地图事件
+        setMapEvent();//设置地图事件
 
-    addMapControl();//向地图添加控件
+        addMapControl();//向地图添加控件
 
-    addMapOverlay();//向地图添加覆盖物
-
-}
-
-function createMap() {
-
-
-    var lng = "{$lng}";
-
-    var lat = "{$lat}";
-
-
-
-    var stCtrl = new BMap.PanoramaControl(); //构造全景控件
-
-	stCtrl.setOffset(new BMap.Size(50, 10));
-
-    map = new BMap.Map("map");
-
-    map.centerAndZoom(new BMap.Point(lng, lat), {$level});
-
-	var myIcon = new BMap.Icon("{$marker}", new BMap.Size(40,40));
-
-    var gpsPoint = new BMap.Point(lng, lat);
-
-    map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_LARGE}));
-
-    map.addControl(new BMap.ScaleControl());
-
-    map.addControl(new BMap.OverviewMapControl());
-
-    map.centerAndZoom(gpsPoint, {$level});
-
-    var marker=new BMap.Marker(gpsPoint,{icon:myIcon});
-
-    map.addOverlay(marker);
-
-	{if $cfg['vr']}map.addControl(stCtrl);{/if}//添加全景控件
-
-    // 添加定位控件
-
-    var geolocationControl = new BMap.GeolocationControl({
-
-        anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
-
-        showAddressBar: false,
-
-        offset: new BMap.Size(5, 55)
-
-    });
-
-
-    geolocationControl.addEventListener("locationSuccess", function (e) {
-
-        // 定位成功事件
-
-        var address = '';
-
-        address += e.addressComponent.province;
-
-        address += e.addressComponent.city;
-
-        address += e.addressComponent.district;
-
-        address += e.addressComponent.street;
-
-        address += e.addressComponent.streetNumber;
-
-        alert("当前定位地址为：" + address);
-
-    });
-
-    geolocationControl.addEventListener("locationError", function (e) {
-
-        // 定位失败事件
-
-        alert(e.message);
-
-    });
-
-    map.addControl(geolocationControl);
-
-}
-
-function setMapEvent() {
-
-    map.enableScrollWheelZoom();
-
-    map.enableKeyboard();
-
-    map.enableDragging();
-
-    map.enableDoubleClickZoom()
-
-}
-
-
-
-function addClickHandler(target, window) {
-    target.addEventListener("click", function () {
-
-        target.openInfoWindow(window);
-
-    });
-
-}
-
-function addMapOverlay() {
-    var markers = {$json_maps};
-
-    for (var index = 0; index < markers.length; index++) {
-
-        var point = new BMap.Point(markers[index].position.lng, markers[index].position.lat);
-
-        var marker = new BMap.Marker(point, {
-            // 图片调整位置offset: new BMap.Size(-40, -30)}  修改这里面的参数就好
-            icon: new BMap.Icon(markers[index].sthumb, new BMap.Size(50, 50), {
-
-                imageOffset: new BMap.Size(markers[index].imageOffset.width, markers[index].imageOffset.height)
-
-            })
-
-        });
-
-        // 图片上的名字 调整位置offset: new BMap.Size(-40, -30)}  修改这里面的参数就好
-        var label = new BMap.Label(markers[index].sname + "， 距离您" + markers[index].dist, {offset: new BMap.Size(-40, -30)});
-
-
-        label.setStyle({
-
-            fontSize: "12px",
-
-            border: "1px dashed #FC6",
-
-            padding: "3px 5px",
-
-            textAlign: "center",
-
-            lineHeight: "20px",
-
-//    background:"url(/gohome.png)",
-
-            cursor: "pointer"
-
-        });
-
-
-        var opts = {
-
-            width: 200,
-
-            title: "<div class='info-txt'><span>" + markers[index].sname + "</span></div>",
-
-            enableMessage: false
-
-        };
-
-		if(markers[index].showbtn==1)
-
-		{
-
-        var infoWindow = new BMap.InfoWindow("<div class='info-txt2'><i class='am-icon-map-marker'></i> 距离您 " + markers[index].dist + "</div><div class='info-txt2'><i class='am-icon-phone-square'></i> 电话：" + markers[index].stel + "</div><div class='info-txt2'><i class='am-icon-home'></i> " + markers[index].saddress + "</div><div class='info-btn'><a href='tel:"+markers[index].stel+"'><div class='info-btn-l'><i class='fa fa-gittip'></i> 一键拨号</div></a><a href='http://api.map.baidu.com/marker?location=" + markers[index].position.lat + "," + markers[index].position.lng + "&title=" + markers[index].sname + "&content=" + markers[index].saddress + "电话" + markers[index].stel + "&output=html'><div class='info-btn-r'><i class='am-icon-map-marker'></i> 一键导航</div></a><a href='"+ markers[index].diyurl +"'><div style='width: 95%;height:32px;margin:2% 2.5%;color:white;background:#ff6b2a;text-align:center;border-radius:2px;border-radius:5px;line-height:32px;display:inline-block;'>"+ markers[index].diyurl_name +"</div></a></div>", opts);
-
-		}
-
-		else
-
-		{
-
-		var infoWindow = new BMap.InfoWindow("<div class='info-txt2'><i class='am-icon-map-marker'></i> 距离您 " + markers[index].dist + "</div><div class='info-txt2'><i class='am-icon-phone-square'></i> 电话：" + markers[index].stel + "</div><div class='info-txt2'><i class='am-icon-home'></i> " + markers[index].saddress + "</div><div class='info-btn'><a href='tel:"+markers[index].stel+"'><div class='info-btn-l'><i class='fa fa-gittip'></i> 一键拨号</div></a><a href='http://api.map.baidu.com/marker?location=" + markers[index].position.lat + "," + markers[index].position.lng + "&title=" + markers[index].sname + "&content=" + markers[index].saddress + "电话" + markers[index].stel + "&output=html'><div class='info-btn-r'><i class='am-icon-map-marker'></i> 一键导航</div></a></div>", opts);
-
-		}
-
-        {if $cfg['label']}marker.setLabel(label);{/if}
-
-        addClickHandler(marker, infoWindow);
-
-        map.addOverlay(marker);
+        addMapOverlay();//向地图添加覆盖物
 
     }
 
+    function createMap() {
 
-}
+
+        var lng = "{$lng}";
+
+        var lat = "{$lat}";
+
+
+
+        var stCtrl = new BMap.PanoramaControl(); //构造全景控件
+
+        stCtrl.setOffset(new BMap.Size(50, 10));
+
+        map = new BMap.Map("map");
+
+        map.centerAndZoom(new BMap.Point(lng, lat), {$level});
+
+        var myIcon = new BMap.Icon("{$marker}", new BMap.Size(40,40));
+
+        var gpsPoint = new BMap.Point(lng, lat);
+
+        map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_LARGE}));
+
+        map.addControl(new BMap.ScaleControl());
+
+        map.addControl(new BMap.OverviewMapControl());
+
+        map.centerAndZoom(gpsPoint, {$level});
+
+        var marker=new BMap.Marker(gpsPoint,{icon:myIcon});
+
+        map.addOverlay(marker);
+
+        {if $cfg['vr']}map.addControl(stCtrl);{/if}//添加全景控件
+
+            // 添加定位控件
+
+            var geolocationControl = new BMap.GeolocationControl({
+
+                anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+
+                showAddressBar: false,
+
+                offset: new BMap.Size(5, 55)
+
+            });
+
+
+            geolocationControl.addEventListener("locationSuccess", function (e) {
+
+                // 定位成功事件
+
+                var address = '';
+
+                address += e.addressComponent.province;
+
+                address += e.addressComponent.city;
+
+                address += e.addressComponent.district;
+
+                address += e.addressComponent.street;
+
+                address += e.addressComponent.streetNumber;
+
+                alert("当前定位地址为：" + address);
+
+            });
+
+            geolocationControl.addEventListener("locationError", function (e) {
+
+                // 定位失败事件
+
+                alert(e.message);
+
+            });
+
+            map.addControl(geolocationControl);
+
+        }
+
+        function setMapEvent() {
+
+            map.enableScrollWheelZoom();
+
+            map.enableKeyboard();
+
+            map.enableDragging();
+
+            map.enableDoubleClickZoom()
+
+        }
+
+
+
+        function addClickHandler(target, window) {
+            target.addEventListener("click", function () {
+
+                target.openInfoWindow(window);
+
+            });
+
+        }
+
+        function addMapOverlay() {
+            var markers = {$json_maps};
+
+            for (var index = 0; index < markers.length; index++) {
+
+                var point = new BMap.Point(markers[index].position.lng, markers[index].position.lat);
+
+                var marker = new BMap.Marker(point, {
+                    // 图片调整位置offset: new BMap.Size(-40, -30)}  修改这里面的参数就好
+                    icon: new BMap.Icon(markers[index].sthumb, new BMap.Size(70, 50), {
+
+                        imageOffset: new BMap.Size(markers[index].imageOffset.width, markers[index].imageOffset.height)
+
+                    })
+
+                });
+
+                // 图片上的名字 调整位置offset: new BMap.Size(-40, -30)}  修改这里面的参数就好
+                var label = new BMap.Label(markers[index].sname + "， 距离您" + markers[index].dist, {offset: new BMap.Size(-40, -30)});
+
+
+                label.setStyle({
+
+                    fontSize: "12px",
+
+                    border: "1px dashed #FC6",
+
+                    padding: "3px 5px",
+
+                    textAlign: "center",
+
+                    lineHeight: "20px",
+
+//    background:"url(/gohome.png)",
+
+                    cursor: "pointer"
+
+                });
+
+
+                var opts = {
+
+                    width: 200,
+
+                    title: "<div class='info-txt'><span>" + markers[index].sname + "</span></div>",
+
+                    enableMessage: false
+
+                };
+
+                if(markers[index].showbtn==1)
+
+                {
+
+                    var infoWindow = new BMap.InfoWindow("<div class='info-txt2'><i class='am-icon-map-marker'></i> 距离您 " + markers[index].dist + "</div><div class='info-txt2'><i class='am-icon-phone-square'></i> 电话：" + markers[index].stel + "</div><div class='info-txt2'><i class='am-icon-home'></i> " + markers[index].saddress + "</div><div class='info-btn'><a href='tel:"+markers[index].stel+"'><div class='info-btn-l'><i class='fa fa-gittip'></i> 一键拨号</div></a><a href='http://api.map.baidu.com/marker?location=" + markers[index].position.lat + "," + markers[index].position.lng + "&title=" + markers[index].sname + "&content=" + markers[index].saddress + "电话" + markers[index].stel + "&output=html'><div class='info-btn-r'><i class='am-icon-map-marker'></i> 一键导航</div></a><a href='"+ markers[index].diyurl +"'><div style='width: 95%;height:32px;margin:2% 2.5%;color:white;background:#ff6b2a;text-align:center;border-radius:2px;border-radius:5px;line-height:32px;display:inline-block;'>"+ markers[index].diyurl_name +"</div></a></div>", opts);
+
+                }
+
+                else
+
+                {
+
+                    var infoWindow = new BMap.InfoWindow("<div class='info-txt2'><i class='am-icon-map-marker'></i> 距离您 " + markers[index].dist + "</div><div class='info-txt2'><i class='am-icon-phone-square'></i> 电话：" + markers[index].stel + "</div><div class='info-txt2'><i class='am-icon-home'></i> " + markers[index].saddress + "</div><div class='info-btn'><a href='tel:"+markers[index].stel+"'><div class='info-btn-l'><i class='fa fa-gittip'></i> 一键拨号</div></a><a href='http://api.map.baidu.com/marker?location=" + markers[index].position.lat + "," + markers[index].position.lng + "&title=" + markers[index].sname + "&content=" + markers[index].saddress + "电话" + markers[index].stel + "&output=html'><div class='info-btn-r'><i class='am-icon-map-marker'></i> 一键导航</div></a></div>", opts);
+
+                }
+
+                {if $cfg['label']}marker.setLabel(label);{/if}
+
+                    addClickHandler(marker, infoWindow);
+
+                    map.addOverlay(marker);
+
+                }
+
+
+            }
 //向地图添加控件
 
-function addMapControl() {
+            function addMapControl() {
 
 
 
-    var cr = new BMap.CopyrightControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT});  //设置版权控件位置
+                var cr = new BMap.CopyrightControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT});  //设置版权控件位置
 
-    map.addControl(cr); //添加版权控件
+                map.addControl(cr); //添加版权控件
 
-    var bs = map.getBounds();
+                var bs = map.getBounds();
 
-    cr.addCopyright({id: 1, content: "", bounds: bs});
+                cr.addCopyright({id: 1, content: "", bounds: bs});
 
-}
+            }
 
-var map;
+            var map;
 
-initMap();
+            initMap();
 
-//$(function(){
+    //$(function(){
 
-//    navigator.geolocation.getCurrentPosition(translatePoint); //定位
+    //    navigator.geolocation.getCurrentPosition(translatePoint); //定位
 
-//});
+    //});
 
-//function translatePoint(position){
+    //function translatePoint(position){
 
-//    var currentLat = position.coords.latitude;
+    //    var currentLat = position.coords.latitude;
 
-//    var currentLon = position.coords.longitude;
+    //    var currentLon = position.coords.longitude;
 
-//    var gpsPoint = new BMap.Point(currentLon, currentLat);
+    //    var gpsPoint = new BMap.Point(currentLon, currentLat);
 
-//    BMap.Convertor.translate(gpsPoint, 0, initMap); //转换坐标
+    //    BMap.Convertor.translate(gpsPoint, 0, initMap); //转换坐标
 
-//}
+    //}
 
 </script>
 
@@ -1136,3 +1136,4 @@ initMap();
 </body>
 
 </html>
+
