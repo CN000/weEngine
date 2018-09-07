@@ -9,7 +9,7 @@ load()->model('welcome');
 load()->model('module');
 load()->model('system');
 load()->model('user');
-load()->model('wxapp');
+load()->model('miniapp');
 load()->model('account');
 load()->model('message');
 load()->model('visit');
@@ -25,7 +25,7 @@ if ($do == 'get_not_installed_modules') {
 
 	if ($do == 'ext') {
 		if (!empty($_GPC['version_id'])) {
-			$version_info = wxapp_version($_GPC['version_id']);
+			$version_info = miniapp_version($_GPC['version_id']);
 		}
 		$account_api = WeAccount::create();
 		if (is_error($account_api)) {
@@ -42,15 +42,8 @@ if ($do == 'get_not_installed_modules') {
 
 
 if ($do == 'platform') {
-	$last_uniacid = uni_account_last_switch();
-	if (empty($last_uniacid)) {
-		itoast('', url('account/display'), 'info');
-	}
-	if (!empty($last_uniacid) && $last_uniacid != $_W['uniacid']) {
-		uni_account_switch($last_uniacid,  url('home/welcome'));
-	}
 	define('FRAME', 'account');
-	if (empty($_W['account']['endtime']) && !empty($_W['account']['endtime']) && $_W['account']['endtime'] < time()) {
+	if (!empty($_W['account']['endtime']) && $_W['account']['endtime'] < time() && !user_is_founder($_W['uid'], true)) {
 		itoast('公众号已到服务期限，请联系管理员并续费', url('account/manage'), 'info');
 	}
 		$notices = welcome_notices_get();
@@ -186,6 +179,7 @@ if ($do == 'get_ads') {
 }
 
 if ($do == 'system_home') {
+	define('FRAME', '');
 	$user_info = user_single($_W['uid']);
 	$account_num = permission_user_account_num();
 

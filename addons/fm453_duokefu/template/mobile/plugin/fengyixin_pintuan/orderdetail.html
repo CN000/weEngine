@@ -1,0 +1,27 @@
+<table class="table table-condensed table-bordered">
+	<thead>
+		<tr>
+			<td>
+				产品详情
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			{php $goods=$item['goods']}
+				<ul>
+		<li>产品ID:{$goods['id']}</li>
+		<li>产品标题:<span class="text-error">{$goods['gname']} </span>
+		</li>
+		{if !empty($goods['gsn'])}
+		<li>产品编号:{$goods['gsn']}</li>
+		{/if}
+		<li>市场价:{$goods['mprice']}元 / 团购价:{$goods['gprice']}元 / 单买价:{$goods['oprice']}元</li>
+		<li>产品状态：{if $goods['isshow']==1}<span class="label label-success">上架</span>{else}<span class="label label-error">下架</span>{/if}&nbsp;</li>
+			</ul>
+			{php unset($goods)}
+			</td>
+		</tr>
+	</tbody>
+</table>		

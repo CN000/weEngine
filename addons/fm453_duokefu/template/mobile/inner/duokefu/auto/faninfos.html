@@ -1,0 +1,45 @@
+{if $faninfos==1}
+	<div class="alert alert-dismissable  alert-success" id="plugin-faninfos">				
+		<div class="form-group">
+			<label for="fanusername">会员昵称：</label>
+			<span type="text" id="fanusername">{$mcrow['nickname']['value']}</span>			
+		</div>
+		<div class="form-group">
+			<label for="fanid">用户编号：</label>
+			<span type="text" id="fanid">{$fanrow['fanid']}</span>			
+		</div>
+		<div class="form-group">
+			<label for="fanuid">会员ID：</label>
+			<span type="text" id="fanuid">{$fanrow['uid']}</span>
+		</div>	
+		<div class="form-group">
+			<label for="followtime">关注时间：</label>
+			<span type="text" id="followtime"><?php echo date('Y-m-d H:i:s',$fanrow['followtime']) ?></span>
+		</div>
+		<div class="form-group">
+			<label for="fanmobile">手机号：</label>
+			<span type="text" id="fanmobile">{$mcrow['mobile']['value']}</span>
+		</div>
+		<div class="form-group">
+			<label for="fanemail">邮箱地址：</label>
+			<span type="text" id="fanemail">{$mcrow['email']['value']}</span>
+		</div>
+		<div class="form-group">
+			<label for="fancredit2">会员余额(元)：</label>
+			<span type="text" id="fancredit2">{$mcrow['credit2']['value']}</span>
+		</div>
+		<div class="form-group">
+			<label for="fancredit1">会员积分(个)：</label>
+			<span type="text" id="fancredit1">{$mcrow['credit1']['value']}</span>
+		</div>
+		<div class="form-group">
+			<label for="fanbirth">会员生日：</label>
+			<span type="text" id="fanbirth">{$mcrow['birthyear']['value']}年{$mcrow['birthmonth']['value']}月{$mcrow['birthday']['value']}日</span>
+		</div>
+		<div class="form-group">
+			<label for="fanalipay">会员支付宝：</label>
+			<span type="text" id="fanalipay">{$mcrow['alipay']['value']}</span>
+		</div>
+	</div>
+<hr>
+{/if}

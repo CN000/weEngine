@@ -407,7 +407,7 @@ function createMap() {
     geolocationControl.addEventListener("locationSuccess", function (e) {
         // 定位成功事件
         var address = '';
-
+		
         address += e.addressComponent.province;
         address += e.addressComponent.city;
         address += e.addressComponent.district;
@@ -434,7 +434,7 @@ $("#aa").hide();
 function addClickHandler(target, window) {
     target.addEventListener("click", function () {
         $("#aa").show(500,function(){$("#aa").html(window);});
-
+		
     });
 }
 
@@ -459,7 +459,7 @@ function addMapOverlay() {
         });
 		if(markers[index].showc==1)
 		{
-
+		
 			var infoWindow ="<div style='color:white;height:38%;background-color:rgba(3,3,3,0.6);'><div style='margin-left:14%;float:left;margin-right:4.5%;margin-top:3%;width:25%;height:80%;'><img src='" + markers[index].sthumb + "' style='border-radius:50%;width:20%;height:20%;position:absolute;''></div><p style='font-size:20px;line-height:30px;'>"+ markers[index].sname +"</p><p style='font-size:16px;'>"+markers[index].stel+"</p><img src='../addons/wx_lbsmap/images/x.png' style='position:absolute;right:2%;top:7%;' width='8%' onclick='clo();''><a href='tel:"+markers[index].stel+"'><div style='position:absolute;width:33%;height:10%;top:32%;left:14.5%;color:white;background-color:#ff6b2a;text-align:center;border-radius:2px;line-height:36px;'>电话</div></a><a href='http://api.map.baidu.com/marker?location=" + markers[index].position.lat + "," + markers[index].position.lng + "&title=" + markers[index].sname + "&content=" + markers[index].saddress + "电话" + markers[index].stel + "&output=html'><div style='position:absolute;width:33%;height:10%;top:32%;left:52.5%;color:white;background-color:#ff6b2a;text-align:center;border-radius:2px;line-height:36px;'>一键导航</div></a></div><div style='color:white;height:57%;border-top:1px dashed white;background-color:rgba(3,3,3,0.6);'><div style='margin-left:5%;float:left;margin-top:20%;width:25%;height:80%;'><img src='" + markers[index].cthumb + "' style='border-radius:50%;width:20%;height:20%;position:absolute;''></div><div  style='width:50%;float:left;color:white;line-height:23px;'><p><span style='font-size:20px;'>"+ markers[index].cname +"</span><br/><span style='font-size:16px;color:orange;'>";
 			if(markers[index].level==1)
 			{
@@ -482,13 +482,13 @@ function addMapOverlay() {
 				infoWindow+="★★★★★";
 			}
 			infoWindow+="</span><br/><span style='font-size:16px;'>"+markers[index].ctel+"</span><br/><span style='font-size:16px;'>"+markers[index].info+"</span></p></div><a href='tel:"+markers[index].stel+"'><img src='../addons/wx_lbsmap/images/tel.png' style='margin-left:2%;float:left;margin-right:5%;margin-top:26%;' width='12%''></a></div>";
-
+		
 		}
 		else
 		{
-
+        
 		var infoWindow ="<div style='color:white;height:50%;background-color:rgba(3,3,3,0.6);position:absolute;bottom:0;width:100%;'><img src='" + markers[index].sthumb + "' style='margin-left:16.5%;border-radius:50%;float:left;margin-right:4.5%;margin-top:5%;' width='20%''><p style='font-size:20px;'>"+ markers[index].sname +"</p><p style='font-size:16px;'>"+markers[index].stel+"</p><img src='../addons/wx_lbsmap/images/x.png' style='position:absolute;right:2%;top:7%;' width='8%' onclick='clo();''><a href='tel:"+markers[index].stel+"'><div style='position:absolute;width:33%;height:24%;top:70%;left:14.5%;color:white;background-color:#ff6b2a;text-align:center;border-radius:2px;line-height:40px;'>电话</div></a><a href='http://api.map.baidu.com/marker?location=" + markers[index].position.lat + "," + markers[index].position.lng + "&title=" + markers[index].sname + "&content=" + markers[index].saddress + "电话" + markers[index].stel + "&output=html'><div style='position:absolute;width:33%;height:24%;top:70%;left:52.5%;color:white;background-color:#ff6b2a;text-align:center;border-radius:2px;line-height:40px;'>一键导航</div></a></div>";
-
+		
 		}
 
         marker.setLabel(label);

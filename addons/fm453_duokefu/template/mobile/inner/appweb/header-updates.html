@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Language" content="zh-cn" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="author" content="Fm453@lukegzs.com"/>
+<link rel="shortcut icon" href="{$_W['siteroot']}{$_W['config']['upload']['attachdir']}/{if !empty($_W['setting']['copyright']['icon'])}{$_W['setting']['copyright']['icon']}{else}images/global/wechat.jpg{/if}" />
+
+<link href="../web/resource/css/bootstrap-theme.css" rel="stylesheet">
+<link href="../web/resource/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="../web/resource/css/bootstrap.css" rel="stylesheet">
+<link href="../web/resource/css/bootstrap.min.css" rel="stylesheet">
+<script src="../web/resource/js/lib/bootstrap.js"></script>
+<script src="../web/resource/js/lib/bootstrap.min.js"></script>
+
+<script>var require = { urlArgs: 'v={php echo date('YmdH');}' };</script>
+<script src="./resource/js/lib/jquery-1.11.1.min.js"></script>
+<script src="./resource/js/app/util.js"></script>
+<script src="./resource/js/require.js"></script>
+<script src="./resource/js/app/config.js"></script>
+
+<!--[if lt IE 9]>
+		<script src="./resource/js/html5shiv.min.js"></script>
+		<script src="./resource/js/respond.min.js"></script>
+<![endif]-->
+<title>模块更新说明</title>
+<script type="text/javascript">	
+	window.sysinfo = {
+{if !empty($_W['uniacid'])}
+		'uniacid': '{$_W['uniacid']}',
+{/if}
+{if !empty($_W['acid'])}
+		'acid': '{$_W['acid']}',
+{/if}
+{if !empty($_W['openid'])}
+		'openid': '{$_W['openid']}',
+{/if}
+{if !empty($_W['uid'])}
+		'uid': '{$_W['uid']}',
+{/if}
+		'siteroot': '{$_W['siteroot']}',
+		'siteurl': '{$_W['siteurl']}',
+		'attachurl': '{$_W['attachurl']}',
+{if defined('MODULE_URL')}
+		'MODULE_URL': '{MODULE_URL}',
+{/if}
+		'cookie' : {'pre': '{$_W['config']['cookie']['pre']}'}
+	};
+	</script>
+</head>

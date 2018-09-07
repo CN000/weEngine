@@ -1,0 +1,89 @@
+{template 'web/_header'}
+<style type="text/css">
+	.red {float:left;color:red}
+	.white{float:left;color:#fff}
+	.tooltipbox {
+		background:#fef8dd;border:1px solid #c40808; position:absolute; left:0;top:0; text-align:center;height:20px;
+		color:#c40808;padding:2px 5px 1px 5px; border-radius:3px;z-index:1000;
+	}
+	.red { float:left;color:red}
+</style>
+<script>
+	require(['jquery', 'util'], function($, u){
+		$('.forcopy p a').each(function(){
+			u.clip(this, $(this).text());
+		});
+	});
+</script>
+{template 'web/inner/formodule'}
+<div class="main">
+	<form action="{php echo $this->createWebUrl('extset')}" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				腾讯多客服客户端插件<span style="float:right;">（说明：请将该地址复制添加到多客服插件中即可; 点击复制需Google浏览器才能确保使用）</span>
+			</div>
+			<div class="panel-body">
+				<div class="form-group forcopy">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">自动加载信息与订单</label>
+					<div class="col-sm-9 col-xs-12">
+					<p class="help-block">点击复制：<a href="javascript:;" target="_blank" title="点击复制">{$_W['siteroot']}app/{php echo str_replace('./','',$this->createMobileUrl('plugin'));}</a>(自动加载会因切换接入用户而频繁占用一定的服务器资源，建议当您感觉该插件比较卡顿、影响服务器性能时，在腾讯多客服暂客户端中停用该插件；可使用下面的手动加载方式替换。)</p>
+					</div>
+				</div>
+				<div class="form-group forcopy">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">手动加载信息与订单</label>
+					<div class="col-sm-9 col-xs-12">
+					<p class="help-block">点击复制：<a href="javascript:;" target="_blank" title="点击复制">{$_W['siteroot']}app/{php echo str_replace('./','',$this->createMobileUrl('kefupage'));}</a>(此面板可手动获取当前与客服沟通的微信客人信息)</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				其他快捷链接/插件<span style="float:right;">（说明：请将该地址复制添加到多客服插件中即可; 点击复制需Google浏览器才能确保使用）</span>
+			</div>
+			<div class="panel-body">
+				<div class="form-group forcopy">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">二维码扫码统计</label>
+					<div class="col-sm-9 col-xs-12">
+					<p class="help-block">点击复制：<a href="javascript:;" target="_blank" title="点击复制">{$_W['siteroot']}app/{php echo str_replace('./','',$this->createMobileUrl('qrcode'));}</a>(此链接可用于查看系统自带的二维码管理信息)</p>
+					</div>
+				</div>
+
+				<div class="form-group forcopy">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">操作指南</label>
+					<div class="col-sm-9 col-xs-12">
+					<p class="help-block">点击复制：<a href="javascript:;" target="_blank" title="点击复制">{$_W['siteroot']}app/{php echo str_replace('./','',$this->createMobileUrl('userhelp'));}</a>(此链接可用于操作人员的操作指引)</p>
+					</div>
+				</div>
+
+				<div class="form-group forcopy">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">模拟测试</label>
+					<div class="col-sm-9 col-xs-12">
+					<p class="help-block">点击复制：<a href="javascript:;" target="_blank" title="点击复制">{$_W['siteroot']}app/{php echo str_replace('./','',$this->createMobileUrl('syskwdquery'));}</a>(此链接可用于前台直接模拟输入关键词并触发系统对应规则)</p>
+					</div>
+				</div>
+
+				<div {if $_W['isfounder'] } class="form-group forcopy" {else} class="hidden" {/if}>
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">手机模拟器</label>
+					<div class="col-sm-9 col-xs-12">
+					<p class="help-block">点击复制：<a href="javascript:;" target="_blank" title="点击复制">{$_W['siteroot']}app/{php echo str_replace('./','',$this->createMobileUrl('welink'));}</a>(此链接仅在按照开发者接入说明中的方法进行了模板自定义后方才有效，普通用户请忽略)</p>
+					</div>
+				</div>
+
+				<div {if $_W['isfounder'] } class="form-group forcopy" {else} class="hidden" {/if}>
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">修改指定会员信息</label>
+					<div class="col-sm-9 col-xs-12">
+					<p class="help-block">点击复制：<a href="javascript:;" target="_blank" title="点击复制">{$_W['siteroot']}web/{php echo str_replace('./','',url('mc/member/post', array('uid' =>'')));}</a>(结尾需填写会员号；快速定位到指定会员，使用系统的会员管理功能对会员资料进行修改)</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="form-group col-sm-12">
+			<input type="submit" name="submit" value="提交" class="btn btn-primary col-lg-1 hidden" />
+			<input type="hidden" name="token" value="{$_W['token']}" />
+			<a href="http://mp.weixin.qq.com" class="btn btn-success">去公众平台</a>
+		</div>
+	</form>
+</div>
+{template 'web/_footer'}

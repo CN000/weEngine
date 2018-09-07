@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e8bf5a38-f585-49a3-a38e-e3f12c9441e8" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/WeEngine.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resource/fonts/we7icon.eot" afterPath="$PROJECT_DIR$/web/resource/fonts/we7icon.eot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resource/fonts/we7icon.woff" afterPath="$PROJECT_DIR$/web/resource/fonts/we7icon.woff" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/table/Uni/AccountModules.php" afterPath="$PROJECT_DIR$/framework/table/Uni/AccountModules.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/table/Modules/Cloud.php" afterPath="$PROJECT_DIR$/framework/table/Modules/Cloud.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/table/Modules/Modules.php" afterPath="$PROJECT_DIR$/framework/table/Modules/Modules.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/table/Account/Xzapp.php" afterPath="$PROJECT_DIR$/framework/table/Account/Xzapp.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/account/__init.php" afterPath="$PROJECT_DIR$/web/source/account/__init.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/mc/__init.php" afterPath="$PROJECT_DIR$/web/source/mc/__init.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/module/__init.php" afterPath="$PROJECT_DIR$/web/source/module/__init.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/platform/__init.php" afterPath="$PROJECT_DIR$/web/source/platform/__init.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/wxapp/__init.php" afterPath="$PROJECT_DIR$/web/source/wxapp/__init.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/account-header.html" afterPath="$PROJECT_DIR$/web/themes/default/account/account-header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/class/account.class.php" afterPath="$PROJECT_DIR$/framework/class/account.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/model/account.mod.php" afterPath="$PROJECT_DIR$/framework/model/account.mod.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/table/account.table.php" afterPath="$PROJECT_DIR$/framework/table/account.table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api.php" afterPath="$PROJECT_DIR$/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/model/app.mod.php" afterPath="$PROJECT_DIR$/framework/model/app.mod.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/model/article.mod.php" afterPath="$PROJECT_DIR$/framework/model/article.mod.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/system/attachment.ctrl.php" afterPath="$PROJECT_DIR$/web/source/system/attachment.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/system/attachment.html" afterPath="$PROJECT_DIR$/web/themes/default/system/attachment.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/account/auth.ctrl.php" afterPath="$PROJECT_DIR$/web/source/account/auth.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/wxapp/auth.ctrl.php" afterPath="$PROJECT_DIR$/web/source/wxapp/auth.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/user/bind-oauth.html" afterPath="$PROJECT_DIR$/web/themes/default/user/bind-oauth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/user/bind.html" afterPath="$PROJECT_DIR$/web/themes/default/user/bind.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/common/bootstrap.app.inc.php" afterPath="$PROJECT_DIR$/app/common/bootstrap.app.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/bootstrap.inc.php" afterPath="$PROJECT_DIR$/framework/bootstrap.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/function/cache.func.php" afterPath="$PROJECT_DIR$/framework/function/cache.func.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/model/cache.mod.php" afterPath="$PROJECT_DIR$/framework/model/cache.mod.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/function/cache.mysql.func.php" afterPath="$PROJECT_DIR$/framework/function/cache.mysql.func.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/mc/chats.ctrl.php" afterPath="$PROJECT_DIR$/web/source/mc/chats.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/wxapp/choose-type.html" afterPath="$PROJECT_DIR$/web/themes/default/wxapp/choose-type.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/class/cloudapi.class.php" afterPath="$PROJECT_DIR$/framework/class/cloudapi.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resource/css/common.css" afterPath="$PROJECT_DIR$/web/resource/css/common.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/common/common.func.php" afterPath="$PROJECT_DIR$/web/common/common.func.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/mc/common.html" afterPath="$PROJECT_DIR$/web/themes/default/mc/common.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/profile/common.html" afterPath="$PROJECT_DIR$/web/themes/default/profile/common.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resource/js/app/common.min.js" afterPath="$PROJECT_DIR$/web/resource/js/app/common.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/config.php" afterPath="$PROJECT_DIR$/data/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/const.inc.php" afterPath="$PROJECT_DIR$/framework/const.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/class/coupon.class.php" afterPath="$PROJECT_DIR$/framework/class/coupon.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/platform/cover.ctrl.php" afterPath="$PROJECT_DIR$/web/source/platform/cover.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/user/create.ctrl.php" afterPath="$PROJECT_DIR$/web/source/user/create.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/phoneapp/create.html" afterPath="$PROJECT_DIR$/web/themes/default/phoneapp/create.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/user/create.html" afterPath="$PROJECT_DIR$/web/themes/default/user/create.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/webapp/create.html" afterPath="$PROJECT_DIR$/web/themes/default/webapp/create.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/module/default-entry.ctrl.php" afterPath="$PROJECT_DIR$/web/source/module/default-entry.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/wxapp/design-method.html" afterPath="$PROJECT_DIR$/web/themes/default/wxapp/design-method.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/account/display.ctrl.php" afterPath="$PROJECT_DIR$/web/source/account/display.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/module/display.ctrl.php" afterPath="$PROJECT_DIR$/web/source/module/display.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/user/display.ctrl.php" afterPath="$PROJECT_DIR$/web/source/user/display.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/wxapp/display.ctrl.php" afterPath="$PROJECT_DIR$/web/source/wxapp/display.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/builtin/core/template/display.html" afterPath="$PROJECT_DIR$/framework/builtin/core/template/display.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/display.html" afterPath="$PROJECT_DIR$/web/themes/default/account/display.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/module/display.html" afterPath="$PROJECT_DIR$/web/themes/default/module/display.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/user/display.html" afterPath="$PROJECT_DIR$/web/themes/default/user/display.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resource/js/lib/district.js" afterPath="$PROJECT_DIR$/web/resource/js/lib/district.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/module/dropdown-menu.html" afterPath="$PROJECT_DIR$/web/themes/default/module/dropdown-menu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/user/edit-account.html" afterPath="$PROJECT_DIR$/web/themes/default/user/edit-account.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/user/edit-base.html" afterPath="$PROJECT_DIR$/web/themes/default/user/edit-base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/user/edit-modules-tpl.html" afterPath="$PROJECT_DIR$/web/themes/default/user/edit-modules-tpl.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/wxapp/entrance-link.ctrl.php" afterPath="$PROJECT_DIR$/web/source/wxapp/entrance-link.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/wx_lbsmap/template/mobile/example.js" afterPath="$PROJECT_DIR$/addons/wx_lbsmap/template/mobile/example.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/model/extension.mod.php" afterPath="$PROJECT_DIR$/framework/model/extension.mod.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/mc/fans.ctrl.php" afterPath="$PROJECT_DIR$/web/source/mc/fans.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/utility/file.ctrl.php" afterPath="$PROJECT_DIR$/web/source/utility/file.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/function/file.func.php" afterPath="$PROJECT_DIR$/framework/function/file.func.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/user/find-password.ctrl.php" afterPath="$PROJECT_DIR$/web/source/user/find-password.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/user/find-password.html" afterPath="$PROJECT_DIR$/web/themes/default/user/find-password.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/common/frames.inc.php" afterPath="$PROJECT_DIR$/web/common/frames.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/wxapp/front-download.ctrl.php" afterPath="$PROJECT_DIR$/web/source/wxapp/front-download.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/function/global.func.php" afterPath="$PROJECT_DIR$/framework/function/global.func.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/user/group-display.html" afterPath="$PROJECT_DIR$/web/themes/default/user/group-display.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/user/group-post.html" afterPath="$PROJECT_DIR$/web/themes/default/user/group-post.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/module/group.ctrl.php" afterPath="$PROJECT_DIR$/web/source/module/group.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/user/group.ctrl.php" afterPath="$PROJECT_DIR$/web/source/user/group.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/module/group.html" afterPath="$PROJECT_DIR$/web/themes/default/module/group.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/common/header-account.html" afterPath="$PROJECT_DIR$/web/themes/default/common/header-account.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/common/header-base.html" afterPath="$PROJECT_DIR$/web/themes/default/common/header-base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/common/header-module.html" afterPath="$PROJECT_DIR$/web/themes/default/common/header-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/common/header-phoneapp.html" afterPath="$PROJECT_DIR$/web/themes/default/common/header-phoneapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/common/header-webapp.html" afterPath="$PROJECT_DIR$/web/themes/default/common/header-webapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/common/header-wxapp.html" afterPath="$PROJECT_DIR$/web/themes/default/common/header-wxapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/themes/default/common/header.html" afterPath="$PROJECT_DIR$/app/themes/default/common/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/common/header.html" afterPath="$PROJECT_DIR$/web/themes/default/common/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/source/wxapp/home.ctrl.php" afterPath="$PROJECT_DIR$/app/source/wxapp/home.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/webapp/home.ctrl.php" afterPath="$PROJECT_DIR$/web/source/webapp/home.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/themes/default/home/home.html" afterPath="$PROJECT_DIR$/app/themes/default/home/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.php" afterPath="$PROJECT_DIR$/app/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/index.php" afterPath="$PROJECT_DIR$/web/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/wx_lbsmap/js/jquery-1.11.0.min.js" afterPath="$PROJECT_DIR$/addons/wx_lbsmap/js/jquery-1.11.0.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/wx_lbsmap/js/jquery-1.8.0.min.js" afterPath="$PROJECT_DIR$/addons/wx_lbsmap/js/jquery-1.8.0.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/class/loader.class.php" afterPath="$PROJECT_DIR$/framework/class/loader.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/user/login.ctrl.php" afterPath="$PROJECT_DIR$/web/source/user/login.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-base-phoneapp.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-base-phoneapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-base-webapp.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-base-webapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-base-wxapp.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-base-wxapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-base-xzapp.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-base-xzapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-base.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-display-phoneapp.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-display-phoneapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-display-webapp.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-display-webapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-display-wxapp.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-display-wxapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-display-xzapp.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-display-xzapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-display.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-display.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-modules-tpl-phoneapp.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-modules-tpl-phoneapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-modules-tpl-webapp.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-modules-tpl-webapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-modules-tpl-wxapp.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-modules-tpl-wxapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-modules-tpl-xzapp.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-modules-tpl-xzapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-modules-tpl.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-modules-tpl.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/module/manage-system.ctrl.php" afterPath="$PROJECT_DIR$/web/source/module/manage-system.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/manage-users.html" afterPath="$PROJECT_DIR$/web/themes/default/account/manage-users.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/account/manage.ctrl.php" afterPath="$PROJECT_DIR$/web/source/account/manage.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/wxapp/manage.ctrl.php" afterPath="$PROJECT_DIR$/web/source/wxapp/manage.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/wxapp/manage.html" afterPath="$PROJECT_DIR$/web/themes/default/wxapp/manage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/wx_lbsmap/template/mobile/map.html" afterPath="$PROJECT_DIR$/addons/wx_lbsmap/template/mobile/map.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/wx_lbsmap/template/mobile/map_classical.html" afterPath="$PROJECT_DIR$/addons/wx_lbsmap/template/mobile/map_classical.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/wx_lbsmap/template/mobile/map_new.html" afterPath="$PROJECT_DIR$/addons/wx_lbsmap/template/mobile/map_new.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/platform/mass.ctrl.php" afterPath="$PROJECT_DIR$/web/source/platform/mass.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/model/material.mod.php" afterPath="$PROJECT_DIR$/framework/model/material.mod.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/model/mc.mod.php" afterPath="$PROJECT_DIR$/framework/model/mc.mod.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/mc/member-information.html" afterPath="$PROJECT_DIR$/web/themes/default/mc/member-information.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/mc/member.ctrl.php" afterPath="$PROJECT_DIR$/web/source/mc/member.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/mc/member.html" afterPath="$PROJECT_DIR$/web/themes/default/mc/member.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/platform/menu.ctrl.php" afterPath="$PROJECT_DIR$/web/source/platform/menu.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/system/menu.ctrl.php" afterPath="$PROJECT_DIR$/web/source/system/menu.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/platform/menu.html" afterPath="$PROJECT_DIR$/web/themes/default/platform/menu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/system/menu.html" afterPath="$PROJECT_DIR$/web/themes/default/system/menu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/model/message.mod.php" afterPath="$PROJECT_DIR$/framework/model/message.mod.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/class/oauth2/mobile.class.php" afterPath="$PROJECT_DIR$/framework/class/oauth2/mobile.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/profile/module-link-uniacid.ctrl.php" afterPath="$PROJECT_DIR$/web/source/profile/module-link-uniacid.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/wxapp/module-link-uniacid.ctrl.php" afterPath="$PROJECT_DIR$/web/source/wxapp/module-link-uniacid.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/profile/module-link-uniacid.html" afterPath="$PROJECT_DIR$/web/themes/default/profile/module-link-uniacid.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/builtin/core/module.cer" afterPath="$PROJECT_DIR$/framework/builtin/core/module.cer" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/model/module.mod.php" afterPath="$PROJECT_DIR$/framework/model/module.mod.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/article/notice-show.ctrl.php" afterPath="$PROJECT_DIR$/web/source/article/notice-show.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/article/notice-show.html" afterPath="$PROJECT_DIR$/web/themes/default/article/notice-show.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/article/notice.ctrl.php" afterPath="$PROJECT_DIR$/web/source/article/notice.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/article/notice.html" afterPath="$PROJECT_DIR$/web/themes/default/article/notice.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/class/oauth2/oauth2client.class.php" afterPath="$PROJECT_DIR$/framework/class/oauth2/oauth2client.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/system/optimize.html" afterPath="$PROJECT_DIR$/web/themes/default/system/optimize.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/wxapp/payment.ctrl.php" afterPath="$PROJECT_DIR$/web/source/wxapp/payment.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/module/permission.ctrl.php" afterPath="$PROJECT_DIR$/web/source/module/permission.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/module/permission.html" afterPath="$PROJECT_DIR$/web/themes/default/module/permission.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/common/permission.inc.php" afterPath="$PROJECT_DIR$/web/common/permission.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/model/permission.mod.php" afterPath="$PROJECT_DIR$/framework/model/permission.mod.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/system/platform.ctrl.php" afterPath="$PROJECT_DIR$/web/source/system/platform.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/account/post-step.ctrl.php" afterPath="$PROJECT_DIR$/web/source/account/post-step.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/xzapp/post-step.ctrl.php" afterPath="$PROJECT_DIR$/web/source/xzapp/post-step.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/post-step.html" afterPath="$PROJECT_DIR$/web/themes/default/account/post-step.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/account/post-user.ctrl.php" afterPath="$PROJECT_DIR$/web/source/account/post-user.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/account/post.ctrl.php" afterPath="$PROJECT_DIR$/web/source/account/post.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/wxapp/post.ctrl.php" afterPath="$PROJECT_DIR$/web/source/wxapp/post.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/wxapp/post.html" afterPath="$PROJECT_DIR$/web/themes/default/wxapp/post.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/cloud/process.html" afterPath="$PROJECT_DIR$/web/themes/default/cloud/process.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/user/profile.ctrl.php" afterPath="$PROJECT_DIR$/web/source/user/profile.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/account/recycle.ctrl.php" afterPath="$PROJECT_DIR$/web/source/account/recycle.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/account/recycle.html" afterPath="$PROJECT_DIR$/web/themes/default/account/recycle.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/wxapp/refund.ctrl.php" afterPath="$PROJECT_DIR$/web/source/wxapp/refund.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/user/register.ctrl.php" afterPath="$PROJECT_DIR$/web/source/user/register.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/user/register.html" afterPath="$PROJECT_DIR$/web/themes/default/user/register.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/user/registerset.ctrl.php" afterPath="$PROJECT_DIR$/web/source/user/registerset.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/user/registerset.html" afterPath="$PROJECT_DIR$/web/themes/default/user/registerset.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/profile/remote.ctrl.php" afterPath="$PROJECT_DIR$/web/source/profile/remote.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/function/safe.func.php" afterPath="$PROJECT_DIR$/framework/function/safe.func.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/source/auth/session.ctrl.php" afterPath="$PROJECT_DIR$/app/source/auth/session.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/wx_lbsmap/template/setting.html" afterPath="$PROJECT_DIR$/addons/wx_lbsmap/template/setting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/system/site.html" afterPath="$PROJECT_DIR$/web/themes/default/system/site.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/wx_lbsmap/site.php" afterPath="$PROJECT_DIR$/addons/wx_lbsmap/site.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/wxapp/statistics.ctrl.php" afterPath="$PROJECT_DIR$/web/source/wxapp/statistics.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/table/store.table.php" afterPath="$PROJECT_DIR$/framework/table/store.table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/wx_lbsmap/js/sweetalert.min.js" afterPath="$PROJECT_DIR$/addons/wx_lbsmap/js/sweetalert.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/class/oauth2/system.class.php" afterPath="$PROJECT_DIR$/framework/class/oauth2/system.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/system/template.ctrl.php" afterPath="$PROJECT_DIR$/web/source/system/template.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/user/third-bind.ctrl.php" afterPath="$PROJECT_DIR$/web/source/user/third-bind.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/mc/trade.ctrl.php" afterPath="$PROJECT_DIR$/web/source/mc/trade.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/cloud/upgrade.html" afterPath="$PROJECT_DIR$/web/themes/default/cloud/upgrade.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/system/user-setting.html" afterPath="$PROJECT_DIR$/web/themes/default/system/user-setting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/model/user.mod.php" afterPath="$PROJECT_DIR$/framework/model/user.mod.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/table/users.table.php" afterPath="$PROJECT_DIR$/framework/table/users.table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/system/usersetting.ctrl.php" afterPath="$PROJECT_DIR$/web/source/system/usersetting.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/wxapp/version-front-download.html" afterPath="$PROJECT_DIR$/web/themes/default/wxapp/version-front-download.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/phoneapp/version.ctrl.php" afterPath="$PROJECT_DIR$/web/source/phoneapp/version.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/wxapp/version.ctrl.php" afterPath="$PROJECT_DIR$/web/source/wxapp/version.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/version.inc.php" afterPath="$PROJECT_DIR$/framework/version.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resource/fonts/we7icon.svg" afterPath="$PROJECT_DIR$/web/resource/fonts/we7icon.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/resource/fonts/we7icon.ttf" afterPath="$PROJECT_DIR$/web/resource/fonts/we7icon.ttf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/we_engine.20180907.sql" afterPath="$PROJECT_DIR$/we_engine.20180907.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/class/webapp.account.class.php" afterPath="$PROJECT_DIR$/framework/class/webapp.account.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/class/weixin.account.class.php" afterPath="$PROJECT_DIR$/framework/class/weixin.account.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/class/weixin.platform.class.php" afterPath="$PROJECT_DIR$/framework/class/weixin.platform.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/home/welcome-system.html" afterPath="$PROJECT_DIR$/web/themes/default/home/welcome-system.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/home/welcome.ctrl.php" afterPath="$PROJECT_DIR$/web/source/home/welcome.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/class/wxapp.account.class.php" afterPath="$PROJECT_DIR$/framework/class/wxapp.account.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/source/entry/wxapp.ctrl.php" afterPath="$PROJECT_DIR$/app/source/entry/wxapp.ctrl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/table/wxapp.table.php" afterPath="$PROJECT_DIR$/framework/table/wxapp.table.php" />
+    </list>
+    <ignored path="WeEngine.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="WeEngine" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="config.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data/config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4837963" vertical-offset="0" max-vertical-offset="1430">
+              <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/data/config.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="32" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WeEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WeEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WeEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunManager">
+    <list size="0" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e8bf5a38-f585-49a3-a38e-e3f12c9441e8" name="Default" comment="" />
+      <created>1536292522863</created>
+      <option name="number" value="Default" />
+      <updated>1536292522863</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="32" width="1936" height="1056" extended-state="1" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2521322" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/data/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="176" max-vertical-offset="1430">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/bootstrap.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3395" max-vertical-offset="4246">
+          <caret line="171" column="34" selection-start-line="171" selection-start-column="34" selection-end-line="171" selection-end-column="34" />
+          <folding>
+            <marker date="1536309552219" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/const.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.82726204" vertical-offset="0" max-vertical-offset="4686">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/bootstrap.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43125734" vertical-offset="3395" max-vertical-offset="4246">
+          <caret line="171" column="34" selection-start-line="171" selection-start-column="34" selection-end-line="171" selection-end-column="34" />
+          <folding>
+            <marker date="1536309552219" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4837963" vertical-offset="0" max-vertical-offset="1430">
+          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,75 @@
+{template 'web/_header'}
+<script>
+	require(['jquery', 'util'], function($, u){
+		$('.forcopy p a').each(function(){
+            u.clip(this, $(this).text());
+		});
+	});
+</script>
+{template 'web/inner/formodule'}
+<div class="main">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				关于客服助手模块配置的说明
+			</div>
+			<div class="panel-body">
+		      <ol>
+		          <li>为了获得最好的后台操作体验，我们建议您使用最新版Goole浏览器。（火狐等部分浏览器不支持点击粘贴功能）</li>
+
+		          <li>模块中大部分操作采用的是追加数据的方式；为了简化设计，我们对很多链接使用了在新窗口中打开的方式，以便于同步操作与保存。</li>
+		          </ol>
+		     </div>
+		</div>
+		{if $_W['isfounder']}
+	<form action="{php echo $this->createWebUrl('getcode')}" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				客服助手模块<span style="color:red;font-weight: bolder;">授权配置</span>——本设置项仅有站长可见
+			</div>
+			<div class="panel-body">
+				<div class="form-group hidden">
+					<label class="col-xs-12 col-sm-2 col-md-1 control-label"> 授权地址</label>
+					<div class="col-sm-3 col-xs-12">
+						<input readonly="true" type="text" name="suip" class="form-control" value="{$settings['shouquan']['suip']}" />
+					</div>
+					<div class="col-sm-3 col-xs-12">
+						<input readonly="true" type="text" name="sudomin" class="form-control" value="{$settings['shouquan']['sudomin']}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-1 control-label"> </label>
+					<div class="col-sm-9 col-xs-12">
+						<ol class="help-block">
+						<li>为了方便管理员维护，我们暂时下架了授权远程验证，请直接点击“确认授权”即可。</li>
+						</ol>
+					</div>
+				</div>
+				<div class="form-group hidden">
+					<label class="col-xs-12 col-sm-2 col-md-1 control-label">授权API</label>
+					<div class="col-sm-4 col-xs-12">
+						<input type="text" name="suapi"  {$isread} class="form-control" value="{$settings['shouquan']['suapi']}" />
+					</div>
+				</div>
+				<div class="form-group hidden">
+					<label class="col-xs-12 col-sm-2 col-md-1 control-label">授权密钥</label>
+					<div class="col-sm-4 col-xs-12">
+						<input type="text" name="suseceret"  {$isread} class="form-control" value="{$settings['shouquan']['suseceret']}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-1 control-label">授权码</label>
+					<div class="col-sm-4 col-xs-12">
+						<input type="text" name="sufm453code"  {$isread} class="form-control" value="{$settings['shouquan']['sufm453code']}" />
+					</div>
+					<input type="submit"  name="rebindme" value="解除绑定"  onclick="return confirm('您正在为当前使用的客服助手模块解除官方授权，请再次确认是否继续进行');"class="btn btn-danger" />
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-sm-12">
+			<input type="submit" name="bindme" value="确认授权" class="btn btn-success col-lg-1" />
+			 <input type="hidden" name="token" value="{$_W['token']}" />
+		</div>
+	</form>
+    {/if}
+</div>
+{template 'web/_footer'}

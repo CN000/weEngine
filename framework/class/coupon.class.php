@@ -5,7 +5,7 @@
  */
 defined('IN_IA') or exit('Access Denied');
 load()->classs('weixin.account');
-class coupon extends WeiXinAccount {
+class coupon extends WeixinAccount {
 	public $account = null;
 	public function __construct($acid = '') {
 		$this->account_api = self::create($acid);
@@ -803,6 +803,8 @@ class Card {
 	public $center_title = ''; 	public $center_sub_title = '';
 	public $center_url = '';
 	public $need_push_on_view = false;	public $pay_info = array();
+		public $get_custom_code_mode = "GET_CUSTOM_CODE_MODE_DEPOSIT";
+
 	private $types = array('', 'DISCOUNT', 'CASH', 'GROUPON', 'GIFT', 'GENERAL_COUPON', "MEMBER_CARD", "SCENIC_TICKET", "MOVIE_TICKET");
 	private $code_types = array(COUPON_CODE_TYPE_TEXT => 'CODE_TYPE_TEXT', COUPON_CODE_TYPE_QRCODE => 'CODE_TYPE_QRCODE',COUPON_CODE_TYPE_BARCODE => 'CODE_TYPE_BARCODE');
 
@@ -901,7 +903,7 @@ class Card {
 			'bind_openid', 'can_share', 'can_give_friend', 'location_id_list',
 			'center_title', 'center_sub_title','center_url',
 			'custom_url_name','custom_url','custom_url_sub_title',
-			'promotion_url_name','promotion_url', 'promotion_url_sub_title', 'source',
+			'promotion_url_name','promotion_url', 'promotion_url_sub_title', 'source', 'get_custom_code_mode',
 		);
 		if ($this->type == 6) {
 			$fields[] = 'need_push_on_view';

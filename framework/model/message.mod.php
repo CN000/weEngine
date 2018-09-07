@@ -235,18 +235,17 @@ function message_notice_record_cloud($message) {
 
 function message_wxapp_modules_version_upgrade() {
 	global $_W;
-	load()->model('wxapp');
+	load()->model('miniapp');
 	load()->model('account');
 
-	$wxapp_table = table('wxapp');
+	$wxapp_table = table('account');
 	$wxapp_table->searchWithType(array(ACCOUNT_TYPE_APP_NORMAL));
 	$uniacid_list = $wxapp_table->searchAccountList();
 
 	if (empty($uniacid_list)) {
 		return true;
 	}
-
-	$wxapp_list = $wxapp_table->wxappInfo(array_keys($uniacid_list));
+	$wxapp_list = table('account_wxapp')->wxappInfo(array_keys($uniacid_list));
 	$wxapp_modules = table('modules')->getSupportWxappList();
 
 	foreach ($uniacid_list as $uniacid_info) {
@@ -255,7 +254,7 @@ function message_wxapp_modules_version_upgrade() {
 			continue;
 		}
 
-		$uniacid_modules = wxapp_version_all($uniacid_info['uniacid']);
+		$uniacid_modules = miniapp_version_all($uniacid_info['uniacid']);
 
 		if (empty($uniacid_modules[0]['modules'])) {
 			continue;
@@ -408,28 +407,35 @@ function message_store_notice() {
 
 	$insert_data = array();
 	$signs = array();
+	$create_time = array();
 	foreach ($data['version'] as $item) {
 		$signs[] = $item['itemid'];
+		$create_time[] = $item['datetime'];
 		$insert_data[] = array(
 			'sign' => $item['itemid'],
 			'message' => $item['title'],
 			'url' => $item['url'],
 			'create_time' => $item['datetime'],
 			'type' => MESSAGE_SYSTEM_UPGRADE,
+			'is_read' => MESSAGE_NOREAD,
 		);
 	}
 	foreach ($data['info'] as $item) {
 		$signs[] = $item['itemid'];
+		$create_time[] = $item['datetime'];
 		$insert_data[] = array(
 			'sign' => $item['itemid'],
 			'message' => $item['title'],
 			'url' => $item['url'],
 			'create_time' => $item['datetime'],
 			'type' => MESSAGE_OFFICIAL_DYNAMICS,
+			'is_read' => MESSAGE_NOREAD,
 		);
 	}
 
 	if (!empty($signs)) {
+		array_multisort($create_time, SORT_ASC, SORT_NUMERIC, $insert_data);
+
 		$signs = pdo_getall('message_notice_log', array('sign' => $signs), array('sign'), 'sign');
 		$signs = array_keys($signs);
 		foreach ($insert_data as $item) {

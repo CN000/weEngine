@@ -107,7 +107,11 @@ function permission_create_account($uid, $type = ACCOUNT_TYPE_OFFCIAL_NORMAL) {
 	}
 	$user_table = table('users');
 	$userinfo = $user_table->usersInfo($uid);
-	$groupdata = $user_table->usersGroupInfo($userinfo['groupid']);
+	if (user_is_vice_founder($uid)) {
+		$groupdata = $user_table->userFounderGroupInfo($userinfo['groupid']);
+	} else {
+		$groupdata = $user_table->usersGroupInfo($userinfo['groupid']);
+	}
 	$list = table('account')->getOwnedAccountCount($uid);
 	foreach ($list as $item) {
 		if ($item['type'] == ACCOUNT_TYPE_APP_NORMAL) {
@@ -135,15 +139,18 @@ function permission_account_user_role($uid = 0, $uniacid = 0) {
 	$role = '';
 	$uid = empty($uid) ? $_W['uid'] : intval($uid);
 
-	if (user_is_founder($uid) && !user_is_vice_founder($uid)) {
+	if (user_is_founder($uid, true)) {
 		return ACCOUNT_MANAGE_NAME_FOUNDER;
-	}
-
-	if (user_is_vice_founder($uid)) {
-		return ACCOUNT_MANAGE_NAME_VICE_FOUNDER;
-	}
-	if (!user_is_bind()) {
-		return ACCOUNT_MANAGE_NAME_UNBIND_USER;
+	} else {
+		if (!empty($_W['user']['endtime']) && $_W['user']['endtime'] < TIMESTAMP) {
+			return ACCOUNT_MANAGE_NAME_EXPIRED;
+		}
+		if (user_is_vice_founder($uid)) {
+			return ACCOUNT_MANAGE_NAME_VICE_FOUNDER;
+		}
+		if (!user_is_bind()) {
+			return ACCOUNT_MANAGE_NAME_UNBIND_USER;
+		}
 	}
 	$user_table = table('users');
 	if (!empty($uniacid)) {
@@ -445,6 +452,7 @@ function permission_user_account_num($uid = 0) {
 				$group['maxwebapp'] = min(intval($group['maxwebapp']), intval($group_vice['maxwebapp']));
 				$group['maxphoneapp'] = min(intval($group['maxphoneapp']), intval($group_vice['maxphoneapp']));
 				$group['maxxzapp'] = min(intval($group['maxxzapp']), intval($group_vice['maxxzapp']));
+				$group['maxaliapp'] = min(intval($group['maxaliapp']), intval($group_vice['maxaliapp']));
 			}
 		}
 	}
@@ -459,17 +467,19 @@ function permission_user_account_num($uid = 0) {
 	$wxapp_limit = max((intval($group['maxwxapp']) + intval($store_buy_wxapp) - $group_num['wxapp_num']), 0);
 	$webapp_limit = max(intval($group['maxwebapp']) - $group_num['webapp_num'], 0);
 	$phoneapp_limit = max(intval($group['maxphoneapp']) - $group_num['phoneapp_num'], 0);
-	$xzapp_limit = max(intval($group['maxxzapp']) - $group_num['phoneapp_num'], 0);
+	$xzapp_limit = max(intval($group['maxxzapp']) - $group_num['xzapp_num'], 0);
+	$aliapp_limit = max(intval($group['maxaliapp']) - $group_num['aliapp_num'], 0);
 	$founder_uniacid_limit = max((intval($group_vice['maxaccount']) + intval($store_buy_account) - $founder_group_num['account_num']), 0);
 	$founder_wxapp_limit = max((intval($group_vice['maxwxapp']) + intval($store_buy_wxapp) - $founder_group_num['wxapp_num']), 0);
 	$founder_webapp_limit = max(intval($group_vice['maxwebapp']) - $founder_group_num['webapp_num'], 0);
 	$founder_phoneapp_limit = max(intval($group_vice['maxphoneapp']) - $founder_group_num['phoneapp_num'], 0);
 	$founder_xzapp_limit = max(intval($group_vice['xzapp']) - $founder_group_num['xzapp_num'], 0);
+	$founder_aliapp_limit = max(intval($group_vice['aliapp']) - $founder_group_num['aliapp_num'], 0);
 	$data = array(
 		'group_name' => $group['name'],
 		'vice_group_name' => $group_vice['name'],
 		'maxaccount' => $group['maxaccount'] + $store_buy_account,
-		'usergroup_account_limit' => max($group['maxaccount'] - $group_num['account_num'] - $create_buy_account_num, 0),		'usergroup_wxapp_limit' => max($group['maxwxapp'] - $group_num['wxapp_num'] - $create_buy_wxapp_num, 0),		'usergroup_webapp_limit' => max($group['maxwebapp'] - $group_num['webapp_num'], 0),		'usergroup_phoneapp_limit' => max($group['maxphoneapp'] - $group_num['phoneapp_num'], 0),		'usergroup_xzapp_limit' => max($group['maxxzapp'] - $group_num['xzapp_num'], 0), 		'uniacid_num' => $group_num['account_num'],
+		'usergroup_account_limit' => max($group['maxaccount'] - $group_num['account_num'] - $create_buy_account_num, 0),		'usergroup_wxapp_limit' => max($group['maxwxapp'] - $group_num['wxapp_num'] - $create_buy_wxapp_num, 0),		'usergroup_webapp_limit' => max($group['maxwebapp'] - $group_num['webapp_num'], 0),		'usergroup_phoneapp_limit' => max($group['maxphoneapp'] - $group_num['phoneapp_num'], 0),		'usergroup_xzapp_limit' => max($group['maxxzapp'] - $group_num['xzapp_num'], 0), 		'usergroup_aliapp_limit' => max($group['maxaliapp'] - $group_num['aliapp_num'], 0), 		'uniacid_num' => $group_num['account_num'],
 		'uniacid_limit' => max($uniacid_limit, 0),
 		'founder_uniacid_limit' => max($founder_uniacid_limit, 0),
 		'maxwxapp' => $group['maxwxapp'] + $store_buy_wxapp,
@@ -484,7 +494,11 @@ function permission_user_account_num($uid = 0) {
 		'maxxzapp' => $group['maxxzapp'],
 		'xzapp_num' => $group_num['xzapp_num'],
 		'xzapp_limit' => $xzapp_limit,
-		'founder_xzapp_limit' => max($founder_xzapp_limit, 0)
+		'founder_xzapp_limit' => max($founder_xzapp_limit, 0),
+		'maxaliapp' => $group['maxaliapp'],
+		'aliapp_num' => $group_num['aliapp_num'],
+		'aliapp_limit' => $aliapp_limit,
+		'founder_aliapp_limit' => max($founder_aliapp_limit, 0),
 	);
 	return $data;
 }

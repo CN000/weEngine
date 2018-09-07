@@ -1,0 +1,45 @@
+<form id="part2form" class=""  action="{php echo $this->createMobileUrl('plugin')}" method="post">
+	<input type="hidden" name="i" value="{$_W['uniacid']}" />
+	<input type="hidden" name="c" value="entry" />
+	<input type="hidden" name="m" value="fm453_duokefu" />
+	<input type="hidden" name="do" value="plugin" />
+	<input  class="openid" id="theOpenid" type="hidden" name="openid" value="{$_GPC['openid']}"/>
+	<div class="row clearfix">
+		<h5>业务处理</h5>
+		<div class="col-md-12 column">
+			<div class="form-group">
+				 <input class="form-control openid" id="part2_theOpenid" type="text" name="openid" value="{$_GPC['openid']}" disabled="true"/>
+			</div>
+		</div>		
+		<button  class="btn btn-default pull-right " type="button" form="faninfos editfaninfos" id="" onclick="window.location.reload();" />刷新(F5)</button>
+		<button type="button" name="checksafe" value="yes"  class="btn btn-default  hidden" id="checkurlsafecode" >验证</button>
+		<button type="button" name="chathistory" value="yes"  class="btn btn-default  hidden" id="chathistory" >聊天记录</button>	
+	</div>
+	</form>
+	<div class="container" id="showplugins" style="display:none" >
+	<div class="row clearfix">
+		<div class="col-md-12 column" style="text-align: center;">
+		<?php  if  ($this->module['config']['onoffs']['fm453_shopping'] ==1){   ?>
+		<button type="button" name="fm453_shopping" value="yes" class="btn btn-default active btn-info" id="loadpage_fm453_shopping"   onclick="loadPluginPage('fm453_shopping',{$_W['uniacid']},'plugin');" >嗨旅行商城</button>	
+		<?php  } ?>
+		<?php  if  ($this->module['config']['onoffs']['ewei_shopping'] ==1){   ?>
+		<button type="button" name="ewei_shopping" value="yes" class="btn btn-default active btn-info" id="loadpage_ewei_shopping" onclick="loadPluginPage('ewei_shopping',{$_W['uniacid']},'plugin');">微商城</button>
+		<?php  } ?>
+		<?php  if  ($this->module['config']['onoffs']['ewei_shop'] ==1){   ?>
+		<button type="button" name="ewei_shop" value="yes" class="btn btn-default active btn-info" id="loadpage_ewei_shop" onclick="loadPluginPage('ewei_shop',{$_W['uniacid']},'plugin');">人人商城</button>
+		<?php  } ?>
+			<?php  if  ($this->module['config']['onoffs']['fengyixin_pintuan'] ==1){   ?>
+		<button type="button" name="fengyixin_pintuan" value="yes" class="btn btn-default active btn-info" id="loadpage_fengyixin_pintuan" onclick="loadPluginPage('fengyixin_pintuan',{$_W['uniacid']},'plugin');">拼团</button>
+		<?php  } ?>
+		<?php  if  ($this->module['config']['onoffs']['quick_shop'] ==1){   ?>
+		<button type="button" name="quick_shop" value="yes" class="btn btn-default active btn-info" id="loadpage_quick_shop" onclick="loadPluginPage('quick_shop',{$_W['uniacid']},'plugin');">人人赚商城</button>
+		<?php  } ?>
+		<?php  if  ($this->module['config']['onoffs']['ewei_hotels'] ==1){   ?>
+		<button type="button" name="ewei_hotels" value="yes" class="btn btn-default active btn-info" id="loadpage_ewei_hotels" onclick="loadPluginPage('ewei_hotels',{$_W['uniacid']},'plugin');">微酒店</button>
+		<?php  } ?>
+		</div>
+	</div>
+</div>
+	<ol id="plugin"></ol>
+	
+<hr>

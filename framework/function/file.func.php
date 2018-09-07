@@ -198,9 +198,11 @@ function file_upload($file, $type = 'image', $name = '', $compress = false) {
 			$limit = $setting['upload']['audio']['limit'];
 			break;
 	}
+	$type = $type == 'image' ? 'image' : 'audio';
 	$setting = $_W['setting']['upload'][$type];
-	if (!empty($setting)) {
-		$allowExt = array_merge($setting['extentions'], $allowExt);
+
+	if (!empty($setting['extentions'])) {
+		$allowExt = $setting['extentions'];
 	}
 	if (!in_array(strtolower($ext), $allowExt) || in_array(strtolower($ext), $harmtype)) {
 		return error(-3, '不允许上传此类文件');
@@ -208,8 +210,6 @@ function file_upload($file, $type = 'image', $name = '', $compress = false) {
 	if (!empty($limit) && $limit * 1024 < filesize($file['tmp_name'])) {
 		return error(-4, "上传的文件超过大小限制，请上传小于 {$limit}k 的文件");
 	}
-
-
 
 	$result = array();
 	if (empty($name) || $name == 'auto') {
@@ -234,6 +234,15 @@ function file_upload($file, $type = 'image', $name = '', $compress = false) {
 
 	if ($type == 'image' && $compress) {
 				file_image_quality($save_path, $save_path, $ext);
+	}
+
+	if (file_is_uni_attach($save_path)) {
+		$check_result = file_check_uni_space($save_path);
+		if (is_error($check_result)) {
+			@unlink($save_path);
+			return $check_result;
+		}
+		file_change_uni_attchsize($save_path);
 	}
 
 	$result['success'] = true;
@@ -427,8 +436,12 @@ function file_random_name($dir, $ext) {
 
 
 function file_delete($file) {
+	global $_W;
 	if (empty($file)) {
 		return false;
+	}
+	if (file_exists(ATTACHMENT_ROOT . '/' . $file) && file_is_uni_attach(ATTACHMENT_ROOT . '/' . $file)) {
+		file_change_uni_attchsize(ATTACHMENT_ROOT . '/' . $file, false);
 	}
 	if (file_exists($file)) {
 		@unlink($file);
@@ -724,5 +737,71 @@ function file_image_quality($src, $to_path, $ext) {
 	}
 
 	$result = Image::create($src, $ext)->saveTo($to_path, $quality);
+	return $result;
+}
+
+
+function file_is_uni_attach($file) {
+	global $_W;
+	if (!is_file($file)) {
+		return error(-1, '未找到的文件。');
+	}
+	return strpos($file, "/{$_W['uniacid']}/") > 0;
+}
+
+
+
+function file_check_uni_space($file) {
+	global $_W;
+	if (!is_file($file)) {
+		return error(-1, '未找到上传的文件。');
+	}
+
+	if (empty($_W['setting']['remote'][$_W['uniacid']]['type'])) {
+		$uni_setting = uni_setting_load(array('attachment_limit', 'attachment_size'));
+
+		$attachment_limit = intval($uni_setting['attachment_limit']);
+		if ($attachment_limit == 0) {
+			$upload = setting_load('upload');
+			$attachment_limit = empty($upload['upload']['attachment_limit']) ? 0 : intval($upload['upload']['attachment_limit']);
+		}
+
+		if ($attachment_limit > 0) {
+			$file_size = max(1, round(filesize($file) / 1024));
+			if (($file_size + $uni_setting['attachment_size']) > ($attachment_limit * 1024)) {
+				return error(-1, '上传失败，可使用的附件空间不足！');
+			}
+		}
+	}
+	return true;
+}
+
+
+function file_change_uni_attchsize($file, $is_add = true) {
+	global $_W;
+	if (!is_file($file)) {
+		return error(-1, '未找到的文件。');
+	}
+	$file_size = round(filesize($file) / 1024);
+	$file_size = max(1, $file_size);
+
+	$result = true;
+	if (empty($_W['setting']['remote'][$_W['uniacid']]['type'])) {
+		$uniacid = pdo_getcolumn('uni_settings', array('uniacid' => $_W['uniacid']), 'uniacid');
+		if (empty($uniacid)) {
+			$result = pdo_insert('uni_settings', array('attachment_size' => $file_size, 'uniacid' => $_W['uniacid']));
+		} else {
+			if (!$is_add) {
+				$file_size = -$file_size;
+			}
+			$result = pdo_update('uni_settings', array('attachment_size +=' => $file_size), array('uniacid' => $_W['uniacid']));
+		}
+
+		$cachekey = cache_system_key('unisetting', array('uniacid' => $uniacid));
+		$unisetting = cache_load($cachekey);
+		$unisetting['attachment_size'] += $file_size;
+		$unisetting['attachment_size'] = max(0, $unisetting['attachment_size']);
+		cache_write($cachekey, $unisetting);
+	}
 	return $result;
 }

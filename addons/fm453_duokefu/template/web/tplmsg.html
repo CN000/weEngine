@@ -1,0 +1,31 @@
+{template 'web/_header'}
+<style type="text/css">
+	.red {float:left;color:red}
+	.white{float:left;color:#fff}
+	.tooltipbox {
+		background:#fef8dd;border:1px solid #c40808; position:absolute; left:0;top:0; text-align:center;height:20px;
+		color:#c40808;padding:2px 5px 1px 5px; border-radius:3px;z-index:1000;
+	}
+	.red { float:left;color:red}
+</style>
+{template 'web/inner/fortplmsg'}
+<div class="main">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			关于本功能
+		</div>
+		<div class="panel-body">
+		<ol>
+		<li>消息模板仅适用于为用户提供便利知会服务等情景下使用;<span style="color:red">腾讯严禁违观使用模板消息进行群发骚扰等，请勿滥用！</span>否则将产生平台功能受限风险。
+		</li>
+		<li >
+		<a href="{php echo $this->createWebUrl('manual')}" class="btn btn-success">使用指南</a>
+		<a href="{php echo url('profile/module/setting',array('m'=>'fm453_duokefu','op' => 'tplset'))}" class="btn btn-primary" >查看模板</a>
+		<a href="{php echo $this->createWebUrl('fortplsend',array('op' => 'single'))}" class="btn btn-warning">单个发送</a>
+		<a href="{php echo $this->createWebUrl('fortplsend',array('op' => 'mass'))}" class="btn btn-danger">分组群发</a>
+		</li>
+		</ol>
+		</div>
+	</div>
+</div>
+{template 'web/_footer'}

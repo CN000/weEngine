@@ -1,0 +1,41 @@
+<div class="panel panel-default">
+		<div class="panel-heading">
+			<a data-toggle="collapse"           href="#20160217">
+          2016-02-17<span class="pull-right">点击收缩该栏目</span>
+       </a>
+		</div>
+	</div>
+	<div class="container-fluid panel-collapse collapse" id="20160217">
+		<div class="row-fluid">
+			<div class="span12 forcopy">
+				<ol>
+					<li>
+						<ol>
+							<li>添加对系统内置二维码管理功能的拓展 ，通过客服助手将指定二维码与指定粉丝进行关联，用于统计该粉丝的推广效果，同时开放粉丝自助查询入口。
+							</li>
+							<li>增加了模块自助升级功能，后期模块功能升级将通过此功能进行数据库的相应操作。
+							</li>
+							<li>
+							<button type="submit" class="btn btn-danger" onclick="return confirm('请确认您明确本操作的数据风险,点击确认可继续！');" name="20160217" value="yes">点击升级数据库20160217</button>
+							</li>
+							<code>如果按钮点击升级无效，请复制下方代码在数据库中执行SQL。</code>
+							<pre  id="addentry_code_last">
+ CREATE TABLE `ims_fm453_duokefu_qrandfan` (
+ `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `uniacid` INT(10) UNSIGNED NOT NULL ,
+  `qrcodeid` INT(10) UNSIGNED NOT NULL COMMENT '关联二维码ID' ,
+  `qrcodename` VARCHAR(255) NOT NULL ,
+  `openid` VARCHAR(255) NOT NULL COMMENT '关联粉丝openid',
+  PRIMARY KEY(`id`)
+  ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT= '将粉丝与指定二维码进行关联以统计其推广效果';
+
+ALTER TABLE `ims_fm453_duokefu_qrandfan` ADD `ischecked` INT(1) NOT NULL DEFAULT '1' COMMENT '是否审核通过(前台申请关联时)' AFTER `openid`;
+ALTER TABLE `ims_fm453_duokefu_qrandfan` ADD `isavailable` INT(1) NOT NULL DEFAULT '1' COMMENT '是否有效' AFTER `ischecked`;
+						</pre>
+						<code>如果您默认使用的表前缀不是ims，请在执行前将“ims”换成您的数据表前缀。</code>
+						</ol>
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>

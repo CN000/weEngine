@@ -216,6 +216,7 @@ $(function () {
             };
         }
         pages.home.url = '#';
+
         for (var page in pages) {
             pageManager.push(pages[page]);
         }

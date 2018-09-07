@@ -1,0 +1,18 @@
+{if $fansnum==1}
+<div id="faninfos"  class="alert alert-dismissable  alert-success" >
+		<div class="form-group">
+			<label for="fanusername">当前为安全模式，您只能查看用户<span>{$openid}</span>的信息</label>
+		</div>
+		{loop $shows $key=>$value}
+		<div class="form-group">
+			<label for=" {$value[showname]}">{$value[showname]}({$key})：</label>
+			<span type="text" class=" {$value[is_show]}"> {$value[value]}</span>
+			<span class="sr-only">排序：{$value[show_order]}</span>
+		</div>
+	{/loop}
+	<div class="form-group">
+			<label for="followtime">关注时间：</label>
+			<span type="text" id="followtime">{$faninfo['followtime']}</span>
+		</div>
+</div>
+{/if}

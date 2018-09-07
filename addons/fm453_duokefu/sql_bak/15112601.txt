@@ -1,0 +1,3 @@
+ALTER TABLE `ims_fm453_duokefu_fans_log` ADD `credit6` INT(11) UNSIGNED NULL DEFAULT '0' AFTER `credit5`;
+
+INSERT INTO `we7`.`ims_fm453_duokefu_fanslistkey` (`id`, `uniacid`, `show_order`, `column_name`, `column_show_name`, `is_show`, `is_edit`) VALUES ('52', '0', '984', 'credit6', 'credit6', '0', '0');

@@ -1,0 +1,98 @@
+{template 'inner/duokefu/header'}
+<div class="container">
+<form action="{php echo $this->createMobileUrl('kefupage')}" method="post">
+	<input type="hidden" name="i" value="{$_W['uniacid']}" />
+	<input type="hidden" name="c" value="entry" />
+	<input type="hidden" name="m" value="fm453_duokefu" />
+	<input type="hidden" name="do" value="kefupage" />
+	<div class="row clearfix">
+		<h5 style="text-align: center;">客服助手插件中心-手动加载</h5>
+		<div class="col-md-12 column">
+			<div class="form-group">
+				 <label for="toUin">当前接待访客的OPENID</label>
+				 <input class="form-control" id="theOpenid" type="text" name="openid" value="{$openid}"/>
+			</div>
+		</div>
+
+		<button  class="btn btn-success"  type="button" form="faninfos editfaninfos" id="to_edit" onclick="editable();" />切换至编辑模式</button>
+		<button  class="btn  btn-warning" style="display:none"  type="button" id="no_edit" onclick="safeshow();" />切换至安全模式</button>
+		<button type="submit" name="getfaninfo" value="yes" id="getfaninfo" class="btn btn-default btn-info">加载用户信息</button>
+				<?php  if  ($this->module['config']['onoffs']['fm453_shopping'] ==1){   ?>
+		<button type="submit" name="fm453_shopping" value="yes" class="btn btn-default active btn-info">嗨旅行商城订单</button>
+		<?php  } ?>
+
+		<?php  if  ($this->module['config']['onoffs']['ewei_shopping'] ==1){   ?>
+		<button type="submit" name="ewei_shopping" value="yes" class="btn btn-default active btn-info">微商城订单</button>
+		<?php  } ?>
+
+		<?php  if  ($this->module['config']['onoffs']['ewei_shop'] ==1){   ?>
+		<button type="submit" name="ewei_shop" value="yes" class="btn btn-default active btn-info">人人商城订单</button>
+		<?php  } ?>
+
+		<?php  if  ($this->module['config']['onoffs']['fengyixin_pintuan'] ==1){   ?>
+		<button type="submit" name="fengyixin_pintuan" value="yes" class="btn btn-default active btn-info">拼团商城订单</button>
+		<?php  } ?>
+
+			<?php  if  ($this->module['config']['onoffs']['yunmall'] ==1){   ?>
+		<button type="submit" name="yunmall" value="yes" class="btn btn-default active btn-info">水池分销(云分销云yunmall)商城订单</button>
+		<?php  } ?>
+
+			<?php  if  ($this->module['config']['onoffs']['quick_shop'] ==1){   ?>
+		<button type="submit" name="quick_shop" value="yes" class="btn btn-default active btn-info">人人赚商城订单</button>
+		<?php  } ?>
+
+		<?php  if  ($this->module['config']['onoffs']['ewei_hotels'] ==1){   ?>
+		<button type="submit" name="ewei_hotels" value="yes" class="btn btn-default active btn-info">微酒店订单</button>
+		<?php  } ?>
+
+		<button type="submit" name="reload" value="yes"  class="btn btn-default pull-right hidden" id="pagerefresh" >刷新(F5)</button>
+		<a href="{$url}" class="btn btn-default pull-right">刷新(F5)</a>
+		<input type="hidden" name="token" value="{$_W['token']}" />
+	</div>
+	</form>
+
+{template 'inner/duokefu/noauto/editfaninfos'}
+{template 'inner/duokefu/noauto/faninfos'}
+	<?php  if  ($this->module['config']['onoffs']['fm453_shopping'] ==1){   ?>
+	{template 'plugin/fm453_shopping/display'}
+	<?php  } ?>
+    <?php  if  ($this->module['config']['onoffs']['ewei_shopping'] ==1){   ?>
+	{template 'plugin/ewei_shopping/display'}
+	<?php  } ?>
+	<?php  if  ($this->module['config']['onoffs']['ewei_shop'] ==1){   ?>
+	{template 'plugin/ewei_shop/display'}
+	<?php  } ?>
+	<?php  if  ($this->module['config']['onoffs']['fengyixin_pintuan'] ==1){   ?>
+	{template 'plugin/fengyixin_pintuan/display'}
+	<?php  } ?>
+	<?php  if  ($this->module['config']['onoffs']['yun_mall'] ==1){   ?>
+	{template 'plugin/yun_mall/display'}
+	<?php  } ?>
+	<?php  if  ($this->module['config']['onoffs']['quick_shop'] ==1){   ?>
+	{template 'plugin/quick_shop/display'}
+	<?php  } ?>
+
+</div>
+<hr>
+
+<div class="container hidden">
+	<div class="row clearfix">
+	<form class="form-inline" role="form" id="info-form">
+		<h5>系统素材（测试中）</h5>
+		<div class="col-md-12 column">
+			<div class="form-group">
+				<input id="radio1" type="radio" name="msg" onClick="setmsg(1)" value="1"/>图文
+				<input type="radio" name="msg" onClick="setmsg(2)" value="2"/>图片
+				<input type="radio" name="msg" onClick="setmsg(3)" value="3"/>文本
+				<input type="submit" onClick="putmsg()" value="输出到会话窗口"/>
+			</div>
+			<div class="alert alert-dismissable alert-info">
+				<textarea type="text" name="messageData" id="messageData" class="textarea" style="height:150; width:100%; overflow-y: auto;"></textarea>
+			</div>
+		</div>
+	</form>
+	</div>
+<hr>
+</div>
+{template 'inner/duokefu/noauto/dkf-js'}
+{template 'inner/duokefu/footer'}

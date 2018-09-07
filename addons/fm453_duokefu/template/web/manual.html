@@ -1,0 +1,33 @@
+{template 'web/_header'}
+<style type="text/css">
+	.red {float:left;color:red}
+	.white{float:left;color:#fff}
+	.tooltipbox {
+		background:#fef8dd;border:1px solid #c40808; position:absolute; left:0;top:0; text-align:center;height:20px;
+		color:#c40808;padding:2px 5px 1px 5px; border-radius:3px;z-index:1000;
+	}
+	.red { float:left;color:red}
+</style>
+{template 'web/inner/formanual'}
+<div class="main">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			关于本模块
+		</div>
+		<div class="panel-body">
+		<ol>
+		<li>为了获得最好的后台操作体验，我们建议您使用最新版Goole浏览器。（火狐等部分浏览器不支持点击粘贴功能）</li>
+		<li>本模块扩展配置的多客服客户端插件仅适用于认证并启用了多客服功能的公众号（包括认证了的服务号与订阅号）。</li>
+		<li><span style="color: #f00;" >尤其是初次安装使用的用户，请务必看“操作说明”</span></li>
+
+		<li>模块中大部分操作采用的是追加数据的方式；为了简化设计，我们对很多链接使用了在新窗口中打开的方式，以便于同步操作与保存。</li>
+		<li>关于模块的界面形式（无左侧的功能框）：作了界面调整，并非BUG；请放心使用。</li>
+		<li>
+         <a href="{$_W['siteroot']}app/{php echo $this->createMobileUrl('aboutnew')}" class="btn btn-success" target="_blank">查看更新说明</a>
+		</li>
+		</ol>
+		</div>
+
+	</div>
+</div>
+{template 'web/_footer'}

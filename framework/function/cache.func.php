@@ -12,7 +12,7 @@ function cache_type() {
 	global $_W;
 	$cacher = $connect = '';
 	$cache_type = strtolower($_W['config']['setting']['cache']);
-	
+
 	if (extension_loaded($cache_type)) {
 		$config = $_W['config']['setting'][$cache_type];
 		if (!empty($config['server']) && !empty($config['port'])) {
@@ -58,7 +58,7 @@ function cache_load($key, $unserialize = false) {
 }
 
 function &cache_global($key) {
-	
+
 }
 
 
@@ -67,6 +67,9 @@ function cache_system_key($cache_key) {
 
 		$params = array();
 	$args = func_get_args();
+	if (empty($args[1])) {
+		$args[1] = '';
+	}
 	if (!is_array($args[1])) {
 		$cache_key = $cache_key_all['caches'][$cache_key]['key'];
 		preg_match_all('/\%([a-zA-Z\_\-0-9]+)/', $cache_key, $matches);
@@ -176,9 +179,7 @@ function cache_relation_keys($key) {
 	$cache_key_all = cache_key_all();
 	$cache_relations = $cache_key_all['groups'];
 	$cache_common_params = $cache_key_all['common_params'];
-
 	$cache_info = $cache_key_all['caches'][$cache_name];
-
 	if (empty($cache_info)) {
 		return error(2, '缓存 : ' . $key . '不存在');
 	}
@@ -189,20 +190,22 @@ function cache_relation_keys($key) {
 		}
 		$relation_keys = $cache_relations[$cache_info['group']]['relations'];
 		$cache_keys = array();
-
 		foreach ($relation_keys as $key => $val) {
 						if ($val == $cache_name) {
 				$relation_cache_key = $cache_key_all['caches'][$val]['key'];
 			} else {
 				$relation_cache_key = $cache_key_all['caches'][$cache_name]['key'];
 			}
-
 			foreach ($cache_common_params as $param_name => $param_val) {
 								preg_match_all('/\%([a-zA-Z\_\-0-9]+)/', $relation_cache_key, $matches);
 				if (in_array($param_name, $matches[1])) {
 										$cache_key_params[$param_name] = $cache_common_params[$param_name];
 				}
-								$cache_key_params = array_combine($matches[1], $cache_param_values);
+								if (!empty($cache_prams_values) || count($matches[1]) == count($cache_param_values)) {
+					$cache_key_params = array_combine($matches[1], $cache_param_values);
+				} else {
+					$cache_key_params = array();
+				}
 			}
 
 			$cache_key = cache_system_key($val, $cache_key_params);
@@ -308,8 +311,8 @@ function cache_key_all() {
 				'group' => '',
 			),
 
-			'wxapp_version' => array(
-				'key' => 'wxapp_version:%version_id',
+			'miniapp_version' => array(
+				'key' => 'miniapp_version:%version_id',
 				'group' => '',
 			),
 

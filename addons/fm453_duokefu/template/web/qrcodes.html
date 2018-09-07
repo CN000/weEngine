@@ -1,0 +1,52 @@
+{template 'web/_header'}
+{template 'web/inner/formodule'}
+<div class="main">
+	<form action="{php echo $this->createWebUrl('qrcode')}" method="post" class="form-horizontal form" id="setting-form">
+        <div class="panel panel-default">
+		{if $_W['username'] == $settings['mainuser']  or $_W['isfounder'] }
+		    <div class="panel-heading">管理二维码与openid的关联以便进行推广统计-本设置项目仅管理员或开发者可见<input type="submit" name="submit" value="   保存   " class="btn btn-primary"  /></div>
+
+            <div class='panel-body'>
+				<table class="table table-hover table-bordered" contenteditable="false">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>二维码编号</th>
+							<th>QRCID</th>
+							<th>二维码名称</th>
+							<th>关联粉丝openid</th>
+							<th>是否审核通过</th>
+							<th>是否可用</th>
+							<th>查看统计</th>
+						</tr>
+					</thead>
+					<tbody>
+						{loop $qrcodes $value}
+						<tr>
+							<td>{$value['key']}({$value['keyid']})</td>
+							<td><input type="text" class="form-control" name="qrcodeid_{$value['key']}" value="{$value['id']}" readonly="true" /></td>
+							<td>{$value['qrcid']}</td>
+							<td>{$value['name']}</td>
+							<td><input type="text" class="form-control" name="openid_{$value['key']}" value="{$value['openid']}" /></td>
+							<td><input type='checkbox' name="ischecked_{$value['key']}" value="1" {if $value['ischecked']==1}checked{/if} /></td>
+							<td><input type='checkbox' name="isavailable_{$value['key']}" value="1" {if $value['isavailable']==1}checked{/if} /></td>
+							<td><a href="{$_W['siteroot']}app/{php echo $this->createMobileUrl('qrcode',array('openid'=>$value['openid'],'uniacid'=>$_W['uniacid']))}" target="_blank" >查看统计</a></td>
+						</tr>
+						<input type="hidden" name="keyid_{$value['key']}" value="{$value['keyid']}" />
+						{/loop}
+					</tbody>
+				</table>
+				<span style="color: red;">必须保证每个二维码关联不同的openid，否则统计将失准;当QRCID为0时，可能您的二维码生成时出现了错误，建议联系系统管理员帮您排查（非本多客服助手模块之问题）</span>
+				{$pager}
+            </div>
+         {/if}
+        </div>
+        <div class="form-group">
+              <div class="col-sm-9 col-xs-12">
+				    <input type="submit" name="submit" value="保存" class="btn btn-primary col-lg-1"  />
+					<input type="hidden" name="token" value="{$_W['token']}" />
+              </div>
+        </div>
+	</form>
+</div>
+{template 'web/_footer'}

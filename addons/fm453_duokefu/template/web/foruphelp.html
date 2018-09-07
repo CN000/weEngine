@@ -1,0 +1,115 @@
+{template 'web/_header'}
+<ul class="nav nav-tabs">
+	<li class="active"><a href="#">自助升级帮助(请严格按照时间顺序进行操作)</a></li>
+</ul>
+<style type='text/css'>
+	.tab-pane {padding:20px 0 20px 0;}
+</style>
+{if $_W['isfounder']}
+<div class="main">
+	<form action="{php echo $this->createWebUrl('foruphelp')}" method="post" class="form-horizontal" role="form" id="form1">
+		<input type="hidden" name="c" value="site" />
+		<input type="hidden" name="a" value="entry" />
+		<input type="hidden" name="m" value="fm453_duokefu" />
+		<input type="hidden" name="do" value="foruphelp" />
+
+<div class="panel panel-default">
+		<div class="panel-heading">
+			<a data-toggle="collapse" data-parent="#accordion"  href="#addentry">
+          添加入口专用，自助添加前端入口（关键词触发）与后端业务功能菜单入口<span class="pull-right">点击收缩该栏目</span>
+       </a>
+		</div>
+</div>
+<div class="container-fluid panel-collapse collapse" id="addentry">
+		<div class="row-fluid">
+			<div class="span12 forcopy">
+				<ol>
+					<li>
+						<ul style="list-style: none;">
+						<li>
+						<pre id="addentry_code_1">
+INSERT INTO `ims_modules_bindings` (`module`, `entry`, `call`, `title`, `do`, `state`, `direct`, `url`, `icon`, `displayorder`) VALUES
+('fm453_duokefu', 'cover', '', '扫码管理入口', 'qrcode', '', 1, '', '', 0);
+						</pre>
+						<code>如果您默认使用的表前缀不是ims，请在执行前将“ims”换成您的数据表前缀。</code>
+						</li>
+							<li>
+							<button type="submit" class="btn btn-warning" onclick="return confirm('本功能您确认需要执行操作了吗！');" name="addentry_code_1" value="yes">添加扫码管理入口</button>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<ul style="list-style: none;">
+						<li>
+						<pre id="addentry_code_2">
+INSERT INTO `ims_modules_bindings` (`module`, `entry`, `call`, `title`, `do`, `state`, `direct`, `url`, `icon`, `displayorder`) VALUES
+('fm453_duokefu', 'cover', '', '评论有礼活动入口', 'comment', '', 1, '', '', 0);
+						</pre>
+						<code>如果您默认使用的表前缀不是ims，请在执行前将“ims”换成您的数据表前缀。</code>
+						</li>
+							<li>
+							<button type="submit" class="btn btn-warning" onclick="return confirm('本功能您确认需要执行操作了吗！');" name="addentry_code_2" value="yes">添加评论有礼活动入口</button>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<ul style="list-style: none;">
+						<li>
+						<pre id="emptyentry_code">
+DELETE FROM `ims_modules_bindings` WHERE `module` LIKE '%fm453_duokefu%' AND `entry` LIKE '%cover%'  ;
+						</pre>
+						<code>如果您默认使用的表前缀不是ims，请在执行前将“ims”换成您的数据表前缀。</code>
+						</li>
+							<li>
+							<button type="submit" class="btn btn-warning" onclick="return confirm('本功能您确认需要执行操作了吗！');" name="emptyentry_code" value="yes">清空入口</button>
+							</li>
+						</ul>
+					</li>
+				</ol>
+				<ol>
+					<li>
+						<ul style="list-style: none;">
+						<li>
+						<pre  id="addentry_code_last">
+DELETE FROM `ims_modules_bindings` WHERE `module` LIKE '%fm453_duokefu%' AND `entry` LIKE '%menu%'  ;
+INSERT INTO `ims_modules_bindings` (`module`, `entry`, `call`, `title`, `do`, `state`, `direct`, `url`, `icon`, `displayorder`) VALUES
+('fm453_duokefu', 'menu', '', '使用指南', 'manual', '', 0, '', 'fa fa-question-circle', 0),
+('fm453_duokefu', 'menu', '', '扩展配置', 'extset', '', 0, '', 'fa fa-cubes', 0),
+('fm453_duokefu', 'menu', '', '关联二维码', 'qrcode', '', 0, '', 'fa fa-database', 0),
+('fm453_duokefu', 'menu', '', '评论管理', 'comment', '', 0, '', 'fa fa-edit', 0);
+						</pre>
+						<code>如果您默认使用的表前缀不是ims，请在执行前将“ims”换成您的数据表前缀。</code>
+						</li>
+							<li>
+							<button type="submit" class="btn btn-warning" onclick="return confirm('本功能您确认需要执行操作了吗！');" name="addentry_code_last" value="yes">修复业务功能菜单</button>
+							</li>
+						</ul>
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+{template 'web/uphelp/20160217'}
+	<input type="hidden" name="token" value="{$_W['token']}" />
+	</form>
+</div>
+{else}
+对不起,你不是站长,无权限进行此操作!
+{/if}
+<script type="text/javascript">
+	$(function () {
+		window.optionchanged = false;
+		$('#myTab a').click(function (e) {
+			e.preventDefault();//阻止a链接的跳转行为
+			$(this).tab('show');//显示当前选中的链接及关联的content,使用该功能前提是a链接中加上data-toggle="tab"
+		})
+	});
+</script>
+<script>
+	require(['jquery', 'util'], function($, u){
+		$('.forcopy a').each(function(){
+			u.clip(this, $(this).text());
+		});
+	});
+</script>
+{template 'web/_footer'}

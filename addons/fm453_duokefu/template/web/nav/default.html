@@ -1,0 +1,52 @@
+<div class="main">
+	<form action="{php echo $this->createWebUrl('formenusset')}" method="post" class="form-horizontal form" id="setting-form2">
+		<div class="panel panel-default">
+		{if $_W['username'] == $settings['mainuser']  or $_W['isfounder'] }
+		    <div class="panel-heading">自定义导航栏目-目前默认支持<?php echo $this->module['config']['navmenusnum']; ?>个子导航栏目-本设置项目仅管理员或开发者可见</div>
+            <div class='panel-body'>
+                  <div class="form-group">
+					<label class="col-xs-12 col-sm-1 col-md-1 col-lg-1 control-label">栏目名称</label>
+					<div class="col-sm-2">
+					   <input type="text" name="mymenuname" class="form-control" value="<?php echo $this->module['config']['navmenus']['mymenuname']; ?>"  placeholder="在导航条上显示的名称" />
+					</div>
+					<div class="col-sm-4">
+					    {php echo tpl_form_field_link("mymenuvalue",$this->module['config']['navmenus']['mymenuvalue'], array('css'=>array('input'=>'class1', 'btn'=>'class2')));}
+					</div>
+					<div class="col-sm-3">
+					   {php echo tpl_form_field_icon('mymenuicon', $this->module['config']['navmenus']['mymenuicon']);}
+					</div>
+					<div class="col-sm-2 hidden">
+					   <input type="radio" name="mymenustatus"  value="<?php echo $this->module['config']['navmenus']['mymenustatus']; ?>" />隐藏
+					   <input type="radio" name="mymenustatus"  value="<?php echo $this->module['config']['navmenus']['mymenustatus']; ?>" />开启
+					</div>
+				</div>
+			      <?php
+				    for ($i=0; $i < $this->module['config']['navmenusnum'] ; $i++) {
+				 ?>
+				 <div class="form-group">
+					<label class="col-xs-12 col-sm-1 col-md-1 col-lg-1 control-label">子栏目{php echo $i+1}</label>
+					<div class="col-sm-2">
+					   <input type="text" name="{php echo 'name'.$i}" class="form-control" value="<?php echo $this->module['config']['navmenus']['name'.$i]; ?>"  placeholder="子栏目名称" />
+					</div>
+					<div class="col-sm-4">
+					    {php echo tpl_form_field_link('value'.$i, $this->module['config']['navmenus']['value'.$i], array('css'=>array('input'=>'class1', 'btn'=>'class2')));}
+					</div>
+					<div class="col-sm-4">
+					   {php echo tpl_form_field_icon('icon'.$i, $this->module['config']['navmenus']['icon'.$i]);}
+					</div>
+					<div class="col-sm-1 hidden">
+					   <input type="checkbox" name="{php echo 'status'.$i}"  value="<?php echo $this->module['config']['navmenus']['status'.$i]; ?>"  <?php echo $this->module['config']['navmenus']['status'.$i]; ?> />隐藏
+					</div>
+				</div>
+                <?php  } ?>
+                </div>
+            {/if}
+            </div>
+            <div class="form-group">
+                    <div class="col-sm-9 col-xs-12">
+						<input type="submit" name="submit" value="保存" class="btn btn-primary col-lg-1"  />
+						<input type="hidden" name="token" value="{$_W['token']}" />
+                    </div>
+                </div>
+	</form>
+</div>

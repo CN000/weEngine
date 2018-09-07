@@ -99,7 +99,7 @@ class Wx_lbsmapModuleSite extends WeModuleSite {
 			}
 		}elseif($op == 'display'){
 			$o = '';
-
+			
 			$parents = pdo_fetchall("SELECT * FROM".tablename($this->table_category)." WHERE weid = '{$_W['weid']}' AND parentid = 0");
 			foreach ($parents AS $parent){
 				$enable = intval($parent['enabled']) ? '<button class="btn btn-success btn-sm">是</button>' : '<button class="btn btn-danger btn-sm">否</button>';
@@ -108,7 +108,7 @@ class Wx_lbsmapModuleSite extends WeModuleSite {
 				$o .= "<td> —— </td>";
 				$o .= "<td>".$enable. "</td>";
 				$o .= "<td><a href=". $this->createWebUrl('category',array('op' => 'post','id' => $parent['id'])) ." >编辑</a></td></tr>";
-
+				
 				$subcates = pdo_fetchall("SELECT * FROM ".tablename($this->table_category)." WHERE parentid = {$parent['id']}");
 				foreach ($subcates AS $subcate){
 					$enable = intval($subcate['enabled']) ? '<button class="btn btn-success btn-sm">是</button>' : '<button class="btn btn-danger btn-sm">否</button>';
@@ -120,19 +120,19 @@ class Wx_lbsmapModuleSite extends WeModuleSite {
 				}
 			}
 		}
-
+		
 		if(checksubmit('delete')){
 			pdo_delete($this->table_category, " id  IN  ('".implode(",", $_GPC['select'])."')");
 			message('删除成功',referer(),'success');
 		}
-
+		
 		//增加父栏目
 		$categorys = pdo_fetchall("SELECT * FROM".tablename($this->table_category)."WHERE weid = :weid AND parentid = 0", array(':weid' => $this->weid));
-
+		
 		include $this->template('category');
 	}
 
-	public function doMobileMap()
+	public function doMobileMap() 
 	{
 		//这个操作被定义用来呈现 功能封面
 		global $_W, $_GPC;
@@ -179,19 +179,20 @@ class Wx_lbsmapModuleSite extends WeModuleSite {
 			}
 		}
 
-		if (empty($lat) || empty($lng))
+		if (empty($lat) || empty($lng)) 
 		{
 			$for=$_W['siteroot'] . 'app/' . substr($this->createMobileUrl('getlbs'), 2);
 			header('location:' . $for);
 		}
+
 		$catenameid=$_GPC['catenameid'];
 		$list = pdo_fetchall("SELECT *,(lat-:lat) * (lat-:lat) + (lng-:lng) * (lng-:lng) as dist FROM " . tablename('wx_lbsmap_store') . " where uniacid = :weid ORDER BY dist DESC", array(':weid' => $_W['uniacid'], ':lat' => $lat, ':lng' => $lng));
 		$list_getid=pdo_fetchall("SELECT *,(lat-:lat) * (lat-:lat) + (lng-:lng) * (lng-:lng) as dist FROM " . tablename('wx_lbsmap_store') . " where catenameid=:catenameid and uniacid = :weid ORDER BY dist DESC", array(':catenameid'=>$catenameid,':weid' => $_W['uniacid'], ':lat' => $lat, ':lng' => $lng));
 		$maps = array();
+
 		if(!empty($catenameid))
 		{
-
-            foreach ($list_getid as $key_getid => $value_getid)
+			foreach ($list_getid as $key_getid => $value_getid) 
 			{
 				$d= $this->getDistance($value_getid['lat'], $value_getid['lng'], $lat, $lng);
 				if($d>$cfg['distance']&&$cfg['distance']>0)
@@ -244,7 +245,7 @@ class Wx_lbsmapModuleSite extends WeModuleSite {
 		}
 		else
 		{
-			foreach ($list as $key => $value)
+			foreach ($list as $key => $value) 
 			{
 				$d= $this->getDistance($value['lat'], $value['lng'], $lat, $lng);
 				if($d>$cfg['distance']&&$cfg['distance']>0)
@@ -331,7 +332,7 @@ class Wx_lbsmapModuleSite extends WeModuleSite {
 			include $this -> template ('map_classical');
 		}
 
-
+		
 
 	}
 
@@ -451,9 +452,9 @@ class Wx_lbsmapModuleSite extends WeModuleSite {
 
 			$lists=pdo_fetchall("SELECT a.*,b.catename FROM " . tablename('wx_lbsmap_store') . " a left join ".tablename('wx_lbsmap_classify')." b on b.id=a.catenameid where a.uniacid=:weid".$where,array(':weid'=>$_W['uniacid']));
 
+			
 
-
-
+			
 
 		}
 
@@ -477,19 +478,19 @@ class Wx_lbsmapModuleSite extends WeModuleSite {
 
 			}
 
-
+			
 
 		}
 
-
+	
 
 		$category = pdo_fetchall("SELECT * FROM " . tablename('wx_lbsmap_classify') . " where weid = ".$_W['uniacid']);
 
-
+		
 
 		$getid=pdo_fetch("SELECT b.id FROM " . tablename('wx_lbsmap_store') . " a join ".tablename('wx_lbsmap_classify')." b on b.id=a.catenameid where a.id=:sid and uniacid=:weid",array(':sid'=>$_GPC['sid'],':weid'=>$_W['uniacid']));
 
-
+		
 
 		include $this -> template ('store');
 
@@ -497,7 +498,7 @@ class Wx_lbsmapModuleSite extends WeModuleSite {
 
 	public function doWebClassify() {
 
-
+		
 
 		global $_W, $_GPC;
 

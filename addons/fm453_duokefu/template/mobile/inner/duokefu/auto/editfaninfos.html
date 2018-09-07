@@ -1,0 +1,26 @@
+<form id="editfaninfos" class=""  style="display:none" method="post" action="{php echo $this->createMobileUrl('autoeditfaninfo')}">
+	<input type="hidden" value="{$openid}" name="openid" class="openid" />
+	<input type="hidden" value="{$fanid}" name="uid" class="uid" />
+	<table class="table table-hover table-bordered show" contenteditable="true">
+	 <CAPTION style="text-align: center;">您现在可以编辑用户信息了</CAPTION>
+		<thead>
+			<tr>
+				<th>编辑项</th>
+				<th>输入新值</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{loop $column $key=>$value}
+			{if $value[is_edit]}
+			<tr>
+				<td>{$value[column_show_name]}({$value[column_name]})</td>
+				<td><input type="text" class="form-control {$value[column_name]}" name="{$value[column_name]}" /></td>
+				<td> </td>
+			</tr>
+			{/if}
+			{/loop}
+		</tbody>
+	</table>
+    <input class="btn  btn-warning  btn-info" type="submit" value="确认修改" class="edit" />
+</form>

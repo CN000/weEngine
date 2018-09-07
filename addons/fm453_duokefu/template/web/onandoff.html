@@ -1,0 +1,162 @@
+{template 'web/_header'}
+{template 'web/inner/formodule'}
+<div class="main">
+	<form action="{php echo $this->createWebUrl('onoff')}" method="post" class="form-horizontal form" id="setting-form">
+        <div class="panel panel-default">
+		{if $_W['username'] == $settings['mainuser']  or $_W['isfounder'] }
+		    <div class="panel-heading">基础功能开关-本设置项目仅管理员或开发者可见</div>
+            <div class='panel-body'>
+                <div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-1 col-lg-1 control-label">自定义导航条</label>
+					<div class="col-sm-1">
+					    <label for="isnavmenu" >
+		              <input type="radio" name="isnavmenu" value="1" id="isnavmenu" {if $settings['onoffs']['isnavmenu']==1}checked="true"{/if} /> 开启<br/>
+		              <input type="radio" name="isnavmenu" value="0" id="isnavmenu" {if $settings['onoffs']['isnavmenu']==0}checked="true"{/if} /> 关闭
+		              </label>
+					</div>
+					<div class="col-sm-9">
+					<ol>
+					   <li>选择开启自定义导航条的功能；设置好的导航条会<span style="color:#f00;">追加</span>显示在现有的导航条中。自定义导航条功能是用于方便管理快捷方式。</li>
+					   <li>普通版仅支持一组自定义导航；授权版可支持全自定义导航（”主工作台“、”客服助手“、”返回上一页”这三组保留）</li>
+					</ol>
+					</div>
+				</div>
+            </div>
+         {/if}
+        </div>
+        <div class="panel panel-default">
+		{if $_W['username'] == $settings['mainuser']  or $_W['isfounder'] }
+		    <div class="panel-heading">插件功能-本设置项目仅管理员或开发者可见</div>
+            <div class='panel-body'>
+                <div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-1 col-lg-1 control-label">高级导航条</label>
+					<div class="col-sm-1">
+					    <label for="isnavs" >
+		              <input type="radio" name="isnavs" value="1" id="isnavs" {if $settings['onoffs']['isnavs']==1}checked="true"{/if} /> 开启<br/>
+		              <input type="radio" name="isnavs" value="0" id="isnavs" {if $settings['onoffs']['isnavs']==0}checked="true"{/if} /> 关闭
+		              </label>
+					</div>
+					<div class="col-sm-9">
+					<ol>
+					   <li>选择开启完全自定义导航条功能并替换掉原有默认导航条</li>
+					   <li>目前默认支持最多5组，每组6个栏目</li>
+					</ol>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-1 col-lg-1 control-label">嗨旅行商城</label>
+					<div class="col-sm-1">
+					   <label for="fm453_shopping" >
+		              <input type="radio" name="fm453_shopping" value="1" id="fm453_shopping" {if $settings['onoffs']['fm453_shopping']==1}checked="true"{/if} /> 开启<br/>
+		              <input type="radio" name="fm453_shopping" value="0" id="fm453_shopping" {if $settings['onoffs']['fm453_shopping']==0}checked="true"{/if} /> 关闭
+		              </label>
+					</div>
+					<div class="col-sm-9">
+					   <ol>
+					   <li>开启后，在多客服客户端插件面板中，可查询会员关联的嗨旅行商城订单信息</li>
+					   <li>请确认您已经购买了了嗨旅行商城模块(fm453_shopping)</li>
+					</ol>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-1 col-lg-1 control-label">人人商城</label>
+					<div class="col-sm-1">
+					<label for="ewei_shop" >
+		              <input type="radio" name="ewei_shop" value="1" id="ewei_shop" {if $settings['onoffs']['ewei_shop']==1}checked="true"{/if} /> 开启<br/>
+		              <input type="radio" name="ewei_shop" value="0" id="ewei_shop" {if $settings['onoffs']['ewei_shop']==0}checked="true"{/if} /> 关闭
+		              </label>
+					</div>
+					<div class="col-sm-9">
+					   <ol>
+					   <li>开启后，在多客服客户端插件面板中，可查询会员关联的人人商城订单信息</li>
+					   <li>请确认您已经购买了了人人商城模块(ewei_shop)</li>
+					</ol>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-1 col-lg-1 control-label">官方商城</label>
+					<div class="col-sm-1">
+					    <label for="ewei_shopping" >
+		              <input type="radio" name="ewei_shopping" value="1" id="ewei_shopping" {if $settings['onoffs']['ewei_shopping']==1}checked="true"{/if} /> 开启<br/>
+		              <input type="radio" name="ewei_shopping" value="0" id="ewei_shopping" {if $settings['onoffs']['ewei_shopping']==0}checked="true"{/if} /> 关闭
+		              </label>
+					</div>
+					<div class="col-sm-9">
+					   <ol>
+					   <li>开启后，在多客服客户端插件面板中，可查询会员关联的官方商城订单信息</li>
+					   <li>请确认您已经购买了了官方商城模块(ewei_shopping)</li>
+					</ol>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-1 col-lg-1 control-label">微酒店</label>
+					<div class="col-sm-1">
+					    <label for="ewei_hotels" >
+		              <input type="radio" name="ewei_hotels" value="1" id="ewei_hotels" {if $settings['onoffs']['ewei_hotels']==1}checked="true"{/if} /> 开启<br/>
+		              <input type="radio" name="ewei_hotels" value="0" id="ewei_hotels" {if $settings['onoffs']['ewei_hotels']==0}checked="true"{/if} /> 关闭
+		              </label>
+					</div>
+					<div class="col-sm-9">
+					   <ol>
+					   <li>开启后，在多客服客户端插件面板中，可查询会员关联的微酒店订单信息</li>
+					   <li>请确认您已经购买了了微酒店模块（ewei_hotels）</li>
+					</ol>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-1 col-lg-1 control-label">拼团</label>
+					<div class="col-sm-1">
+					    <label for="fengyixin_pintuan" >
+		              <input type="radio" name="fengyixin_pintuan" value="1" id="fengyixin_pintuan" {if $settings['onoffs']['fengyixin_pintuan']==1}checked="true"{/if} /> 开启<br/>
+		              <input type="radio" name="fengyixin_pintuan" value="0" id="fengyixin_pintuan" {if $settings['onoffs']['fengyixin_pintuan']==0}checked="true"{/if} /> 关闭
+		              </label>
+					</div>
+					<div class="col-sm-9">
+					   <ol>
+					   <li>开启后，在多客服客户端插件面板中，可查询会员关联的拼团订单信息</li>
+					   <li>请确认您已经购买了了拼团模块</li>
+					</ol>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-1 col-lg-1 control-label">人人赚商城</label>
+					<div class="col-sm-1">
+					    <label for="quick_shop" >
+		              <input type="radio" name="quick_shop" value="1" id="quick_shop" {if $settings['onoffs']['quick_shop']==1}checked="true"{/if} /> 开启<br/>
+		              <input type="radio" name="quick_shop" value="0" id="quick_shop" {if $settings['onoffs']['quick_shop']==0}checked="true"{/if} /> 关闭
+		              </label>
+					</div>
+					<div class="col-sm-9">
+					   <ol>
+					   <li>开启后，在多客服客户端插件面板中，可查询会员关联的人人赚商城订单信息</li>
+					   <li>请确认您已经购买了了人人赚商城模块</li>
+					</ol>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-1 col-lg-1 control-label">水池分销商城</label>
+					<div class="col-sm-1">
+					    <label for="yunmall" >
+		              <input type="radio" name="yunmall" value="1" id="yunmall" {if $settings['onoffs']['yunmall']==1}checked="true"{/if} /> 开启<br/>
+		              <input type="radio" name="yunmall" value="0" id="yunmall" {if $settings['onoffs']['yunmall']==0}checked="true"{/if} /> 关闭
+		              </label>
+					</div>
+					<div class="col-sm-9">
+					   <ol>
+					   <li>开启后，在多客服客户端插件面板中，可查询会员关联的水池分销商城订单信息</li>
+					   <li>请确认您已经购买了了水池分销商城模块（yunmall）</li>
+					</ol>
+					</div>
+				</div>
+            </div>
+         {/if}
+        </div>
+        <div class="form-group">
+              <div class="col-sm-9 col-xs-12">
+				    <input type="submit" name="submit" value="保存" class="btn btn-primary col-lg-1"  />
+					<input type="hidden" name="token" value="{$_W['token']}" />
+              </div>
+        </div>
+	</form>
+</div>
+{template 'web/_footer'}

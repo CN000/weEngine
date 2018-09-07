@@ -1,0 +1,55 @@
+{template 'web/_header'}
+<style type="text/css">
+	.red {float:left;color:red}
+	.white{float:left;color:#fff}
+	.tooltipbox {
+		background:#fef8dd;border:1px solid #c40808; position:absolute; left:0;top:0; text-align:center;height:20px;
+		color:#c40808;padding:2px 5px 1px 5px; border-radius:3px;z-index:1000;
+	}
+	.red { float:left;color:red}
+</style>
+<ul class="nav nav-tabs">
+	<li class="active"><a>系统更新 --在线更新方法仅支持linux服务器</a></li>
+</ul>
+<div class="main">
+  <form action="{php echo $this->createWebUrl('updates')}" method="post" class="form-horizontal form" id="updates-form">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			在线升级
+		</div>
+		<div class="panel-body">
+			<ol>
+				<li>当前系统版本号为：{if empty($currentversion)}<span style="color:red;">获取本地版本号失败!</span>{else}{$currentversion}{/if}  本地地址：{$_FILE_}</li>
+				<li>服务器版本号为：{if empty($newversion)}<span style="color:red;">获取服务器版本号失败!</span>{else}{$newversion}{/if}</li>
+				<li>在线升级具体有一定的风险，请谨慎操作；升级前请备份好数据及文件</li>
+
+				<li>版本列表：
+				<?php for($i=$size-1;$i>-1;$i--) { ?>
+						<input name="version" type="radio" value="{$versions[$i]}" class="btn btn-success" />{$versions[$i]}
+				<?php } ?>
+				{if !empty($newversion && $currentversion) && $newversion > $currentversion }
+				<input name="submit" type="submit" value="下载更新" class="btn btn-success" />
+				{else}请耐心等待当前远程更新；您也可以移步后台模块管理页通过官方服务器检查更新{/if}
+				</li>
+			</ol>
+		</div>
+		 <input type="hidden" name="token" value="{$_W['token']}" />
+	</div>
+  </form>
+    {if $ishidden ==''}
+     <div class="panel panel-default">
+		<div class="panel-heading">
+			此次将要更新的文件{if $size >0}共<span style="color: red;">{$size}</span>个{/if}
+		</div>
+		<div class="panel-body">
+			<ol>
+    			<?php for($i=0;$i<$size;$i++) { ?>
+				<li>{$newfn[$i]}</li>
+				<?php } ?>
+			</ol>
+		</div>
+	</div>
+	{/if}
+</div>
+
+{template 'web/_footer'}

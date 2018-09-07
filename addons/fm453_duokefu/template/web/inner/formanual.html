@@ -1,0 +1,5 @@
+<ul class="nav nav-tabs">
+	<li class="active"><a>使用指南</a></li>
+	<li ><a href="{php echo $this->createWebUrl('foruserhelp')}">操作说明</a></li>
+	{if $_W['isfounder']}<li><a href="{php echo $this->createWebUrl('fordevhelp')}">开发者接入</a></li> {/if}
+</ul>

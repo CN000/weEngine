@@ -1,0 +1,104 @@
+<h5 style="text-align: center;">{$fengyixin_pintuan['pagename']}</h5>
+<ol id="plugin_display_fengyixin_pintuan">
+	{loop $fengyixin_pintuan['orders'] $item}
+	<li>
+		<div class="alert alert-dismissable  alert-success">
+			<div class="form-group">
+				<label for="is_tuan">成团情况：</label>
+				<span type="text" id="is_tuan">{if $item['is_tuan']==1}拼团订单{$item['tuan_id']}{elseif $item['is_tuan']==0}单购订单{elseif $item['is_tuan']==2}团满退款{/if}</span>
+			</div>
+			<div class="form-group">
+				<label for="gname">团购产品：</label>
+				<span type="text" id="gname">{$item['goodsname']}</span>
+			</div>
+			<div class="form-group">
+				<label for="createtime">下单时间：</label>
+				<span type="text" id="createtime"><?php echo date('Y-m-d H:i:s',$item['createtime']) ?></span>
+			</div>
+			<div class="form-group">
+				<label for="ordersn">订单编号：</label>
+				<span type="text" id="ordersn">{$item['orderno']}</span>
+			</div>
+			<div class="form-group">
+				<label for="orderstaus">订单状态：</label>
+				<span type="text" id="orderstaus" class="label label-{$item['statuscss']}">{$item['status']}</span>
+			</div>
+			<div class="form-group">
+				<label for="ordercontact">联系方式：</label>
+				<span type="text" id="ordercontact" class="label label-{$item['statuscss']}">{$item['addname']} -- {$item['mobile']}</span>
+			</div>
+			<div class="form-group">
+				<label for="orderaddress">联系地址:</label>
+				<span type="text" id="orderaddress" class="{$item['css']}">{$item['address']}</span>
+			</div>
+			<div class="form-group">
+				<label for="orderpaytype">支付方式：</label>
+				<span type="text" id="orderpaytype" class="label label-{$item['css']}">{$item['paytype']}</span>-订单金额:<span type="text" id="orderpaytype" style="color:red;font-weight:bolder;">实付{$item['price']}元(原总价{$item['pay_price']}元，其中商品价格{$item['goodsprice']}元，运费{$item['freight']})</span>
+			</div>
+			<div class="form-group">
+				<label for="ordertransid">(微信)支付单号：</label>
+				<span type="text" id="ordertransid" class="label label-{$item['css']}">{$item['transid']}</span>
+			</div>
+			<div class="form-group">
+				<label for="checkpay">支付校对：</label>
+				<span type="text" id="checkpay" class="{$item['css']}">{$item['checkpay']}</span>
+			</div>
+			{if !empty($item['remark'])}
+			<div class="form-group">
+				<label for="orderremark">订单备注：</label>
+				<span type="text" id="orderremark" class="label label-{$item['css']}">{$item['remark']}</span>
+			</div>
+			{/if}
+			{if !empty($item['sendtime'])}
+			<div class="form-group">
+			<label for="sendtime">发货时间：</label>
+				<span type="text" id="sendtime"><?php echo date('Y-m-d H:i:s',$item['sendtime']) ?></span>
+			</div>
+			<div class="form-group">
+			<label for="express">发货记录：</label>
+				<span type="text" id="express">
+				{if !empty($item['express'])}
+				快递公司：{$item['express']}
+				{/if} |  快递单号：{$item['expresssn']}  | 确认收货时间：<?php echo date('Y-m-d H:i:s',$item['gettime']) ?></span>
+			</div>
+			{/if}
+			</div>
+			{template 'plugin/fengyixin_pintuan/orderdetail'}
+	</li>
+<hr>
+	{/loop}
+</ol>
+{if $fm453_shopping['pindex']>0}
+<div class="show-more" style="text-align:center;">
+    <a href="javascript:;" onclick="LoadMoreOrder('{$fengyixin_pintuan['pindex']}', 'fengyixin_pintuan')" class="btn btn-info" id="pager_fengyixin_pintuan">更多订单</a>
+</div>
+{/if}
+<script type="text/javascript">
+// 加载更多订单
+	function LoadMoreOrder (pindex,pluginname) {
+	    pindex = parseInt(pindex) + 1;
+	    var pager = $("#pager_"+ pluginname);
+	    pager.html('正在加载数据...');
+		var url ="{php echo $_W['siteroot']}"+"/app/index.php?c=entry&do=ordersactions&op=orderlist&m=fm453_kfzs_fyxpt";
+		var data={
+		'openid':"{$openid}",
+		'i':"{$_W['uniacid']}",
+		'loadmod':1,
+		'istest':1,
+		'page':pindex
+		};
+		var callback=function(html){
+		    if (html.indexOf('<li>') > - 1) {
+			    pager.html('浏览更多');
+		        $('#plugin_display_'+pluginname).append(html);
+		        pager.get(0).onclick = function(){
+		            LoadMoreOrder (pindex,pluginname);
+		        }
+		    }else{
+		        pager.html('已经显示全部');
+		    }
+		}
+		var type="html";
+		$.get(url,data,callback,type);
+	}
+</script>

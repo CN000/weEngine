@@ -1,0 +1,106 @@
+{template 'inner/duokefu/header'}
+<div class="container">
+
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3 class="text-center">
+				二维码推广统计一览
+			</h3>
+			<div style="text-align:center">
+			<table class="table table-condensed table-hover table-bordered" >
+		<thead>二维码信息</thead>
+		<tbody>
+			<tr class="success" >
+				<td>
+					  <p>二维码名称：</p>
+					  <span style="font-size:12px;">
+                        {$qrcodeinfo['name']}
+					  </span>
+				</td>
+			</tr>
+			<tr >
+				<td>
+					  <p>汇总统计：</p>
+					  <span style="font-size:12px;">
+							共{$typecount}次扫描；其中有效扫码{$unique_count}个（不含已取消关注的粉丝；同一人多次扫码仅核算为一次）,
+							共{$type1count}个粉丝通过扫描您的二维码到达本公众号（扫描结果：{$type[1]}）
+					  </span>
+				</td>
+			</tr>
+			<tr class="danger">
+				<td>
+					<p>二维码类型：</p>
+					 <span style="font-size:12px;">
+                    {$qrcodeinfo['model']}
+					  </span>
+				</td>
+			</tr>
+			<tr class="info">
+				<td>
+				    <p>创建时间：</p>
+				    <span style="font-size:12px;">
+                      {php echo date("Y-m-d l",$qrcodeinfo['createtime'])}
+					  </span>
+				</td>
+			</tr>
+			<tr class="warning">
+				<td>
+					<p>二维码链接：</p>
+					 <span style="font-size:12px;">
+                      <img src="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket={$qrcodeinfo['ticket']}" style="width: 200px;height: 200px;" >
+					  </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+			</div>
+			<ol style="margin-left:-5px;">
+			{loop $row $item}
+					<li >
+						<div class="alert alert-dismissable  alert-success " id="faninfos">
+						<div class="form-group">
+			<label for="fanusername">扫描者：</label>
+			<span type="text" id="fanusername" class="{$item['faninfo']['nickname']}">{$item['faninfo']['nickname']}</span>
+		</div>
+		<div class="form-group">
+			<label for="type">扫描类型：</label>
+			<span type="text" id="type" >{$item['type']}</span>
+		</div>
+		<div class="form-group">
+			<label for="fanuseropenid">Openid：</label>
+			<span type="text" id="fanuseropenid" >{$item['openid']}</span>
+		</div>
+		<div class="form-group">
+			<label for="fanuseravatar">头像：</label>
+			<span type="text" id="fanuseravatar" ><img class="img-circle" src="{$item['memberinfo']['avatar']}" style="width: 80px;height: 80px;" ></img></span>
+		</div>
+		<div class="form-group">
+			<label for="fanid">用户编号：</label>
+			<span type="text" id="fanid">{$item['faninfo']['fanid']}</span>
+		</div>
+		<div class="form-group">
+			<label for="fanuid">会员ID：</label>
+			<span type="text" id="fanuid">{$item['faninfo']['uid']}</span>
+		</div>
+		<div class="form-group">
+			<label for="followtime">{$item['faninfo']['isfollow']['title']}：</label>
+			<span class="label label-{$item['faninfo']['isfollow']['css']}" type="text" id="followtime">{$item['faninfo']['isfollow']['time']}</span>
+		</div>
+		<div class="form-group">
+			<label for="createtime">扫描时间：</label>
+			<span class="label label-danger" type="text" id="createtime" >{$item['createtime']}</span>
+		</div>
+	</div>
+<hr>
+
+
+</li>
+{/loop}
+			</ol>
+			<div style="text-align:center">
+			</div>
+		</div>
+	</div>
+</div>
+  {template 'inner/duokefu/footer'}
+  {template 'inner/duokefu/kefu'}

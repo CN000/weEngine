@@ -1,0 +1,82 @@
+{template 'web/_header'}
+<style type="text/css">
+	.red {float:left;color:red}
+	.white{float:left;color:#fff}
+	.tooltipbox {
+		background:#fef8dd;border:1px solid #c40808; position:absolute; left:0;top:0; text-align:center;height:20px;
+		color:#c40808;padding:2px 5px 1px 5px; border-radius:3px;z-index:1000;
+	}
+	.red { float:left;color:red}
+</style>
+<script>
+	require(['jquery', 'util'], function($, u){
+		$('.forcopy p a').each(function(){
+            u.clip(this, $(this).text());
+		});
+	});
+</script>
+{template 'web/inner/formodule'}
+<div class="main">
+{if $_W['isfounder']}
+	<form action="{php echo $this->createWebUrl('safeset')}" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				安全性设置-本设置项仅管理员及开发者可见
+			</div>
+			<div class="panel-body">
+				{if $_W['username'] == $settings['mainuser']  or $_W['isfounder'] }
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">安全校验码</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="urlsafecode" class="form-control" value="{$settings['urlsafecode']}" />
+						<span class="help-block">说明：该参数将附加在多客服插件中；该码配合插件页的客服工号一同使用，以确保您的插件地址不被其他公众号使用</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">客服工号</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="kefucodes" class="form-control" value="{$settings['kefucodes']}" />
+						<span class="help-block">请将要启用的公众平台上设置的全部客服工号录入此处；工号之间以半角英文逗号“,”隔开；只有在此添加了的客服工号才能正常使用本插件</span>
+					</div>
+				</div>
+				{/if}
+				</div>
+                {if $_W['isfounder']}
+			<div class="panel-heading">
+				站长设置-本设置项仅管理员可见
+			</div>
+				<div class="panel-body">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">超级管理员OpenIDs</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="sumanopenids" class="form-control" value="{$settings['sumanopenids']}" />
+						<span class="help-block">说明：填写商家管理员手机微信的openid号，用于接收系统的模板消息通知；可填写多个，每个之间以半角英文逗号“,”隔开。(这个功能为预留机制，暂未启用)
+						</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">客户主工号</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="mainuser" class="form-control" value="{$settings['mainuser']}" />
+						<span class="help-block">说明：填写客户系统账号的用户名（该平台可能分配了不只一个操作员或者管理员，这里需要用到其中<span style="color:red;">一个</span>来作为主工号，以开启模块更多配置权限给到客户）。
+						</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">知会开发者</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="devopenids" class="form-control" value="{$settings['devopenids']}" />
+						<span class="help-block">说明：开发者手机微信的openid号，用于接收系统的模板消息通知。(这个功能为预留机制，暂未启用)
+					</div>
+				</div>
+				{/if}
+			</div>
+		</div>
+		<div class="form-group col-sm-12">
+			<input type="submit" name="submit" value="提交" class="btn btn-primary col-lg-1" />
+			<input type="hidden" name="token" value="{$_W['token']}" />
+		</div>
+	</form>
+{/if}
+</div>
+{template 'web/_footer'}

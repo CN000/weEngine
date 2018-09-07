@@ -148,12 +148,14 @@ $we7_system_menu['account'] = array(
 			'menu' => array(
 				'profile' => array(
 					'title' => '参数配置',
-					'url' => url('profile/passport'),
+					'url' => url('profile/remote'),
 					'icon' => 'wi wi-parameter-setting',
 					'permission_name' => 'profile_setting',
 					'is_display' => array(
 						ACCOUNT_TYPE_OFFCIAL_NORMAL,
 						ACCOUNT_TYPE_OFFCIAL_AUTH,
+						ACCOUNT_TYPE_XZAPP_NORMAL,
+						ACCOUNT_TYPE_XZAPP_AUTH,
 					),
 				),
 				'payment' => array(
@@ -175,6 +177,8 @@ $we7_system_menu['account'] = array(
 					'is_display' => array(
 						ACCOUNT_TYPE_OFFCIAL_NORMAL,
 						ACCOUNT_TYPE_OFFCIAL_AUTH,
+						ACCOUNT_TYPE_XZAPP_NORMAL,
+						ACCOUNT_TYPE_XZAPP_AUTH,
 					),
 				),
 				
@@ -185,7 +189,7 @@ $we7_system_menu['account'] = array(
 );
 
 $we7_system_menu['wxapp'] = array(
-	'title' => '小程序',
+	'title' => '微信小程序',
 	'icon' => 'wi wi-small-routine',
 	'url' => url('wxapp/display/home'),
 	'section' => array(
@@ -195,14 +199,17 @@ $we7_system_menu['wxapp'] = array(
 				'module_entrance_link' => array(
 					'title' => "入口页面",
 					'url' => url('wxapp/entrance-link'),
-					'is_display' => 1,
+					'is_display' => array(
+						ACCOUNT_TYPE_APP_NORMAL,
+						ACCOUNT_TYPE_APP_AUTH,
+						ACCOUNT_TYPE_WXAPP_WORK,
+											),
 					'icon' => 'wi wi-data-synchro',
 					'permission_name' => 'wxapp_entrance_link',
 				),
 			),
-			'is_display' => true,
 		),
-		'wxapp_module' => array(
+		'platform_module' => array(
 			'title' => '应用',
 			'menu' => array(),
 			'is_display' => true,
@@ -213,7 +220,11 @@ $we7_system_menu['wxapp'] = array(
 				'wxapp_member' => array(
 					'title' => '会员',
 					'url' => url('mc/member'),
-					'is_display' => 1,
+					'is_display' => array(
+						ACCOUNT_TYPE_APP_NORMAL,
+						ACCOUNT_TYPE_APP_AUTH,
+						ACCOUNT_TYPE_WXAPP_WORK,
+					),
 					'icon' => 'wi wi-fans',
 					'permission_name' => 'wxapp_member',
 				)
@@ -225,14 +236,22 @@ $we7_system_menu['wxapp'] = array(
 				'wxapp_module_link' => array(
 					'title' => "数据同步",
 					'url' => url('wxapp/module-link-uniacid'),
-					'is_display' => 1,
+					'is_display' => array(
+						ACCOUNT_TYPE_APP_NORMAL,
+						ACCOUNT_TYPE_APP_AUTH,
+						ACCOUNT_TYPE_WXAPP_WORK,
+					),
 					'icon' => 'wi wi-data-synchro',
 					'permission_name' => 'wxapp_module_link_uniacid',
 				),
 				'wxapp_payment' => array(
 					'title' => '支付参数',
 					'url' => url('wxapp/payment'),
-					'is_display' => 1,
+					'is_display' => array(
+						ACCOUNT_TYPE_APP_NORMAL,
+						ACCOUNT_TYPE_APP_AUTH,
+						ACCOUNT_TYPE_WXAPP_WORK,
+					),
 					'icon' => 'wi wi-appsetting',
 					'permission_name' => 'wxapp_payment',
 				),
@@ -246,7 +265,11 @@ $we7_system_menu['wxapp'] = array(
 				'parameter_setting' => array(
 					'title' => '参数配置',
 					'url' => url('profile/remote'),
-					'is_display' => 1,
+					'is_display' => array(
+						ACCOUNT_TYPE_APP_NORMAL,
+						ACCOUNT_TYPE_APP_AUTH,
+						ACCOUNT_TYPE_WXAPP_WORK,
+					),
 					'icon' => 'wi wi-parameter-setting',
 					'permission_name' => 'wxapp_setting',
 				),
@@ -307,6 +330,7 @@ $we7_system_menu['webapp'] = array(
 				
 			),
 		),
+		
 	),
 );
 
@@ -315,7 +339,7 @@ $we7_system_menu['phoneapp'] = array(
 	'icon' => 'wi wi-white-collar',
 	'url' => url('phoneapp/display/home'),
 	'section' => array(
-		'phoneapp_module' => array(
+		'platform_module' => array(
 			'title' => '应用',
 			'menu' => array(),
 			'is_display' => true,
@@ -342,6 +366,18 @@ $we7_system_menu['xzapp'] = array(
 	'section' => array(
 		'platform_module' => array(
 			'title' => '应用模块',
+			'menu' => array(),
+			'is_display' => true,
+		),
+	),
+);
+$we7_system_menu['aliapp'] = array(
+	'title' => '支付宝小程序',
+	'icon' => 'wi wi-white-collar',
+	'url' => url('miniapp/display/home'),
+	'section' => array(
+		'platform_module' => array(
+			'title' => '应用',
 			'menu' => array(),
 			'is_display' => true,
 		),
@@ -516,7 +552,25 @@ $we7_system_menu['system'] = array(
 				),
 			)
 		),
-
+		'aliapp' => array(
+			'title' => '支付宝小程序',
+			'menu' => array(
+				'system_aliapp' => array(
+					'title' => '支付宝小程序',
+					'url' => url('account/manage', array('account_type' => ACCOUNT_TYPE_ALIAPP_NORMAL)),
+					'icon' => 'wi wi-aliapp',
+					'permission_name' => 'system_aliapp',
+					'sub_permission' => array(
+					),
+				),
+				'system_module_aliapp' => array(
+					'title' => '支付宝小程序应用',
+					'url' => url('module/manage-system', array('support' => MODULE_SUPPORT_ALIAPP_NAME)),
+					'icon' => 'wi wi-aliapp-apply',
+					'permission_name' => 'system_module_aliapp',
+				),
+			)
+		),
 		'user' => array(
 			'title' => '帐户/用户',
 			'menu' => array(

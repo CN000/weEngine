@@ -1,0 +1,68 @@
+{template 'inner/duokefu/header'}
+{template 'inner/duokefu/auto/dkf-js'}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="tabbable" id="tabs-duokefu">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#main" data-toggle="tab" >用户信息</a></li>
+					<li class="" style="display:none" id="part2order" ><a href="#part2" data-toggle="tab" >业务处理</a></li>
+					<li class="" style="display:none"><a href="#part3" data-toggle="tab" >营销活动</a></li>
+					<li class="" style="display:none"><a href="#part4" data-toggle="tab" >消息知会</a></li>
+					<li class=""><a href="#part5" data-toggle="tab" >操作记录</a></li>
+					<li class=""><a href="#part6" data-toggle="tab" >模拟手机</a></li>
+					<?php  if  ($this->module['config']['onoffs']['fm453_shopping'] ==1){   ?>
+					<li class=""><a href="#fm453_shopping_link" style="display:none" data-toggle="tab" >商城产品</a></li>
+					<?php  } ?>
+					<li class=""><a href="#userhelp" data-toggle="tab" >指引帮助</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="main">
+						{template 'inner/duokefu/auto/main'}
+					</div>
+					<div class="tab-pane" id="part2">
+						{template 'inner/duokefu/auto/part2'}
+					</div>
+					<div class="tab-pane" id="part3" >
+						{template 'inner/duokefu/auto/part3'}
+					</div>
+					<div class="tab-pane" id="part4" >
+						{template 'inner/duokefu/auto/part4'}
+					</div>
+					<div class="tab-pane" id="part5" >
+						{template 'inner/duokefu/auto/part5'}
+					</div>
+					<div class="tab-pane" id="part6" >
+						{template 'inner/duokefu/auto/part6'}
+					</div>
+					<div class="tab-pane" id="fm453_shopping_link" >
+						{template 'inner/link/fm453_shopping_goodslist'}
+					</div>
+					<div class="tab-pane" id="userhelp" >
+						{template 'inner/duokefu/userhelp'}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="container hidden">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="alert alert-dismissable  alert-danger">
+				 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>黑板报</h4>
+				<textarea id="shownews"  class="textarea" style="height:260;width:100%;overflow-y:auto"></textarea>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column" style="text-align: center;">
+		<button  class="btn btn-default " type="button" form="faninfos editfaninfos" id="" onclick="window.location.reload();" />刷新(F5)</button>
+		</div>
+	</div>
+</div>
+{template 'inner/duokefu/footer'}

@@ -1,0 +1,45 @@
+<form action="{php echo $this->createMobileUrl('plugin')}" method="post">
+	<input type="hidden" name="i" value="{$_W['uniacid']}" id="uniacid"/>
+	<input type="hidden" name="c" value="entry" />
+    <input type="hidden" name="m" value="fm453_duokefu" />
+	<input type="hidden" name="do" value="plugin" />
+	<div class="row clearfix">
+		<h5>用户信息</h5>
+		<div class="col-md-12 column">
+			<div class="form-group">
+				<label for="workeraccount">当前登陆的客服工号</label><span type="text" class="hidden" id="workeraccount"></span>
+				<input class="form-control " id="theWorkerAccount" type="text" name="workeraccount" value="{$_GPC['workeraccount']}" disabled="true">
+			</div>
+			<div class="form-group">
+				 <label for="toUin">当前接待访客的OPENID</label>
+				 <input class="form-control openid" id="theOpenid" type="text" name="openid" value="{$_GPC['openid']}"/>
+			</div>
+			<div class="form-group  hidden">
+				 <label for="urlsafecode">安全校验码</label>
+				 <input class="form-control" id="urlsafecode" type="text" value="<?php echo $this->module['config']['urlsafecode'] ?>"/>
+			</div>
+			<div class="checkbox  hidden">
+				<label><input type="checkbox" id="checkbox_yanzheng"/>保持验证状态</label>
+			</div>
+			<div class="form-group hidden">
+				 <label for="kefucode">工号白名单</label>
+				 <input class="form-control" id="kefucodes" type="text" value="<?php echo $this->module['config']['kefucodes'] ?>"/>
+			</div>
+			<div class="form-group hidden">
+				<input readonly="true" class="form-control" id="fanid" type="text" name="fanid" value="{$fanid}"/>
+			</div>
+		</div>
+				<!--button的 form 属性规定按钮属于一个或多个表单。
+form 属性的值必须是按钮所属表单的 id。
+如需引用一个以上的表单，请使用空格分隔的列表。-->
+		<button  class="btn btn-success"  type="button" form="faninfos editfaninfos" id="to_edit" onclick="editable();" />安全模式</button>
+		<button  class="btn  btn-warning" style="display:none"  type="button" id="no_edit" onclick="safeshow();" />编辑模式</button>
+		<button  class="btn  btn-info" type="button" id="to_viewpart2" onclick="viewpart2();" />处理业务</button>
+		<button  class="btn  btn-info" type="button" style="display:none" id="to_hidepart2" onclick="hidepart2();" />隐藏业务</button>
+		<button type="submit" name="reload" value="yes"  class="btn btn-default pull-right" id="pagerefresh" >刷新(F5)</button>
+		<input type="hidden" name="token" value="{$_W['token']}" />
+	</div>
+	</form>
+<hr>
+{template 'inner/duokefu/auto/editfaninfos'}
+{template 'inner/duokefu/auto/faninfos'}

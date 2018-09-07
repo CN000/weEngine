@@ -1,0 +1,252 @@
+<script>
+	var openid='';
+	var workerAccount = '';
+	//接收多客服的事件通知
+	function MCS_ClientNotify(EventData) {
+		EventData = strToJson(EventData);
+		switch(EventData['event']){
+			case 'OnUserChange':{
+				OnUserChange(EventData);
+				break;
+				}
+			case 'OnMapMsgClick':{
+				OnMapMsgClick(EventData);
+				break;
+			}
+		}
+	}
+	//转话字符串为JSON格式（腾讯要求）
+	function strToJson(str){
+		var json = (new Function("return " + str))();
+		return json;
+	}
+	//通过OPENID获取客服工号
+	function ajaxGetKefu(openid){
+		var url="{php echo $this->createMobileUrl('getKefu')}";
+		var data={
+			"openid":openid
+		}
+		var callback=function(data){
+		}
+		var type="html";
+		$.post(url,data,callback,type);
+	}
+	//获得客服账号并写入到页面指定元素（#area）
+	function wokeraccountCallback(data){
+		//document.getElementById('theWorkerAccount').value = $xss(data.workeraccount,"html");
+		document.getElementById('theWorkerAccount').value =  data.workeraccount;
+		document.getElementById('area').value += '您现在登录的帐号是：' +  $xss(data.workeraccount,"html") + '\n';
+	}
+	//当接待的客户改变时开始切换数据
+	function OnUserChange(data){
+		//$("#part2order").hide();	//为了避免客服人员忘记刷新粉丝相关业务数据，在客户改变时即将此业务处理选项卡先隐藏
+		$("#to_hidepart2").hide();
+		$("#to_viewpart2").show();
+		$("#showplugins").hide();
+
+		var str = document.getElementById('area').value;
+		str += "切换到用户:" + data['userid'] + ", channeltype:" + data['channeltype'] + "\n";
+		 document.getElementById('area').value += str;
+		openid=data.useraccount;	//从data中传入useraccount并赋值给openid
+		//$("#theOpenid").val(openid);	//向id为theOpenid的元素注入openid值
+		$(".openid").val(openid);	//向样式为openid的所有元素注入openid值
+		//获得客服数据，写入缓存kefu,如果不存在，则创建一次
+        {if !$_SESSION['kefu'] }
+				ajaxGetKefu(openid);
+        {/if}
+        ajaxgetfansinfo();
+		kefu=data.workeraccount;	//从data中传入workeraccount并赋值给kefu
+		//$("#theWorkerAccount").val(kefu)	//向id为theWorkerAccount的元素注入kefu值（暂未成功）
+        //setInterval("ajaxRefreshWorker()",60000)	//按照指定的周期（60000毫秒）来调用函数或计算表达式ajaxRefreshWorker(),直到 clearInterval() 被调用或窗口被关闭
+//		var url="{php echo $this->createMobileUrl('ajaxGetFaninfos')}";
+//		var data={
+//				"openid":openid
+//			}
+//		var callback=function(data){
+//			$.each(data.member,function(key,val){	//从data中传入member数组并遍历，按key赋值
+//				$("."+key).html(val);		//为类为“key”值的元素指定html值
+//				$("."+key).val(val);		//为类为“key”值的元素指定变量值
+//			})
+//		}
+//		var type="json";
+//		$.post(url,data,callback,type)
+	}
+	// 加载默认显示的当前粉丝数据
+	function ajaxgetfansinfo(){
+		var url="{php echo $this->createMobileUrl('getfansinfo')}";
+		var data={"openid":openid};
+		var callback=function(html){
+//		$.each(data.memberinfo,function(key,val){	//从data中传入数组并遍历，按key赋值
+//				$("."+val).html(val);		//为类为“key”值的元素指定html值
+//				//$("."+key).val(val);		//为类为“key”值的元素指定变量值
+//			});
+//			$.each(data.faninfos,function(key,val){	//从data中传入数组并遍历，按key赋值
+//				$("."+val).html(val);		//为类为“key”值的元素指定html值
+//				//$("."+key).val(val);		//为类为“key”值的元素指定变量值
+//			})
+		$('#plugin-faninfos').empty().append(html);
+		}
+		var type="html";
+		$.post(url,data,callback,type);
+	}
+	// 刷新客服工号数据
+	function ajaxRefreshWorker(){
+		var url="{php echo $_W['siteroot'].$this->createMobileUrl('refreshKefu')}";
+		var data={};
+		var callback=function(data){
+		}
+		var type="json"
+		$.post(url,data,callback,type);
+	}
+	//设置地图信息点击事件
+	function OnMapMsgClick (data) {
+		$id('area').value += "latitude :" + data['latitude'] + ",longitude:" + data['longitude'] + ",location :" + data['location'] + ",scale :" + data['scale'];
+	}
+	//向会话框推送消息（文字、图片、图文、地理位置等）
+	function putmsg(){
+		var strReturn = window.external.PutMsg('{"msg":'+document.getElementById('messageData').value+'}');
+		document.getElementById('area').value += 'put msg return:' + strReturn +'\n';
+	}
+	//设置要向会话框推送的消息（文字、图片、图文、地理位置等）
+	function setmsg(d){
+		var msg = [
+			'{"head":{"random":"{#random#}"}, "body":[{"type":7, "content":[{"title":"常见问题", "digest":"查看全文", "cover":"http://p.qpic.cn/ecc_merchant/0/P_idc2844234_1399602518774/0", "url":"http://weigou.qq.com/wkd/messages/show/cid-cc_idc_208646"}]}]}',
+			'{"head":{"random":"{#random#}"}, "body":[{"type":1, "content":{"picUrl":"http://p.qpic.cn/ecc_merchant/0/P_idc2844234_1399602518774/0"}}]}',
+			'{"head":{"random":"{#random#}"}, "body":[{"type":0, "content":{"text":"您好，请问有什么可以帮到您的呢"}}]}'
+		];
+		document.getElementById('messageData').value = msg[d-1].replace("{#random#}",  Math.ceil(Math.random()*10000000));
+	}
+	//高亮本插件页
+	function notice(){
+		document.getElementById('area').value += '3秒钟后开始执行notice,请先切换到其他TAB\n';
+		document.getElementById('noticecon').innerHTML="(3秒钟后开始执行notice,请先切换到其他TAB)";
+		setTimeout('window.external.Notice("");',3000);
+	}
+
+	//启用编辑模式
+	function editable(){
+		$("#faninfos").hide();
+		$("#editfaninfos").show();
+		$("#no_edit").show();
+		$("#to_edit").hide();
+	}
+	//停用编辑,切换安全模式
+	function safeshow(){
+		$("#faninfos").show();
+		$("#editfaninfos").hide();
+		$("#no_edit").hide();
+		$("#to_edit").show()
+	}
+		//控制加载显示业务操作数据
+	function viewpart2(){
+		$("#part2order").show();
+		$("#to_viewpart2").hide();
+		$("#to_hidepart2").show();
+		$("#showplugins").show();
+	}
+	function hidepart2(){
+		$("#part2order").hide();
+		$("#to_viewpart2").show();
+		$("#to_hidepart2").hide();
+		$("#showplugins").hide();
+	}
+
+	//引用腾讯DEMO页的一些其他函数
+	var ticket = getUrlParam('ticket');
+	$.getScript('http://crm1.dkf.qq.com/php/index.php/thirdapp/appdemo/get_workeraccount_by_sessionkey?callback=wokeraccountCallback&ticket='+ticket);
+	function getUrlParam(name){
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+		var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+		if (r!=null) return unescape(r[2]); return null; //返回参数值
+	}
+
+	function $xss(str,type){
+	//空过滤
+	if(!str){
+		return str===0 ? "0" : "";
+	}
+
+	switch(type){
+		case "none": //过渡方案
+			return str+"";
+		break;
+		case "html": //过滤html字符串中的XSS
+			return str.replace(/[&'"<>\/\\\-\x00-\x09\x0b-\x0c\x1f\x80-\xff]/g, function(r){
+				return "&#" + r.charCodeAt(0) + ";"
+			}).replace(/ /g, " ").replace(/\r\n/g, "<br />").replace(/\n/g,"<br />").replace(/\r/g,"<br />");
+		break;
+		case "htmlEp": //过滤DOM节点属性中的XSS
+			return str.replace(/[&'"<>\/\\\-\x00-\x1f\x80-\xff]/g, function(r){
+				return "&#" + r.charCodeAt(0) + ";"
+			});
+		break;
+		case "url": //过滤url
+			return escape(str).replace(/\+/g, "%2B");
+		break;
+		case "miniUrl":
+			return str.replace(/%/g, "%25");
+		break;
+		case "script":
+			return str.replace(/[\\"']/g, function(r){
+				return "\\" + r;
+			}).replace(/%/g, "\\x25").replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\x01/g, "\\x01");
+		break;
+		case "reg":
+			return str.replace(/[\\\^\$\*\+\?\{\}\.\(\)\[\]]/g, function(a){
+				return "\\" + a;
+			});
+		break;
+		default:
+			return escape(str).replace(/[&'"<>\/\\\-\x00-\x09\x0b-\x0c\x1f\x80-\xff]/g, function(r){
+				return "&#" + r.charCodeAt(0) + ";"
+			}).replace(/ /g, " ").replace(/\r\n/g, "<br />").replace(/\n/g,"<br />").replace(/\r/g,"<br />");
+		break;
+	}
+}
+//加载插件页面
+function loadPluginPage(pluginname,uniacid,container){
+ openid = document.getElementById('theOpenid').value;
+ uniacid = document.getElementById('uniacid').value;
+ workerccount = document.getElementById('theWorkerAccount').value;
+ document.getElementById('area').value += workerccount +'刚刚查看了ID'+uniacid+'号公众平台粉丝'+openid +'的订单信息'+'\n';
+	var data={"openid":openid};
+	var url = "{$root}app/index.php?i={$uniacid}&c=entry&do=plugin"+pluginname+"&m=fm453_duokefu";
+	var success=function(returns){
+		//var html2 = $(returns).find( '#plugin_display_'+pluginname);
+		//$('#part2').html(html+returns);
+		var content = returns.substr(0);
+		$('#' + container).empty().append(content);	//目前传入的container值统一为"plugin"
+		//var ordershtml = document.getElementById('#' + container).innerHTML;
+		//$('#plugin').append(ordershtml);
+		 document.getElementById('area').value += "获取到"+pluginname+"的数据如下: " +content+",内容被填充到“业务处理”选项卡！"+'\n';
+		// alert("获取到"+pluginname+"的数据如下: " +returns+",内容被填充到“业务处理”选项卡！");
+	};
+	var type="html";
+	$.get(url,data,success,type);
+}
+//插件页面加载更多订单
+function LoadMoreOrder(pindex,pluginname) {
+	pindex = parseInt(pindex) + 1;
+	openid = document.getElementById('theOpenid').value;
+	$('#plugin_pager').html('正在加载数据...');
+		var data={"openid":openid,'page':pindex,'op':displaymore};
+		var url = "{$root}app/index.php?i={$uniacid}&c=entry&do=plugin"+pluginname+"&m=fm453_duokefu";
+		var success=function(html){
+			if (html.indexOf('li') > -1) {	//indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置,如果未出现则返回-1
+				$('#plugin').append(html);
+				var content = html;
+				document.getElementById('area').value += "获取到"+pluginname+"的数据如下: " +content+",内容被填充到“业务处理”选项卡！"+'\n';
+				$('#plugin_pager').get(0).onclick = function(){
+					LoadMoreOrder(pindex, pluginname);
+				}
+				$('#plugin_pager').html("浏览更多订单");
+			} else {
+				$('#plugin_pager').html('已经显示全部订单');
+			}
+		};
+		var type="html";
+		$.get(url,data,success,type);
+	}
+
+</script>
+<!--[if !IE]>|xGv00|539017d66e4e60b1c82cbc86aa9a5d50<![endif]-->

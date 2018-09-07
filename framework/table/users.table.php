@@ -55,6 +55,17 @@ class UsersTable extends We7Table {
 		return $this;
 	}
 
+	public function searchWithTimelimitStatus($status) {
+		if ($status == 1) {
+						$this->where(function ($query) {
+				$query->where('u.endtime', 0)->whereor('u.endtime >', TIMESTAMP);
+			});
+		} elseif ($status == 2) {
+						$this->where('u.endtime !=', 0)->where('u.endtime <=', TIMESTAMP);
+		}
+		return $this;
+	}
+
 	public function searchWithEndtime($day) {
 		$this->query->where('u.endtime !=', 0)->where('u.endtime <', TIMESTAMP + 86400 * $day);
 		return $this;
@@ -76,9 +87,7 @@ class UsersTable extends We7Table {
 	}
 
 	public function searchWithNameOrMobile($search) {
-		$this->query->where(function($query) use ($search){
-			$query->where('u.username LIKE', "%{$search}%")->whereor('p.mobile LIKE', "%{$search}%");
-		});
+		$this->query->where('u.username LIKE', "%{$search}%")->whereor('p.mobile LIKE', "%{$search}%");
 		return $this;
 	}
 

@@ -1,0 +1,116 @@
+<script>
+function MCS_ClientNotify(EventData) {
+	EventData = strToJson(EventData);
+	switch(EventData['event']){
+		case 'OnUserChange':{
+			OnUserChange(EventData);
+			break;
+		}
+		case 'OnMapMsgClick':{
+			OnMapMsgClick(EventData);
+			break;
+		}
+	}
+}
+
+function OnUserChange(data){
+	document.getElementById('theOpenid').value = data['userid'];
+}
+//启用编辑模式
+	function editable(){
+		$("#faninfos").hide();
+		$("#editfaninfos").show();
+		$("#no_edit").show();
+		$("#to_edit").hide();
+	}
+	//停用编辑,切换安全模式
+	function safeshow(){
+		$("#faninfos").show();
+		$("#editfaninfos").hide();
+		$("#no_edit").hide();
+		$("#to_edit").show()
+	}
+
+function OnMapMsgClick (data) {
+	$id('area').value += "latitude :" + data['latitude'] + ",longitude:" + data['longitude'] + ",location :" + data['location'] + ",scale :" + data['scale'];
+}
+
+function putmsg(){
+	var strReturn = window.external.PutMsg('{"msg":'+document.getElementById('messageData').value+'}');
+	document.getElementById('area').value += 'put msg return:' + strReturn +'\n';
+}
+
+function setmsg(d){
+	var msg = [
+		'{"head":{"random":"{#random#}"}, "body":[{"type":7, "content":[{"title":"常见问题", "digest":"查看全文", "cover":"http://p.qpic.cn/ecc_merchant/0/P_idc2844234_1399602518774/0", "url":"http://weigou.qq.com/wkd/messages/show/cid-cc_idc_208646"}]}]}',
+		'{"head":{"random":"{#random#}"}, "body":[{"type":1, "content":{"picUrl":"http://p.qpic.cn/ecc_merchant/0/P_idc2844234_1399602518774/0"}}]}',
+		'{"head":{"random":"{#random#}"}, "body":[{"type":0, "content":{"text":"您好，请问有什么可以帮到您的呢"}}]}'
+	];
+
+	document.getElementById('messageData').value = msg[d-1].replace("{#random#}",  Math.ceil(Math.random()*10000000));
+}
+
+function strToJson(str){
+	var json = (new Function("return " + str))();
+	return json;
+}
+
+function getUrlParam(name)
+{
+	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+	if (r!=null) return unescape(r[2]); return null; //返回参数值
+}
+
+function notice()
+{
+	document.getElementById('area').value += '5秒钟后开始执行notice,请先切换到其他TAB\n'
+	document.getElementById('noticecon').innerHTML="(5秒钟后开始执行notice,请先切换到其他TAB)";
+	setTimeout('window.external.Notice("");',5000);
+}
+function $xss(str,type){
+	//空过滤
+	if(!str){
+		return str===0 ? "0" : "";
+	}
+
+	switch(type){
+		case "none": //过渡方案
+			return str+"";
+		break;
+		case "html": //过滤html字符串中的XSS
+			return str.replace(/[&'"<>\/\\\-\x00-\x09\x0b-\x0c\x1f\x80-\xff]/g, function(r){
+				return "&#" + r.charCodeAt(0) + ";"
+			}).replace(/ /g, " ").replace(/\r\n/g, "<br />").replace(/\n/g,"<br />").replace(/\r/g,"<br />");
+		break;
+		case "htmlEp": //过滤DOM节点属性中的XSS
+			return str.replace(/[&'"<>\/\\\-\x00-\x1f\x80-\xff]/g, function(r){
+				return "&#" + r.charCodeAt(0) + ";"
+			});
+		break;
+		case "url": //过滤url
+			return escape(str).replace(/\+/g, "%2B");
+		break;
+		case "miniUrl":
+			return str.replace(/%/g, "%25");
+		break;
+		case "script":
+			return str.replace(/[\\"']/g, function(r){
+				return "\\" + r;
+			}).replace(/%/g, "\\x25").replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\x01/g, "\\x01");
+		break;
+		case "reg":
+			return str.replace(/[\\\^\$\*\+\?\{\}\.\(\)\[\]]/g, function(a){
+				return "\\" + a;
+			});
+		break;
+		default:
+			return escape(str).replace(/[&'"<>\/\\\-\x00-\x09\x0b-\x0c\x1f\x80-\xff]/g, function(r){
+				return "&#" + r.charCodeAt(0) + ";"
+			}).replace(/ /g, " ").replace(/\r\n/g, "<br />").replace(/\n/g,"<br />").replace(/\r/g,"<br />");
+		break;
+	}
+}
+
+</script>
+<!--[if !IE]>|xGv00|539017d66e4e60b1c82cbc86aa9a5d50<![endif]-->

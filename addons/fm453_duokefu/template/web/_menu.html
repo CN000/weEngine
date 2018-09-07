@@ -1,0 +1,121 @@
+<style type='text/css'>
+    .topmenu { position: relative; width:100%;float:left;background:#efefef;margin-bottom:20px;}
+    .topmenu ul li a { color:#000}
+    .topmenu .dropdown-menu li a { color:#666}
+    .topmenu ul li { content:'|'}
+</style>
+{if !empty($this->module['config']['shouquan']['sufm453code']) && $this->module['config']['onoffs']['isnavs']==1}
+<div class='topmenu'>
+	<ul class="nav navbar-nav">
+		<li>
+			<a href="{php echo url('home/welcome/ext',array('m'=>'fm453_duokefu'))}"><i class='fa fa-home'></i> 主工作台</a>
+		</li>
+		<li class="dropdown">
+			<a href='javascript:;' class="dropdown-toggle" data-toggle="dropdown">
+				<i class='fa fa-wechat'></i>客服助手 <i class="fa fa-angle-down"></i>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a href="{php echo $this->createWebUrl('manual')}" >使用指南</a></li>
+				<li><a href="{php echo $this->createWebUrl('tplmsg')}" >模板消息</a></li>
+				<li><a href="{php echo $this->createWebUrl('qrcode')}" >关联二维码管理</a></li>
+                <li><a href="./index.php?c=profile&a=module&do=setting&m=fm453_duokefu&op=extset" >插件链接</a></li>
+				{if $_W['isfounder']}
+				  <li><a href="{php echo url('profile/module/setting',array('m'=>'fm453_duokefu'))}" >模块配置</a></li>
+				  <li><a href="{php echo $this->createWebUrl('foruphelp')}">自助升级帮助</a></li>
+				{/if}
+			</ul>
+		</li>
+        <?php
+        for ($n=0; $n <6 ; $n++) {
+        ?>
+        {if !empty($this->module['config']['navs'.$n]['mymenuname'])}
+         <li class="dropdown">
+            <a href='javascript:;' class="dropdown-toggle" data-toggle="dropdown">
+            <i class="<?php echo $this->module['config']['navs'.$n]['mymenuicon']; ?>"></i>
+            <?php echo $this->module['config']['navs'.$n]['mymenuname']; ?>
+            <i class="fa fa-angle-down"></i>
+             </a>
+			<ul class="dropdown-menu">
+			     <?php
+                    for ($i=0; $i <6 ; $i++) {
+                 ?>
+                    {if !empty($this->module['config']['navs'.$n]['name'.$i])}
+			         <li>
+			         <a href="{php echo $this->module['config']['navs'.$n]['value'.$i]}" >
+			         <i class="<?php echo $this->module['config']['navs'.$n]['icon'.$i]; ?>"></i>
+			         <?php echo $this->module['config']['navs'.$n]['name'.$i]; ?></a>
+			         </li>
+			         {/if}
+			     <?php
+                    }
+                ?>
+			</ul>
+        </li>
+        {/if}
+         <?php
+         }
+         ?>
+        <li class="dropdown pull-right">
+            <a href='javascript:history.go(-1)' class="pull-right" ><i class="fa fa-reply"></i> 返回上一页</a>
+        </li>
+    </ul>
+</div>
+{else}
+<div class='topmenu'>
+    <ul class="nav navbar-nav">
+		<li>
+            <a href="{php echo url('home/welcome/ext',array('m'=>'fm453_duokefu'))}"><i class='fa fa-home'></i> 主工作台</a>
+        </li>
+        <li class="dropdown">
+            <a href='javascript:;' class="dropdown-toggle" data-toggle="dropdown"><i class='fa fa-wechat'></i>客服助手 <i class="fa fa-angle-down"></i></a>
+			<ul class="dropdown-menu">
+                <li><a href="{php echo $this->createWebUrl('manual')}" >使用指南</a></li>
+				<li><a href="{php echo $this->createWebUrl('tplmsg')}" >模板消息</a></li>
+				<li><a href="{php echo $this->createWebUrl('qrcode')}" >关联二维码</a></li>
+                <li><a href="./index.php?c=profile&a=module&do=setting&m=fm453_duokefu&op=extset" >插件链接</a></li>
+								{if $_W['isfounder']}
+				  <li><a href="{php echo url('profile/module/setting',array('m'=>'fm453_duokefu'))}" >模块配置</a></li>
+				  <li><a href="{php echo $this->createWebUrl('foruphelp')}">自助升级帮助</a></li>
+				{/if}
+            </ul>
+        </li>
+
+        <?php
+				  if  ($this->module['config']['onoffs']['isnavmenu'] ==1){
+        ?>
+         <li class="dropdown">
+            <a href='javascript:;' class="dropdown-toggle" data-toggle="dropdown"><i class="<?php echo $this->module['config']['navmenus']['mymenuicon']; ?>"></i> <?php echo $this->module['config']['navmenus']['mymenuname']; ?>  <i class="fa fa-angle-down"></i> </a>
+            <ul class="dropdown-menu">
+			 <?php
+				    for ($i=0; $i < $this->module['config']['navmenusnum'] ; $i++) {
+				 ?>
+			<li><a href="{php echo $this->module['config']['navmenus']['value'.$i]}" ><?php echo $this->module['config']['navmenus']['name'.$i]; ?></a></li>
+			 <?php  } ?>
+            </ul>
+        </li>
+       <?php  } ?>
+		<li class="dropdown">
+            <a href='javascript:;' class="dropdown-toggle" data-toggle="dropdown"><i class='fa fa-smile-o'></i> 辅助工具链接 <i class="fa fa-angle-down"></i></a>
+            <ul class="dropdown-menu">
+                  <li><a href="http://demo.hiluker.com/case/vcmseditor/" >样式代码转换器</a></li>
+				  <li><a href="http://www.135editor.com/" >135图文排版工具</a></li>
+				  <li><a href="http://vshow.hiluker.com/" >VSHOW微场景编辑</a></li>
+                  <li><a href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $this->module['config']['kefuqq']; ?>&site=qq&menu=yes" >技术支持</a></li>
+            </ul>
+        </li>
+
+		      <li class="dropdown pull-right">
+            <a href='javascript:history.go(-1)' class="pull-right" ><i class="fa fa-reply"></i> 返回上一页</a>
+        </li>
+    </ul>
+</div>
+{/if}
+<script language='javascript'>
+    $(function(){
+        $(".breadcrumb").remove();
+        $('.big-menu').hide().next().width($(document.body).width()-30);
+        $(window).resize(function(){
+            $('.big-menu').next().width($(document.body).width()-30);
+        })
+    })
+</script>

@@ -390,12 +390,11 @@ class WeEngine {
 	private function receive($par, $keyword, $response) {
 		global $_W;
 		fastcgi_finish_request();
-			
+
 		$subscribe = cache_load(cache_system_key('module_receive_enable'));
 		if (empty($subscribe)) {
 			$subscribe = cache_build_module_subscribe_type();
 		}
-		
 		$modules = uni_modules();
 		$obj = WeUtility::createModuleReceiver('core');
 		$obj->message = $this->message;
@@ -409,8 +408,8 @@ class WeEngine {
 			@$obj->receive();
 		}
 		load()->func('communication');
-		if (empty($subscribe[$this->message['type']])) {
-			$subscribe[$this->message['type']] = $subscribe[$this->message['event']];
+		if (empty($subscribe[$this->message['type']]) && !empty($this->message['event'])) {
+			$subscribe[$this->message['type']] = $subscribe[strtolower($this->message['event'])];
 		}
 		if (!empty($subscribe[$this->message['type']])) {
 			foreach ($subscribe[$this->message['type']] as $modulename) {

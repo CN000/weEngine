@@ -239,42 +239,48 @@ class AccountTable extends We7Table {
 		}
 	}
 
-	public function accountGroupModules($uniacid) {
+	public function accountGroupModules($uniacid, $type = '') {
 		$packageids = $this->query->from('uni_account_group')->where('uniacid', $uniacid)->select('groupid')->getall('groupid');
 		$packageids = empty($packageids) ? array() : array_keys($packageids);
-		$uni_modules = array();
-		
-		if (in_array('-1', array_keys($packageids))) {
+		if (in_array('-1', $packageids)) {
 			$modules = $this->query->from('modules')->select('name')->getall('name');
 			return array_keys($modules);
 		}
+		$uni_modules = array();
+		
 		$uni_groups = $this->query->from('uni_group')->where('uniacid', $uniacid)->whereor('id', $packageids)->getall('modules');
 		if (!empty($uni_groups)) {
-			$account = $this->getAccountByUniacid($uniacid);
+			if (empty($type)) {
+				$account = $this->getAccountByUniacid($uniacid);
+				$type = $account['type'];
+			}
 			foreach ($uni_groups as $group) {
 				$group_module = (array)iunserializer($group['modules']);
 				if (empty($group_module)) {
 					continue;
 				}
-				switch ($account['type']) {
+				switch ($type) {
 					case ACCOUNT_TYPE_OFFCIAL_NORMAL:
 					case ACCOUNT_TYPE_OFFCIAL_AUTH:
-						$uni_modules = array_merge($group_module['modules'], $uni_modules);
+						$uni_modules = is_array($group_module['modules']) ? array_merge($group_module['modules'], $uni_modules) : $uni_modules;
 						break;
 					case ACCOUNT_TYPE_APP_NORMAL:
 					case ACCOUNT_TYPE_APP_AUTH:
 					case ACCOUNT_TYPE_WXAPP_WORK:
-						$uni_modules = array_merge($group_module['wxapp'], $uni_modules);
+						$uni_modules = is_array($group_module['wxapp']) ? array_merge($group_module['wxapp'], $uni_modules) : $uni_modules;
 						break;
 					case ACCOUNT_TYPE_WEBAPP_NORMAL:
-						$uni_modules = array_merge($group_module['webapp'], $uni_modules);
+						$uni_modules = is_array($group_module['webapp']) ? array_merge($group_module['webapp'], $uni_modules) : $uni_modules;
 						break;
 					case ACCOUNT_TYPE_XZAPP_NORMAL:
 					case ACCOUNT_TYPE_XZAPP_AUTH:
-						$uni_modules = array_merge($group_module['xzapp'], $uni_modules);
+						$uni_modules = is_array($group_module['xzapp']) ? array_merge($group_module['xzapp'], $uni_modules) : $uni_modules;
 						break;
 					case ACCOUNT_TYPE_PHONEAPP_NORMAL:
-						$uni_modules = array_merge($group_module['phoneapp'], $uni_modules);
+						$uni_modules = is_array($group_module['phoneapp']) ? array_merge($group_module['phoneapp'], $uni_modules) : $uni_modules;
+						break;
+					case ACCOUNT_TYPE_ALIAPP_NORMAL:
+						$uni_modules = is_array($group_module['aliapp']) ? array_merge($group_module['aliapp'], $uni_modules) : $uni_modules;
 						break;
 				}
 			}

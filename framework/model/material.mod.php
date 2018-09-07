@@ -367,7 +367,8 @@ function material_local_upload_by_url($url, $type='images') {
 		$filepath = ATTACHMENT_ROOT . $url;
 	}
 	$filesize = filesize($filepath);
-	if ($filesize > 1024 * 1024 && $type == 'videos') {
+	$filesize = sizecount($filesize, true);
+	if ($filesize > 10 && $type == 'videos') {
 		return error(-1, '要转换的微信素材视频不能超过10M');
 	}
 	return $account_api->uploadMediaFixed($filepath, $type);
@@ -559,6 +560,9 @@ function material_list($type = '', $server = '', $page = array('page_index' => 1
 			if ($type == 'video'){
 				foreach ($material_list as &$row) {
 					$row['tag'] = $row['tag'] == '' ? array() : iunserializer($row['tag']);
+					if (empty($row['filename'])) {
+						$row['filename'] = $row['tag']['title'];
+					}
 				}
 				unset($row);
 			}

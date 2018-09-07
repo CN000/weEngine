@@ -1,0 +1,62 @@
+{template 'web/_header'}
+<style type="text/css">
+	.red {float:left;color:red}
+	.white{float:left;color:#fff}
+	.tooltipbox {
+		background:#fef8dd;border:1px solid #c40808; position:absolute; left:0;top:0; text-align:center;height:20px;
+		color:#c40808;padding:2px 5px 1px 5px; border-radius:3px;z-index:1000;
+	}
+	.red { float:left;color:red}
+</style>
+<ul class="nav nav-tabs">
+	<li ><a href="{php echo $this->createWebUrl('manual')}">使用指南</a></li>
+	<li ><a href="{php echo $this->createWebUrl('foruserhelp')}">操作说明</a></li>
+	<li  class="active"><a href="{php echo $this->createWebUrl('fordevhelp')}">开发者接入</a></li>
+</ul>
+<div class="main">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			开发者接入
+		</div>
+		<div class="panel-body">
+		<ol>
+		<li>本模块的各项数据保存，在卸载后会完全消失，不可找回；如果您需要重新安装，请不要卸载，以避免设置数据丢失。</li>
+		<li>这里是开发者接入的说明，不断添加中；其他操作说明请先移步使用指南查看</li>
+		<li>部分功能还在开发中的，需要开发者对网站进行一定配置后可见。具体请联系模块开发者<span style="color:red">fm453</span>咨询。
+		</li>
+		<li>网址钩子（用于在插件“手机模拟器”中显示当前页面的网址，以便客服复制发送）：在页面模板的header部分紧邻body元素下方中添加引用如下js文件中的<span style="color:red">代码</span>即可。注意：本钩子是给开发者开发网页模板时用的，请视情况自行决定是否需要。JS文件链接(在您系统上对应目录已经放置本文件)：
+		{$_W['siteroot']}addons/fm453_duokefu/resource/js/welink.js
+		</li>
+		<li>自定义工作台导航条：目前支持后台设置，当然也可以手动修改。进入网站FTP空间，手动替换掉导航条的模板文件_menu.html即可。文件链接(在您系统上对应目录已经放置本文件)：
+		addons\fm453_duokefu\template\_menu.html
+		<span style="color: red;">0.2.0版本调整：</span>增加了后台直接自定义导航条功能；原手动修改支持功能仍然保留——20150729
+		</li>
+		<li>多客服插件的“插件面板”：其中，关联粉丝的信息是由mc_mapping_fans表中取得。如果有更好的会员数据获取方式的，欢迎提给我们啊。
+		</li>
+		<li><span style="color:red;">有部分体验过的用户对模块的界面形式（看不到原来左侧的功能框）提出了疑问</span>，这里解释一下：真的不是BUG啊，我只是没有加载它而已；请放心使用。——20150728</li>
+		<li><span style="color:red;">0.3.0版本新增：</span>后台添加了升级修复客服助手关联数据表的功能(会先删除数据表，如非首次安装，请不要使用；该网址只需要在初次安装后打开一次即可)，链接网址为：<a href="{$_W['siteroot']}{php echo 'web/'.str_replace('./','',$this->createWebUrl('fixdatabase'));}">{$_W['siteroot']}{php echo 'web/'.str_replace('./','',$this->createWebUrl('fixdatabase'));}</a>    ——20151125</li>
+		</ol>
+		</div>
+
+		<div class="panel-heading">
+			在线交流
+		</div>
+		<div class="panel-body">
+		<ol>
+		<li>功能难免有不足之处，还请大家多多提意见，我们将酌情甄取。咨询联系：QQ1280880631或微信393213759。</li>
+		<li>欢迎大家加入QQ群：424634840；</li>
+		</ol>
+		</div>
+
+		<div class="panel-heading">
+			特别感谢
+		</div>
+		<div class="panel-body">
+		<ol>
+		<li>开发群群友@翻滚吧牛宝宝（QQ393790363），提供消息模板方面的技术指导。——本公示将于2016年03月01日0.3.0版本升级时隐藏</li>
+		<li>路客工作室@lukegzs，提供网络调试环境。</li>
+		</ol>
+		</div>
+	</div>
+</div>
+{template 'web/_footer'}

@@ -1,0 +1,9 @@
+<ul class="nav nav-tabs">
+	<li {if $operation == ''}class="active" {/if}><a href="{php echo $this->createWebUrl('tplmsg')}">关于消息模板</a></li>
+	<li {if $operation == 'display'} class="active" {/if}  style="display: none;" ><a href="{php echo url('profile/module/setting',array('m'=>'fm453_duokefu','op' => 'display'))}">模块配置</a></li>
+	<li {if $operation == 'tplset'}class="active" {/if}><a href="{php echo url('profile/module/setting',array('m'=>'fm453_duokefu','op' => 'tplset'))}">消息模板</a></li>
+	<li {if $operation == 'single'} class="active" {/if}><a href="{php echo $this->createWebUrl('fortplsend',array('op' => 'single'))}">单个发送</a></li>
+	<li {if $operation == 'mass'} class="active" {/if}><a href="{php echo $this->createWebUrl('fortplsend',array('op' => 'mass'))}">群发</a></li>
+
+	<li ><a href="{php echo $this->createWebUrl('manual')}">操作说明</a></li>
+</ul>

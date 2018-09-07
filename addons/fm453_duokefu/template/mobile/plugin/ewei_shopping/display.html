@@ -1,0 +1,56 @@
+<h5 style="text-align: center;">{$return['ewei_shopping']['pagename']}</h5>
+<ol>
+	{loop $return['ewei_shopping']['orders'] $item}
+	<li>
+		<div class="alert alert-dismissable  alert-success">
+			<div class="form-group">
+				<label for="createtime">下单时间：</label>
+				<span type="text" id="createtime"><?php echo date('Y-m-d h:i:s',$item['createtime']) ?></span>
+			</div>
+			<div class="form-group">
+				<label for="ordersn">订单编号：</label>
+				<span type="text" id="ordersn">{$item['ordersn']}</span>
+			</div>
+			<div class="form-group">
+				<label for="orderstaus">订单状态：</label>
+				<span type="text" id="orderstaus" class="label label-{$item['statuscss']}">{$item['status']}</span>
+			</div>
+			<div class="form-group">
+				<label for="ordercontact">联系方式：</label>
+				<span type="text" id="ordercontact" class="label label-{$item['statuscss']}">{if empty($item['address'])}未提交{else}{$item['address']}{/if}</span>
+			</div>
+			{if $item['status'] !="已取消"}
+			<div class="form-group">
+				<label for="orderpaytype">支付方式：</label>
+				<span type="text" id="orderpaytype" class="label label-{$item['css']}">{$item['paytype']}</span>-订单金额:<span type="text" id="orderpaytype" style="color:red;font-weight:bolder;">{$item['price']}元</span>
+			</div>
+			<div class="form-group">
+				<label for="ordertransid">(微信)支付单号：</label>
+				<span type="text" id="ordertransid" class="label label-{$item['css']}">{$item['transid']}</span>
+			</div>
+			<div class="form-group">
+				<label for="orderdispatch">配送方式：</label>
+				<span type="text" id="orderdispatch" class="label label-{$item['css']}">{if empty($item['dispatch'])}自提{else}{$item['dispatch']}-运费:{$item['dispatchprice']}{/if}</span>
+			</div>
+			{/if}
+			{if !empty($item['remark'])}
+			<div class="form-group">
+				<label for="orderremark">客人备注：</label>
+				<span type="text" id="orderremark" class="label label-{$item['css']}">{$item['remark']}</span>
+			</div>
+			{/if}
+			{if !empty($item['remark_kf'])}
+			<div class="form-group">
+				<label for="orderremark_kf">客服备注：</label>
+				<span type="text" id="orderremark_kf" class="label label-{$item['css']}">{$item['remark_kf']}</span>
+			</div>
+			{/if}
+			<div class="form-group">
+			</div>
+		</div>
+		{template 'plugin/ewei_shopping/orderdetail'}
+	</li>
+<hr>
+	{/loop}
+</ol>
+

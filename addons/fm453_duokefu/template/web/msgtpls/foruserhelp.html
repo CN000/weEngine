@@ -1,0 +1,35 @@
+{template 'web/_header'}
+<style type="text/css">
+	.red {float:left;color:red}
+	.white{float:left;color:#fff}
+	.tooltipbox {
+		background:#fef8dd;border:1px solid #c40808; position:absolute; left:0;top:0; text-align:center;height:20px;
+		color:#c40808;padding:2px 5px 1px 5px; border-radius:3px;z-index:1000;
+	}
+	.red { float:left;color:red}
+</style>
+<ul class="nav nav-tabs">
+	<li ><a href="{php echo $this->createWebUrl('manual')}">使用指南</a></li>
+	<li class="active"><a href="{php echo $this->createWebUrl('foruserhelp')}">操作说明</a></li>
+	{if $_W['isfounder']}<li><a href="{php echo $this->createWebUrl('fordevhelp')}">开发者接入</a></li> {/if}
+</ul>
+<div class="main">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			操作说明
+		</div>
+		<div class="panel-body">
+			<ol>
+		<li>这里是模块及系统的操作说明，不断添加中；其他未尽部分请先移步相关模块查看</li>
+		<li>为了获得最好的后台操作体验，我们建议您使用最新版GOOGLE浏览器。（火狐等部分浏览器不支持点击粘贴功能）</li>
+		<li>安装后仍须按模块设置后台的说明指引，将插件链接添加到公众号多客服客户端插件列表中。		</li>
+		<li><span style="color: #f00;" >使用、设置本模块各种参数功能前，请务必先执行几个操作：</span>（1）参数设置-模块配置-授权配置（直接确认授权即可）；（2）使用帮助-开发者接入-第8条，修复数据库关联表</li>
+
+		<li>我们的不断努力，只为让您更加高效！感谢您支持我们的工作！</li>
+		<li>如果您需要更细致与个性的功能，可联系管理员进行付费定制开发！</li>
+		</ol>
+		</div>
+		</div>
+	</div>
+</div>
+{template 'web/_footer'}

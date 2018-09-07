@@ -1,0 +1,47 @@
+<style>
+.tplheader{margin: 5px 0px 0px 5px;font-size: 14px; }
+.tpldate{margin: 0px 0px 5px 5px;padding:0 0 10px 0; color: #b7b7b7;font-size: 13px;}
+.tplbody{margin: 5px 0px 0px 5px;font-size: 12px; }
+.tplfooter{margin: 0px 0px 0px 5px; padding:0 0 5px 0;font-size: 14px;line-height: 14px;}
+</style>
+<div class="container col-md-4 column" style="float:right;position:absolute;right:5px;top:200px;width:300px;margin-bottom:-25%; line-height: 15px;font-size: 12px;">
+	<div class="row clearfix" >
+		<p style="text-align: center;">这是通知模板的示范;保存后可见</p>
+		<div class="col-md-12 column" >
+			<div class="jumbotron" style="padding: 10px 0 0 0; " >
+				<p class="tplheader">
+					任务处理通知
+				</p>
+				<p class="tpldate">
+					<?php print date('m/d'); ?>
+				</p>
+				<?php
+				   $a = $this->module['config']['tasktplparamnum'] - 1;
+				   for ($i=0; $i < $this->module['config']['tasktplparamnum']; $i++) {
+				    ?>
+				<p class="tplbody" style="font-size: 14px;">
+				{if $i == 0}
+				<span style="color: <?php echo $this->module['config']['tasktpl']['color'.$i]; ?>;">
+				<?php echo $this->module['config']['tasktpl']['value'.$i]; ?>
+				</span>
+				{elseif $i == $a	}
+				<span style="color: <?php echo $this->module['config']['tasktpl']['color'.$i]; ?>">
+				<?php echo $this->module['config']['tasktpl']['value'.$i]; ?>
+				</span>
+				{elseif $i == 1	}
+				任务名称：<span style="color: <?php echo $this->module['config']['tasktpl']['color'.$i]; ?>"><?php echo $this->module['config']['tasktpl']['value'.$i]; ?></span>
+				{elseif $i == 2	}
+				任务类型：<span style="color: <?php echo $this->module['config']['tasktpl']['color'.$i]; ?>"><?php echo $this->module['config']['tasktpl']['value'.$i]; ?></span>
+				{/if}
+
+				</p>
+				 <?php  } ?>
+				<hr>
+					 <p style="margin:0 0 -10px 0;">
+					 <span  class="tplfooter">详情<i class="fa fa-angle-right" style="margin-right:5px;float: right;font-size: 14px;font-weight: bolder;color: gray;"></i>
+					</span>
+					 </p>
+			</div>
+		</div>
+	</div>
+</div>
