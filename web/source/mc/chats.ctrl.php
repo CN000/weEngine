@@ -16,9 +16,12 @@ $do = in_array($do , $dos) ? $do : 'chats';
 permission_check_account_user('mc_fans');
 
 if ($do == 'chats') {
-	$account_api = WeAccount::create();
-	$supports = $account_api->getMaterialSupport();
-	$show_chast_content = $supports['chats'];
+
+	if (in_array($_W['account']['type'], array(ACCOUNT_TYPE_XZAPP_NORMAL, ACCOUNT_TYPE_XZAPP_AUTH))) {
+		$show_chast_content =array('basic'=> false,'news'=> false,'image'=> false,'music'=> true,'voice'=> false,'video'=> true);
+	} else {
+		$show_chast_content =array('basic'=> false,'news'=> false,'image'=> false,'music'=> false,'voice'=> false,'video'=> false);
+	}
 
 	$_W['page']['title'] = '粉丝聊天';
 	$openid = addslashes($_GPC['openid']);

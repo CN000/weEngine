@@ -6,7 +6,9 @@
 defined('IN_IA') or exit('Access Denied');
 
 load()->model('module');
+load()->model('wxapp');
 load()->func('communication');
+load()->classs('weixin.platform');
 load()->classs('wxapp.platform');
 
 $dos = array('design_method', 'post', 'get_wxapp_modules', 'module_binding');
@@ -25,7 +27,7 @@ if ($do == 'design_method') {
 			$authurl = "javascript:alert('创建小程序已达上限！');";
 		}
 		if (empty($authurl) && !empty($_W['setting']['platform']['authstate'])) {
-			$account_platform = new WxappPlatform();
+			$account_platform = new WxAppPlatform();
 			$authurl = $account_platform->getAuthLoginUrl();
 		}
 		template('wxapp/choose-type');
@@ -41,7 +43,7 @@ if ($do == 'post') {
 	$version_id  = intval($_GPC['version_id']);
 	$isedit  =  $version_id > 0 ? 1 : 0;
 	if ($isedit) {
-		$wxapp_version = miniapp_version($version_id);
+		$wxapp_version = wxapp_version($version_id);
 	}
 	if (empty($design_method)) {
 		itoast('请先选择要添加小程序类型', referer(), 'error');
@@ -73,15 +75,13 @@ if ($do == 'post') {
 				'key' => trim($_GPC['appid']),
 				'secret' => trim($_GPC['appsecret']),
 				'type' => ACCOUNT_TYPE_APP_NORMAL,
-				'headimg' => file_is_image( $_GPC['headimg']) ?  $_GPC['headimg'] : '',
-				'qrcode' => file_is_image( $_GPC['qrcode']) ?  $_GPC['qrcode'] : '',
 			);
-			$uniacid = miniapp_create($account_wxapp_data, ACCOUNT_TYPE_APP_NORMAL);
+			$uniacid = wxapp_account_create($account_wxapp_data);
 			if (is_error($uniacid)) {
 				iajax(3, '添加小程序信息失败', url('wxapp/post'));
 			}
 		} else {
-			$wxapp_info = miniapp_fetch($uniacid);
+			$wxapp_info = wxapp_fetch($uniacid);
 			if (empty($wxapp_info)) {
 				iajax(4, '小程序不存在或是已经被删除', url('wxapp/post'));
 			}
@@ -153,7 +153,7 @@ if ($do == 'post') {
 		if ($isedit) {
 			$msg = '小程序修改成功';
 			pdo_update('wxapp_versions', $wxapp_version, array('id'=>$version_id, 'uniacid'=>$uniacid));
-			cache_delete(cache_system_key('miniapp_version', array('version_id' => $version_id)));
+			cache_delete(cache_system_key("wxapp_version:{$version_id}"));
 		} else {
 			$msg = '小程序创建成功';
 			pdo_insert('wxapp_versions', $wxapp_version);
@@ -161,13 +161,13 @@ if ($do == 'post') {
 		iajax(0, $msg, url('account/display/switch', array('uniacid' => $uniacid, 'type' => ACCOUNT_TYPE_APP_NORMAL)));
 	}
 	if (!empty($uniacid)) {
-		$wxapp_info = miniapp_fetch($uniacid);
+		$wxapp_info = wxapp_fetch($uniacid);
 	}
 	template('wxapp/post');
 }
 
 if ($do == 'get_wxapp_modules') {
-	$wxapp_modules = miniapp_support_wxapp_modules();
+	$wxapp_modules = wxapp_support_wxapp_modules();
 	foreach ($wxapp_modules as $name => $module) {
 		if ($module['issystem']) {
 			$path = '/framework/builtin/'.$module['name'];

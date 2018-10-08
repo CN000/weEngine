@@ -31,7 +31,6 @@ class Modules extends \We7Table {
 		'welcome_support',
 		'webapp_support',
 		'xzapp_support',
-		'aliapp_support',
 		'oauth_type',
 		'phoneapp_support',
 	);

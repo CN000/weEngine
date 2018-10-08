@@ -18,6 +18,7 @@ if(empty($system_menu)) {
 	cache_build_frame_menu();
 	$system_menu = cache_load(cache_system_key('system_frame', array('uniacid' => $_W['uniacid'])));
 }
+
 $system_menu_permission = array();
 if (!empty($system_menu)) {
 	foreach ($system_menu as $menu_name => $menu) {
@@ -34,11 +35,6 @@ if (!empty($system_menu)) {
 					}
 				}
 			}
-		}
-		if (in_array($menu_name, array('account', 'wxapp', 'xzapp', 'phoneapp', 'webapp', 'aliapp'))) {
-			$menu['menu'] = $menu['section'];
-			$system_menu['platform']['section'][$menu_name] = $menu;
-			unset($system_menu[$menu_name]);
 		}
 	}
 }

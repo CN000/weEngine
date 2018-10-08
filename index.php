@@ -1,6 +1,6 @@
 <?php
 /**
- * [WeEngine System] Copyright (c) 20180906163627 WE7.CC
+ * [WeEngine System] Copyright (c) 20180802105452 WE7.CC
  * WeEngine is NOT a free software, it under the license terms, visited http://www.we7.cc/ for more details.
  */
 

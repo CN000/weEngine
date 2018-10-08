@@ -77,10 +77,6 @@ function module_support_type() {
 		'xzapp_support' => array(
 			'type' => XZAPP_TYPE_SIGN,
 			'support' => MODULE_SUPPORT_XZAPP,
-		),
-		'aliapp_support' => array(
-			'type' => ALIAPP_TYPE_SIGN,
-			'support' => MODULE_SUPPORT_ALIAPP,
 		)
 	);
 	return $module_support_type;
@@ -510,8 +506,6 @@ function module_get_user_account_list($uid, $module_name) {
 			$uniacid = $account['uniacid'];
 		} elseif (($account['type'] == ACCOUNT_TYPE_PHONEAPP_NORMAL && $module_info[MODULE_SUPPORT_PHONEAPP_NAME] == MODULE_SUPPORT_PHONEAPP)) {
 			$uniacid = $account['uniacid'];
-		} elseif (($account['type'] == ACCOUNT_TYPE_ALIAPP_NORMAL && $module_info[MODULE_SUPPORT_ALIAPP_NAME] == MODULE_SUPPORT_ALIAPP)) {
-			$uniacid = $account['uniacid'];
 		}
 		if (!empty($uniacid)) {
 			if (module_exist_in_account($module_name, $uniacid)) {
@@ -538,8 +532,8 @@ function module_link_uniacid_fetch($uid, $module_name) {
 
 	$accounts_link_result = array();
 	foreach ($accounts_list as $key => $account_value) {
-		if (in_array($account_value['type'], array(ACCOUNT_TYPE_APP_NORMAL, ACCOUNT_TYPE_ALIAPP_NORMAL))) {
-			$account_value['versions'] = miniapp_version_all($account_value['uniacid']);
+		if ($account_value['type'] == ACCOUNT_TYPE_APP_NORMAL) {
+			$account_value['versions'] = wxapp_version_all($account_value['uniacid']);
 			if (empty($account_value['versions'])) {
 				$accounts_link_result[$key] = $account_value;
 				continue;
@@ -582,31 +576,13 @@ function module_link_uniacid_fetch($uid, $module_name) {
 	}
 	if (!empty($accounts_link_result)) {
 		foreach ($accounts_link_result as $link_key => $link_value) {
-
-			if (in_array($link_value['type'], array(ACCOUNT_TYPE_OFFCIAL_NORMAL, ACCOUNT_TYPE_OFFCIAL_AUTH))) {
-				$link_value['type_name'] = ACCOUNT_TYPE_SIGN;
-			} elseif (in_array($link_value['type'], array(ACCOUNT_TYPE_APP_NORMAL, ACCOUNT_TYPE_APP_AUTH))) {
-				$link_value['type_name'] = WXAPP_TYPE_SIGN;
-			} elseif ($link_value['type'] == ACCOUNT_TYPE_WEBAPP_NORMAL) {
-				$link_value['type_name'] = WEBAPP_TYPE_SIGN;
-			}elseif ($link_value['type'] == ACCOUNT_TYPE_PHONEAPP_NORMAL) {
-				$link_value['type_name'] = PHONEAPP_TYPE_SIGN;
-			}elseif ($link_value['type'] == ACCOUNT_TYPE_XZAPP_NORMAL) {
-				$link_value['type_name'] = XZAPP_TYPE_SIGN;
-			}elseif ($link_value['type'] == ACCOUNT_TYPE_ALIAPP_NORMAL) {
-				$link_value['type_name'] = ALIAPP_TYPE_SIGN;
-			}
-
 			if (in_array($link_value['type'], array(ACCOUNT_TYPE_OFFCIAL_NORMAL, ACCOUNT_TYPE_OFFCIAL_AUTH)) && !empty($link_value['link_wxapp']) && is_array($link_value['link_wxapp'])) {
-
 				foreach ($link_value['link_wxapp'] as $value) {
 					$result[] = array(
 						'app_name' => $link_value['name'],
 						'wxapp_name' => $value['name'] . ' ' . $value['version'],
 						'uniacid' => $link_value['uniacid'],
 						'version_id' => $value['version_id'],
-						'type_name' => $link_value['type_name'],
-						'account_name' => $link_value['name'],
 					);
 				}
 			} elseif ($link_value['type'] == ACCOUNT_TYPE_APP_NORMAL && !empty($link_value['versions']) && is_array($link_value['versions'])) {
@@ -616,8 +592,6 @@ function module_link_uniacid_fetch($uid, $module_name) {
 						'wxapp_name' => $link_value['name'] . ' ' . $value['version'],
 						'uniacid' => $link_value['uniacid'],
 						'version_id' => $value['id'],
-						'type_name' => $link_value['type_name'],
-						'account_name' => $link_value['name'],
 					);
 				}
 			} else {
@@ -626,8 +600,6 @@ function module_link_uniacid_fetch($uid, $module_name) {
 					'wxapp_name' => '',
 					'uniacid' => $link_value['uniacid'],
 					'version_id' => '',
-					'type_name' => $link_value['type_name'],
-					'account_name' => $link_value['name'],
 				);
 			}
 		}
@@ -744,7 +716,7 @@ function module_installed_list($type = '') {
 	}
 
 	if (!empty($type)) {
-		return (array)$module_list[$type];
+		return $module_list[$type];
 	} else {
 		return $module_list;
 	}
@@ -841,18 +813,14 @@ function module_upgrade_info($modulelist = array()) {
 				'supports' => array()
 			),
 		);
-
+		if ($manifest_cloud['site_branch']['xzapp_support'] == MODULE_SUPPORT_XZAPP) {
+			$manifest['platform']['supports'][] = 'xzapp';
+		}
 		if ($manifest_cloud['site_branch']['app_support'] == MODULE_SUPPORT_ACCOUNT) {
 			$manifest['platform']['supports'][] = 'account';
 		}
 		if ($manifest_cloud['site_branch']['wxapp_support'] == MODULE_SUPPORT_WXAPP) {
 			$manifest['platform']['supports'][] = 'wxapp';
-		}
-		if ($manifest_cloud['site_branch']['xzapp_support'] == MODULE_SUPPORT_XZAPP) {
-			$manifest['platform']['supports'][] = 'xzapp';
-		}
-		if ($manifest_cloud['site_branch']['aliapp_support'] == MODULE_SUPPORT_ALIAPP) {
-			$manifest['platform']['supports'][] = 'aliapp';
 		}
 		if ($manifest_cloud['site_branch']['webapp_support'] == MODULE_SUPPORT_WEBAPP) {
 			$manifest['platform']['supports'][] = 'webapp';
@@ -933,7 +901,7 @@ function module_upgrade_info($modulelist = array()) {
 		}
 
 		if (!empty($manifest['platform']['supports'])) {
-			foreach (array('account', 'wxapp', 'webapp', 'phoneapp', 'welcome', 'xzapp', 'aliapp') as $support) {
+			foreach (array('account', 'wxapp', 'webapp', 'phoneapp', 'welcome') as $support) {
 				if (in_array($support, $manifest['platform']['supports'])) {
 					$module_upgrade_data["{$support}_support"] = MODULE_SUPPORT_ACCOUNT;
 				} else {
@@ -966,7 +934,7 @@ function module_upgrade_info($modulelist = array()) {
 				'cloud_id' => $manifest['cloud_id'],
 			);
 			if (!empty($manifest['platform']['supports'])) {
-				foreach (array('account', 'wxapp', 'webapp', 'phoneapp', 'welcome', 'xzapp', 'aliapp') as $support) {
+				foreach (array('account', 'wxapp', 'webapp', 'phoneapp', 'welcome') as $support) {
 					if (in_array($support, $manifest['platform']['supports'])) {
 						$module_upgrade_data["{$support}_support"] = MODULE_SUPPORT_ACCOUNT;
 					} else {

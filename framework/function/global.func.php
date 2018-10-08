@@ -237,14 +237,7 @@ function iunserializer($value) {
 	if (!is_serialized($value)) {
 		return $value;
 	}
-	if(version_compare(PHP_VERSION, '7.0.0', '>=')){
-		$result = unserialize($value, array('allowed_classes' => false));
-	}else{
-		if(preg_match('/[oc]:[^:]*\d+:/i', $seried)){
-			return array();
-		}
-		$result = unserialize($value);
-	}
+	$result = unserialize($value);
 	if ($result === false) {
 		$temp = preg_replace_callback('!s:(\d+):"(.*?)";!s', function ($matchs){
 			return 's:'.strlen($matchs[2]).':"'.$matchs[2].'";';
@@ -494,7 +487,6 @@ function pagination($total, $pageIndex, $pageSize = 15, $url = '', $context = ar
 
 function tomedia($src, $local_path = false){
 	global $_W;
-	$src = trim($src);
 	if (empty($src)) {
 		return '';
 	}
@@ -835,7 +827,7 @@ function authcode($string, $operation = 'DECODE', $key = '', $expiry = 0) {
 }
 
 
-function sizecount($size, $unit = false) {
+function sizecount($size) {
 	if($size >= 1073741824) {
 		$size = round($size / 1073741824 * 100) / 100 . ' GB';
 	} elseif($size >= 1048576) {
@@ -844,9 +836,6 @@ function sizecount($size, $unit = false) {
 		$size = round($size / 1024 * 100) / 100 . ' KB';
 	} else {
 		$size = $size . ' Bytes';
-	}
-	if ($unit) {
-		$size = preg_replace('/[^0-9\.]/','', $size);
 	}
 	return $size;
 }

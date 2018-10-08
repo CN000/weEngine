@@ -6,6 +6,7 @@
 defined('IN_IA') or exit('Access Denied');
 
 load()->model('module');
+load()->model('wxapp');
 
 $dos = array('display');
 $do = in_array($do, $dos) ? $do : 'display';
@@ -39,8 +40,9 @@ if ($do == 'display') {
 		$insert_data['settings'] = iserializer($data);
 		$insert_data['uniacid'] = $_W['uniacid'];
 		$insert_data['module'] = $module_name;
-		$setting = table('uni_account_modules')->isSettingExists($module_name);
-		if (!$setting) {
+
+		$settings = pdo_get('uni_account_modules', array('uniacid' => $_W['uniacid'], 'module' => $module_name), 'settings');
+		if (empty($settings)) {
 			$insert_data['enabled'] = 1;
 			pdo_insert('uni_account_modules', $insert_data);
 		} else {

@@ -5,12 +5,6 @@
  */
 defined('IN_IA') or exit('Access Denied');
 
-load()->model('miniapp');
-$version_id = intval($_GPC['version_id']);
-if (!empty($version_id)) {
-	$version_info = miniapp_version($version_id);
-}
-
 if ($action == 'post') {
 	define('FRAME', 'system');
 }

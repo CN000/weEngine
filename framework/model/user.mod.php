@@ -14,12 +14,6 @@ function user_register($user, $source) {
 	if (isset($user['uid'])) {
 		unset($user['uid']);
 	}
-
-	$check_pass = safe_check_password(safe_gpc_string($user['password']));
-	if (is_error($check_pass)) {
-		return $check_pass;
-	}
-
 	$user['salt'] = random(8);
 	$user['password'] = user_hash($user['password'], $user['salt']);
 	$user['joinip'] = CLIENT_IP;
@@ -38,7 +32,6 @@ function user_register($user, $source) {
 	if (empty($user['type'])) {
 		$user['type'] = USER_TYPE_COMMON;
 	}
-
 	$result = pdo_insert('users', $user);
 	if (!empty($result)) {
 		$user['uid'] = pdo_insertid();
@@ -157,17 +150,6 @@ function user_single($user_or_uid) {
 	if (!empty($user['username'])) {
 		$where .= ' AND u.`username`=:username';
 		$params[':username'] = $user['username'];
-
-		$user_exists = user_check($user);
-		$is_mobile = preg_match(REGULAR_MOBILE, $user['username']);
-		if (!$user_exists && !empty($user['username']) && $is_mobile) {
-			$sql = "select b.uid, u.username FROM " . tablename('users_bind') . " AS b LEFT JOIN " . tablename('users') . " AS u ON b.uid = u.uid WHERE b.bind_sign = :bind_sign";
-			$bind_info = pdo_fetch($sql, array('bind_sign' => $user['username']));
-			if (!is_array($bind_info) || empty($bind_info) || empty($bind_info['username'])) {
-				return false;
-			}
-			$params[':username'] = $bind_info['username'];
-		}
 	}
 	if (!empty($user['email'])) {
 		$where .= ' AND u.`email`=:email';
@@ -695,9 +677,6 @@ function user_save_group($group_info) {
 		if ($group_info['maxwebapp'] > $founder_info['maxwebapp']) {
 			return error(-1, '当前用户组的公众号个数不能超过' . $founder_info['maxwebapp'] . '个！');
 		}
-		if ($group_info['maxaliapp'] > $founder_info['maxaliapp']) {
-			return error(-1, '当前用户组的支付宝小程序个数不能超过' . $founder_info['maxaliapp'] . '个！');
-		}
 	}
 
 	if (!empty($group_info['package'])) {
@@ -874,13 +853,7 @@ function user_info_save($user, $is_founder_group = false) {
 	}
 	if (istrlen($user['password']) < 8) {
 		return error(-1, '必须输入密码，且密码长度不得低于8位。');
-	} else {
-		$check_pass = safe_check_password(safe_gpc_string($user['password']));
-		if (is_error($check_pass)) {
-			return $check_pass;
-		}
 	}
-
 	if (trim($user['password']) !== trim($user['repassword'])) {
 		return error(-1, '两次密码不一致！');
 	}
@@ -905,11 +878,7 @@ function user_info_save($user, $is_founder_group = false) {
 	if (user_is_vice_founder() && !empty($_W['user']['endtime'])) {
 		$timeadd = !empty($timeadd) ? min($timeadd, $_W['user']['endtime']) : $_W['user']['endtime'];
 	}
-	if (empty($timeadd)) {
-		$user['endtime'] = max(0, $user['endtime']);
-	} else {
-		$user['endtime'] =  empty($user['endtime']) ? $timeadd : min($timeadd, $user['endtime']);
-	}
+	$user['endtime'] = $timeadd;
 	if (user_is_vice_founder()) {
 		$user['owner_uid'] = $_W['uid'];
 	}

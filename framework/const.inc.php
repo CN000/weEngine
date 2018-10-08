@@ -27,14 +27,12 @@ define('ACCOUNT_TYPE_APP_AUTH', 7);
 define('ACCOUNT_TYPE_WXAPP_WORK', 8);
 define('ACCOUNT_TYPE_XZAPP_NORMAL', 9);
 define('ACCOUNT_TYPE_XZAPP_AUTH', 10);
-define('ACCOUNT_TYPE_ALIAPP_NORMAL', 11);
 define('ACCOUNT_TYPE_SIGN', 'account');
 define('WXAPP_TYPE_SIGN', 'wxapp');
 define('WEBAPP_TYPE_SIGN', 'webapp');
 define('PHONEAPP_TYPE_SIGN', 'phoneapp');
 define('WELCOMESYSTEM_TYPE_SIGN', 'welcome');
 define('XZAPP_TYPE_SIGN', 'xzapp');
-define('ALIAPP_TYPE_SIGN', 'aliapp');
 
 
 define('ACCOUNT_OAUTH_LOGIN', 3);
@@ -98,8 +96,6 @@ define('MODULE_NOSUPPORT_IOS', 1);
 define('MODULE_SUPPORT_IOS', 2);
 define('MODULE_SUPPORT_XZAPP', 2);
 define('MODULE_NOSUPPORT_XZAPP', 1);
-define('MODULE_SUPPORT_ALIAPP', 2);
-define('MODULE_NOSUPPORT_ALIAPP', 1);
 
 define('MODULE_SUPPORT_WXAPP_NAME', 'wxapp_support');
 define('MODULE_SUPPORT_ACCOUNT_NAME', 'account_support');
@@ -107,7 +103,6 @@ define('MODULE_SUPPORT_WEBAPP_NAME', 'webapp_support');
 define('MODULE_SUPPORT_PHONEAPP_NAME', 'phoneapp_support');
 define('MODULE_SUPPORT_SYSTEMWELCOME_NAME', 'welcome_support');
 define('MODULE_SUPPORT_XZAPP_NAME', 'xzapp_support');
-define('MODULE_SUPPORT_ALIAPP_NAME', 'aliapp_support');
 
 define('MODULE_LOCAL_INSTALL', '1');
 define('MODULE_LOCAL_UNINSTALL', '2');
@@ -163,7 +158,6 @@ define('STORE_TYPE_USER_PACKAGE', 9);
 define('STORE_ORDER_PLACE', 1);
 define('STORE_ORDER_DELETE', 2);
 define('STORE_ORDER_FINISH', 3);
-define('STORE_ORDER_DEACTIVATE', 4);
 define('STORE_GOODS_STATUS_OFFlINE', 0);
 define('STORE_GOODS_STATUS_ONLINE', 1);
 define('STORE_GOODS_STATUS_DELETE', 2);
@@ -214,6 +208,3 @@ define('WXAPP_DISPLAY_TYPE', 3);
 define('WEBAPP_DISPLAY_TYPE', 4);
 define('PHONEAPP_DISPLAY_TYPE', 5);
 define('PLATFORM_DISPLAY_TYPE', 6);
-
-define('PASSWORD_STRONG_STATE', '至少8-16个字符，至少1个大写字母，1个小写字母和1个数字，其他可以是任意字符');
-define('PASSWORD_STRONG_REGULAR', '/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,30}/');

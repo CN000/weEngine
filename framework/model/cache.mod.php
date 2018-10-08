@@ -223,9 +223,6 @@ function cache_build_module_subscribe_type() {
 		$module['subscribes'] = iunserializer($module['subscribes']);
 		if (!empty($module['subscribes'])) {
 			foreach ($module['subscribes'] as $event) {
-				if ($event == 'text') {
-					continue;
-				}
 				$subscribe[$event][] = $module['name'];
 			}
 		}
@@ -299,7 +296,7 @@ function cache_build_uninstalled_module() {
 		);
 
 		if (!empty($manifest['platform']['supports'])) {
-			foreach (array('app', 'wxapp', 'webapp', 'phoneapp', 'system_welcome', 'xzapp', 'aliapp') as $support) {
+			foreach (array('app', 'wxapp', 'webapp', 'phoneapp', 'system_welcome', 'xzapp') as $support) {
 				if (in_array($support, $manifest['platform']['supports'])) {
 										if ($support == 'app') {
 						$support = 'account';

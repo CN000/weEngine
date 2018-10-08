@@ -111,7 +111,7 @@ abstract class OAuth2Client {
 		$member['starttime'] = TIMESTAMP;
 
 		$user_id = user_register($member, $this->stateParam['from']);
-		if (in_array($member['register_type'], array(USER_REGISTER_TYPE_QQ, USER_REGISTER_TYPE_WECHAT))) {
+		if (in_array($member['register_type'], array(USER_REGISTER_TYPE_QQ, USER_REGISTER_TYPE_WECHAT, USER_REGISTER_TYPE_MOBILE))) {
 			pdo_update('users', array('username' => $member['username'] . $user_id . rand(100,999)), array('uid' => $user_id));
 		}
 		if($user_id > 0) {
@@ -122,7 +122,7 @@ abstract class OAuth2Client {
 				$profile['createtime'] = TIMESTAMP;
 				pdo_insert('users_profile', $profile);
 			}
-			if (in_array($member['register_type'], array(USER_REGISTER_TYPE_QQ, USER_REGISTER_TYPE_WECHAT, USER_REGISTER_TYPE_MOBILE))) {
+			if (in_array($member['register_type'], array(USER_REGISTER_TYPE_QQ, USER_REGISTER_TYPE_WECHAT))) {
 				pdo_insert('users_bind', array('uid' => $user_id, 'bind_sign' => $member['openid'], 'third_type' => $member['register_type'], 'third_nickname' => $member['username']));
 			}
 			if (in_array($member['register_type'], array(USER_REGISTER_TYPE_QQ, USER_REGISTER_TYPE_WECHAT))) {

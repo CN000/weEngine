@@ -95,11 +95,6 @@ if ($do == 'post') {
 			}
 			unset($insert_user['repassword']);
 			$uid = user_register($insert_user, 'admin');
-
-			if (is_error($uid)) {
-				itoast($uid['message'], '', '');
-			}
-
 			if (!$uid) {
 				itoast('注册账号失败', '', '');
 			}

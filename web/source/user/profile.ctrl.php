@@ -59,8 +59,7 @@ if ($do == 'post' && $_W['isajax'] && $_W['ispost']) {
 					iajax(-1, '手机号不正确', '');
 				}
 				$users_mobile = pdo_get('users_profile', array('mobile' => trim($_GPC[$type]), 'uid <>' => $uid));
-				$bind_mobile = pdo_get('users_bind', array('bind_sign' => trim($_GPC[$type]), 'uid<>' => $uid));
-				if (!empty($users_mobile) || !empty($bind_mobile)) {
+				if (!empty($users_mobile)) {
 					iajax(-1, '手机号已存在，请联系管理员', '');
 				}
 			}
@@ -73,21 +72,6 @@ if ($do == 'post' && $_W['isajax'] && $_W['ispost']) {
 					$type => trim($_GPC[$type])
 				);
 				$result = pdo_insert('users_profile', $data);
-			}
-			$data = array(
-				'uid' => $uid,
-				'bind_sign' => trim($_GPC[$type]),
-				'third_nickname' => trim($_GPC[$type]),
-				'third_type' => USER_REGISTER_TYPE_MOBILE,
-			);
-			$users_bind_exist = pdo_get('users_bind', array('uid' => $uid, 'third_type' => USER_REGISTER_TYPE_MOBILE));
-			if ($users_bind_exist) {
-				$result_bind = pdo_update('users_bind', $data);
-			} else {
-				$result_bind = pdo_insert('users_bind', $data);
-			}
-			if (!$result_bind) {
-				iajax(-1, '绑定手机号失败，请联系管理员解决！', '');
 			}
 			break;
 		case 'username':
@@ -119,12 +103,6 @@ if ($do == 'post' && $_W['isajax'] && $_W['ispost']) {
 			break;
 		case 'password':
 			if ($_GPC['newpwd'] !== $_GPC['renewpwd']) iajax(2, '两次密码不一致！', '');
-
-			$check_safe = safe_check_password($_GPC['newpwd']);
-			if (is_error($check_safe)) {
-				iajax(4, $check_safe['message']);
-			}
-
 			if (!$_W['isfounder'] && empty($user['register_type'])) {
 				$pwd = user_hash($_GPC['oldpwd'], $user['salt']);
 				if ($pwd != $user['password']) iajax(3, '原密码不正确！', '');

@@ -8,9 +8,9 @@ defined('IN_IA') or exit('Access Denied');
 load()->func('communication');
 load()->classs('weixin.platform');
 load()->classs('wxapp.platform');
-load()->model('miniapp');
+load()->model('wxapp');
 
-$account_platform = new WxappPlatform();
+$account_platform = new WxAppPlatform();
 $dos = array('forward', 'confirm');
 $do = in_array($do, $dos) ? $do : 'forward';
 
@@ -72,7 +72,7 @@ if ($do == 'forward') {
 		'auth_refresh_token'=>$auth_refresh_token,
 		'token' => $account_platform->token,
 	);
-	$uniacid = miniapp_account_create($account_wxapp_data, ACCOUNT_TYPE_APP_AUTH);
+	$uniacid = wxapp_account_create($account_wxapp_data);
 	if (!$uniacid) {
 		itoast('授权登录新建小程序失败，请重试', url('wxapp/manage'), 'error');
 	}
@@ -133,7 +133,7 @@ if ($do == 'test') {
 		'encodingaeskey'=>'ak',
 		'auth_refresh_token'=>'authken',
 		'token' => 'token',	);
-	$uniacid = miniapp_account_create($account_wxapp_data, ACCOUNT_TYPE_APP_AUTH);
+	$uniacid = wxapp_account_create($account_wxapp_data);
 	if (!$uniacid) {
 		itoast('授权登录新建小程序失败，请重试', url('wxapp/manage'), 'error');
 	}

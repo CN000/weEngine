@@ -257,6 +257,7 @@ class CloudApi {
 	
 	public function post($api, $method, $post_params = array(), $dataType = 'json', $with_cookie = true) {
 		$url = $this->url($api, $method, array(), $dataType);
+
 		if (is_error($url)) {
 			return $url;
 		}

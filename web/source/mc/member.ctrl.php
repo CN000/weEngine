@@ -11,7 +11,6 @@ $do = in_array($do, $dos) ? $do : 'display';
 
 $creditnames = uni_setting_load('creditnames');
 $creditnames = $creditnames['creditnames'];
-
 if ($do == 'save_tactics_setting') {
 	$setting = $_GPC['setting'];
 	if (empty($setting)) {
@@ -50,7 +49,7 @@ if ($do == 'credit_setting') {
 	$credit_setting = $credit_setting['creditnames'];
 
 	$credit_tactics = uni_setting_load('creditbehaviors');
-	$credit_tactics = empty($credit_tactics['creditbehaviors']) ? array() : $credit_tactics['creditbehaviors'];
+	$credit_tactics = $credit_tactics['creditbehaviors'];
 
 	$enable_credit = array();
 	if (!empty($credit_setting)) {
@@ -106,20 +105,9 @@ if($do == 'display') {
 		$params[':groupid'] = intval($_GPC['groupid']);
 	}
 	if(checksubmit('export_submit', true)) {
-		$account_member_fields = uni_account_member_fields($_W['uniacid']);
-		$available_fields = array();
-		foreach($account_member_fields as $key => $val) {
-			if ($val['available']) {
-				$available_fields[$val['field']] = $val['title'];
-			}
-		}
-
-		$keys = array_keys($available_fields);
-		$keys = implode(',', $keys);
-		$sql = "SELECT " . $keys . " FROM". tablename('mc_members') . " WHERE uniacid = :uniacid " . $condition;
-
+		$sql = "SELECT `uid`, `uniacid`, `groupid`, `realname`, `birthmonth`, `birthday`, `nickname`, `email`, `mobile`, `credit1`, `credit2`, `credit6`, `createtime` FROM". tablename('mc_members') . " WHERE uniacid = :uniacid " . $condition;
 		$members = pdo_fetchall($sql, $params);
-		$html = mc_member_export_parse($members, $available_fields);
+		$html = mc_member_export_parse($members);
 		header("Content-type:text/csv");
 		header("Content-Disposition:attachment; filename=会员数据.csv");
 		echo $html;

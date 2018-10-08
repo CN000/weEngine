@@ -13,7 +13,7 @@ set_time_limit(0);
 $dos = array('ticket', 'forward', 'test', 'confirm');
 $do = in_array($do, $dos) ? $do : 'forward';
 
-$account_platform = new WeixinPlatform();
+$account_platform = new WeiXinPlatform();
 
 $setting = setting_load('platform');
 if ($do == 'forward') {

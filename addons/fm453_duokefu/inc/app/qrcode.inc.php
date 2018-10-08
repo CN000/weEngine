@@ -13,16 +13,18 @@ $_W['page']['title'] = '二维码扫描情况统计';
 	if (empty($openid)){
 		$openid = $_W['openid'];
 	}
+
 	$sql = "SELECT * FROM " . tablename('fm453_duokefu_qrandfan') ." WHERE  uniacid = {$_W['uniacid']}  AND  openid LIKE '%{$openid}%' ";
-	$qrcode =pdo_fetch($sql);
+	$qrcode = pdo_fetch($sql);
 	if(empty($qrcode)) {
-		message("您还没有关联指定的二维码","","info");
+		message("您还没有关联指定的二维码", "", "info");
 		exit();
-	}else{
-			if($qrcode['ischecked']!=1) {
-		message("您的二维码关联已暂停","","info");
-		exit();
-	}
+	} else {
+		if($qrcode['ischecked']!=1) {
+		    message("您的二维码关联已暂停","","info");
+		    exit();
+	    }
+
 		if($qrcode['isavailable']==1) {
 			load()->func('tpl');
 			$uniacid= $_W['uniacid'];
@@ -95,14 +97,15 @@ $_W['page']['title'] = '二维码扫描情况统计';
 					$uniques['openid'][$key]='';
 				}
 			}
-			//使用array_filter()函数去除空值
+			    //使用array_filter()函数去除空值
 				$uniques['openid']=array_filter($uniques['openid']);
 				//去除扫码重复值（同一人多次扫描时，只计算为一次)
 				$unique = array_unique($uniques['openid']);
 				//print_r($unique);
 				$unique_count=count($unique);
-		}else {
+		} else {
 			message("该功能通道暂时关闭，如有疑问，请联系您的客服专员","","info");
 		}
 	}
+
 include $this->template('qrcode');

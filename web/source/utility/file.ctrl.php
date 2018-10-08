@@ -136,6 +136,7 @@ if ($do == 'upload') {
 	$ext = strtolower($ext);
 	$size = intval($_FILES['file']['size']);
 	$originname = $_FILES['file']['name'];
+
 	$filename = file_random_name(ATTACHMENT_ROOT . '/' . $setting['folder'], $ext);
 
 	$file = file_upload($_FILES['file'], $type, $setting['folder'] . $filename, true);
@@ -352,7 +353,7 @@ if ($do == 'wechat_upload') {
 	$size = intval($_FILES['file']['size']);
 	$originname = $_FILES['file']['name'];
 
-	if(!in_array($ext, $limit[$mode][$type]['ext']) || ($size > $limit[$mode][$type]['size'])) {
+		if(!in_array($ext, $limit[$mode][$type]['ext']) || ($size > $limit[$mode][$type]['size'])) {
 		$result['message'] = $limit[$mode][$type]['errmsg'];
 		die(json_encode($result));
 	}
@@ -389,13 +390,12 @@ if ($do == 'wechat_upload') {
 	}
 
 	if ($type == 'image' || $type == 'thumb' ) {
-		$file['path'] = file_image_thumb($fullname, '', 300);
+				$file['path'] = file_image_thumb($fullname, '', 300);
 	}
-
 	if (!empty($_W['setting']['remote']['type']) && !empty($file['path'])) {
 		$remotestatus = file_remote_upload($file['path']);
 		if (is_error($remotestatus)) {
-			file_delete($pathname);
+						file_delete($pathname);
 			if($type == 'image' || $type == 'thumb'){
 				file_delete($file['path']);
 			}
@@ -403,7 +403,7 @@ if ($do == 'wechat_upload') {
 			$result['message'] = '远程附件上传失败，请检查配置并重新上传';
 			die(json_encode($result));
 		} else {
-			file_delete($pathname);
+						file_delete($pathname);
 			if($type == 'image' || $type == 'thumb'){
 				file_delete($file['path']);
 			}
@@ -428,7 +428,7 @@ if ($do == 'wechat_upload') {
 		$insert['width'] = $size[0];
 		$insert['height'] = $size[1];
 		if($mode == 'perm') {
-			$insert['tag'] = $content['url'];
+						$insert['tag'] = $content['url'];
 		}
 		if(!empty($insert['tag'])) {
 			$insert['attachment'] = $content['url'];
@@ -437,7 +437,7 @@ if ($do == 'wechat_upload') {
 		$result['hieght'] = $size[1];
 	}
 	if($type == 'video') {
-		$insert['tag'] = iserializer(array('title' => $originname, 'url' => ''));
+		$insert['tag'] = iserializer($description);
 	}
 	pdo_insert('wechat_attachment', $insert);
 	$result['type'] = $type;
@@ -445,6 +445,10 @@ if ($do == 'wechat_upload') {
 
 	if($type == 'image' || $type == 'thumb') {
 		@unlink($fullname);
+	}
+	if($type == 'video') {
+		$result['title'] = $description['title'];
+		$result['introduction'] = $description['introduction'];
 	}
 	$result['mode'] = $mode;
 	die(json_encode($result));
@@ -454,8 +458,7 @@ $type = $_GPC['type']; $resourceid = intval($_GPC['resource_id']); $uid = intval
 $acid = intval($_W['acid']);
 $url = $_GPC['url'];
 $isnetwork_convert = !empty($url);
-$islocal = $_GPC['local'] == 'local'; 
-if ($do == 'keyword') {
+$islocal = $_GPC['local'] == 'local'; if ($do == 'keyword') {
 	$keyword = addslashes($_GPC['keyword']);
 	$pindex = max(1, $_GPC['page']);
 	$psize = 24;
@@ -474,7 +477,7 @@ if ($do == 'module') {
 	$enable_modules = array();
 	$is_user_module = isset($_GPC['user_module']) ? intval($_GPC['user_module']) : 0;
 	$have_cover = $_GPC['cover'] == 'true' ? true : false;
-	$module_type = in_array($_GPC['mtype'], array(ACCOUNT_TYPE_SIGN, WXAPP_TYPE_SIGN, WEBAPP_TYPE_SIGN, PHONEAPP_TYPE_SIGN, ALIAPP_TYPE_SIGN)) ? $_GPC['mtype'] : '';
+	$module_type = in_array($_GPC['mtype'], array(ACCOUNT_TYPE_SIGN, WXAPP_TYPE_SIGN, WEBAPP_TYPE_SIGN, PHONEAPP_TYPE_SIGN)) ? $_GPC['mtype'] : '';
 	if ($is_user_module) {
 		$installedmodulelist = user_modules($_W['uid']);
 	} else {
@@ -490,7 +493,6 @@ if ($do == 'module') {
 		if ($module_type == ACCOUNT_TYPE_SIGN && $value[MODULE_SUPPORT_ACCOUNT_NAME] != 2 ||
 			$module_type == WXAPP_TYPE_SIGN && $value[MODULE_SUPPORT_WXAPP_NAME] != 2 ||
 			$module_type == WEBAPP_TYPE_SIGN && $value[MODULE_SUPPORT_WEBAPP_NAME] != 2 ||
-			$module_type == ALIAPP_TYPE_SIGN && $value[MODULE_SUPPORT_ALIAPP_NAME] != 2 ||
 			$module_type == PHONEAPP_TYPE_SIGN && $value[MODULE_SUPPORT_PHONEAPP_NAME] != 2) {
 			unset($installedmodulelist[$k]);
 			continue;

@@ -141,7 +141,7 @@ function article_comment_detail($article_lists) {
 	global $_W;
 	load()->model('mc');
 	if (empty($article_lists)) {
-		return array();
+		return true;
 	}
 
 	foreach ($article_lists as $list) {

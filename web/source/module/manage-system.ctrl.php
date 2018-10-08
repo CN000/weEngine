@@ -12,6 +12,7 @@ load()->model('cache');
 load()->model('module');
 load()->model('user');
 load()->model('account');
+load()->classs('account');
 load()->object('cloudapi');
 load()->model('utility');
 load()->func('db');
@@ -26,7 +27,7 @@ $do = in_array($do, $dos) ? $do : 'installed';
 
 
 if ($do == 'subscribe') {
-	$module_uninstall_total = module_uninstall_total($module_support);
+	$module_uninstall_total = module_uninstall_total($account_base->typeSign);
 
 	$module_list = user_modules($_W['uid']);
 	$subscribe_type = ext_module_msg_types();
@@ -473,7 +474,7 @@ if ($do == 'module_detail') {
 	$module_info['cloud_mid'] = !empty($current_cloud_module['id']) ? $current_cloud_module['id'] : '';
 
 		foreach ($module_info as $key => $value) {
-		if ($key != $module_support . '_support' && strexists($key, '_support') && $value == MODULE_SUPPORT_ACCOUNT) {
+		if ($key != $account_base->typeSign . '_support' && strexists($key, '_support') && $value == MODULE_SUPPORT_ACCOUNT) {
 			$module_info['relation'][] = $key;
 		}
 	}
@@ -494,7 +495,7 @@ if ($do == 'module_detail') {
 			$group['modules'] = iunserializer($group['modules']);
 			if (is_array($group['modules'])) {
 				foreach ($group['modules'] as $modulenames) {
-					if (is_array($modulenames) && in_array($module_name, $modulenames)) {
+					if (in_array($module_name, $modulenames)) {
 						$module_group[] = $group;
 						break;
 					}
@@ -528,9 +529,8 @@ if ($do == 'uninstall') {
 	cache_build_account_modules($_W['uniacid'], $_W['uid']);
 	cache_build_module_subscribe_type();
 	cache_build_module_info($name);
-	module_upgrade_info();
 
-	itoast('模块已卸载！', url('module/manage-system/recycle', array('support' => $module_support_name, 'type' => MODULE_RECYCLE_INSTALL_DISABLED)), 'success');
+	itoast('模块已卸载！', url('module/manage-system/installed', array('support' => $module_support_name)), 'success');
 }
 
 if ($do == 'recycle_post') {
@@ -542,16 +542,23 @@ if ($do == 'recycle_post') {
 	$module_recycle = module_recycle_fetch($name);
 
 			if (!empty($module)) {
+		$cached_user_modules = (array) cache_load(cache_system_key('user_modules', array('uid' => $_W['uid'])));
 		if (empty($module_recycle)) {
 			$msg = '模块已停用!';
 			table('modules_recycle')->fill(array('name' => $name, 'type' => 1))->save();
 
+			if (in_array($name, $cached_user_modules)) {
+				unset($cached_user_modules[array_search($name, $cached_user_modules)]);
+			}
 		} else {
 			$msg = '模块已恢复!';
 			table('modules_recycle')->deleteByName($name);
+
+			if (!in_array($name, $cached_user_modules)) {
+				array_unshift($cached_user_modules ,$name);
+			}
 		}
-		cache_write(cache_system_key('user_modules', array('uid' => $_W['uid'])), array());
-		cache_build_module_info($name);
+		cache_write(cache_system_key('user_modules', array('uid' => $_W['uid'])), $cached_user_modules);
 	} else {
 		if (empty($module_recycle)) {
 			$msg = '模块已放入回收站!';
@@ -561,6 +568,7 @@ if ($do == 'recycle_post') {
 			table('modules_recycle')->deleteByName($name);
 		}
 	}
+	cache_build_module_info($name);
 	itoast($msg, referer(), 'success');
 }
 if ($do == 'recycle') {

@@ -177,10 +177,6 @@ function buildframes($framename = ''){
 				
 				
 			}
-
-			if ($_W['role'] == ACCOUNT_MANAGE_NAME_EXPIRED && ($nav_id != 'store' || $nav_id != 'system')) {
-				$menu['is_display'] = 0;
-			}
 		}
 	} else {
 		if (user_is_vice_founder()) {
@@ -446,9 +442,9 @@ function buildframes($framename = ''){
 	}
 
 		if (defined('FRAME') && FRAME == 'wxapp') {
-		load()->model('miniapp');
+		load()->model('wxapp');
 		$version_id = intval($_GPC['version_id']);
-		$wxapp_version = miniapp_version($version_id);
+		$wxapp_version = wxapp_version($version_id);
 		if (!empty($wxapp_version['last_modules']) && is_array($wxapp_version['last_modules'])) {
 			$last_modules = current($wxapp_version['last_modules']);
 		}
@@ -457,18 +453,18 @@ function buildframes($framename = ''){
 			foreach ($wxapp_version['modules'] as $module) {
 				$wxapp_module_permission = permission_account_user_menu($_W['uid'], $_W['uniacid'], $module['name']);
 				if (empty($wxapp_module_permission)) {
-					$frames['wxapp']['section']['platform_module']['is_display'] = false;
+					$frames['wxapp']['section']['wxapp_module']['is_display'] = false;
 					break;
 				}
 				$need_upload = !empty($last_modules) && ($module['version'] != $last_modules['version']);
-				$frames['wxapp']['section']['platform_module']['menu']['module_menu'.$module['mid']] = array(
+				$frames['wxapp']['section']['wxapp_module']['menu']['module_menu'.$module['mid']] = array(
 					'title' => "<img src='{$module['logo']}'> {$module['title']}",
-					'url' => url('account/display/switch', array('module_name' => $module['name'], 'version_id' => $version_id, 'uniacid' => $_W['uniacid'])),
+					'url' => url('account/display/switch', array('module' => $module['name'], 'version_id' => $version_id, 'uniacid' => $_W['uniacid'])),
 					'is_display' => 1,
 				);
 			}
 		} else {
-			$frames['wxapp']['section']['platform_module']['is_display'] = false;
+			$frames['wxapp']['section']['wxapp_module']['is_display'] = false;
 		}
 		if (!empty($frames['wxapp']['section']['wxapp_profile']['menu']['front_download'])) {
 			$frames['wxapp']['section']['wxapp_profile']['menu']['front_download']['need_upload'] = empty($need_upload) ? 0 : 1;
@@ -477,11 +473,11 @@ function buildframes($framename = ''){
 		if (!empty($frames['wxapp']['section'])) {
 			$wxapp_permission = permission_account_user('wxapp');
 			foreach ($frames['wxapp']['section'] as $wxapp_section_id => $wxapp_section) {
-				if ($status && !empty($wxapp_permission) && in_array("wxapp*", $wxapp_permission) && $wxapp_section_id != 'platform_module' && $role != ACCOUNT_MANAGE_NAME_OWNER) {
+				if ($status && !empty($wxapp_permission) && in_array("wxapp*", $wxapp_permission) && $wxapp_section_id != 'wxapp_module' && $role != ACCOUNT_MANAGE_NAME_OWNER) {
 					$frames['wxapp']['section'][$wxapp_section_id]['is_display'] = false;
 					continue;
 				}
-				if (!empty($wxapp_section['menu']) && $wxapp_section_id != 'platform_module') {
+				if (!empty($wxapp_section['menu']) && $wxapp_section_id != 'wxapp_module') {
 					foreach ($wxapp_section['menu'] as $wxapp_menu_id => $wxapp_menu) {
 						if (in_array($wxapp_section_id, array('wxapp_profile', 'wxapp_entrance', 'statistics', 'mc'))) {
 							$frames['wxapp']['section'][$wxapp_section_id]['menu'][$wxapp_menu_id]['url'] .= 'version_id=' . $version_id;
@@ -503,10 +499,10 @@ function buildframes($framename = ''){
 			foreach ($phoneapp_version['modules'] as $module) {
 				$phoneapp_module_permission = permission_account_user_menu($_W['uid'], $_W['uniacid'], $module['name']);
 				if (empty($phoneapp_module_permission)) {
-					$frames['phoneapp']['section']['platform_module']['is_display'] = false;
+					$frames['phoneapp']['section']['phoneapp_module']['is_display'] = false;
 					break;
 				}
-				$frames['phoneapp']['section']['platform_module']['menu']['module_menu'.$module['mid']] = array(
+				$frames['phoneapp']['section']['phoneapp_module']['menu']['module_menu'.$module['mid']] = array(
 						'title' => "<img src='{$module['logo']}'> {$module['title']}",
 						'url' => url('phoneapp/display/switch', array('module' => $module['name'], 'version_id' => $version_id)),
 						'is_display' => 1,
@@ -523,11 +519,11 @@ function buildframes($framename = ''){
 		if (!empty($frames['phoneapp']['section'])) {
 			$phoneapp_permission = permission_account_user('phoneapp');
 			foreach ($frames['phoneapp']['section'] as $phoneapp_section_id => $phoneapp_section) {
-				if ($status && !empty($phoneapp_permission) && in_array("phoneapp*", $phoneapp_permission) && $phoneapp_section_id != 'platform_module' && $role != ACCOUNT_MANAGE_NAME_OWNER) {
+				if ($status && !empty($phoneapp_permission) && in_array("phoneapp*", $phoneapp_permission) && $phoneapp_section_id != 'phoneapp_module' && $role != ACCOUNT_MANAGE_NAME_OWNER) {
 					$frames['phoneapp']['section'][$phoneapp_section_id]['is_display'] = false;
 					continue;
 				}
-				if (!empty($phoneapp_section['menu']) && $phoneapp_section_id != 'platform_module') {
+				if (!empty($phoneapp_section['menu']) && $phoneapp_section_id != 'phoneapp_module') {
 					foreach ($phoneapp_section['menu'] as $phoneapp_menu_id => $phoneapp_menu) {
 						if ($phoneapp_section_id == 'phoneapp_profile' || $phoneapp_section_id == 'phoneapp_entrance') {
 							$frames['phoneapp']['section'][$phoneapp_section_id]['menu'][$phoneapp_menu_id]['url'] .= 'version_id=' . $version_id;
@@ -688,4 +684,3 @@ EOF;
 	}
 	return '';
 }
-

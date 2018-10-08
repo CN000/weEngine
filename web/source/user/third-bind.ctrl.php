@@ -61,7 +61,15 @@ if ($do == 'bind_oauth') {
 		$member['repassword'] = trim($_GPC['repassword']);
 		$member['is_bind'] = 1;
 
-		if (empty($member['username']) || empty($member['password']) || empty($member['repassword'])) {
+		$profile['nickname'] = safe_gpc_string($_GPC['nickname']);
+		$profile['realname'] = safe_gpc_string($_GPC['realname']);
+
+		$user = array(
+			'member' => $member,
+			'profile' => $profile,
+		);
+
+		if (empty($member['username']) || empty($member['password']) || empty($member['repassword']) || empty($profile['nickname']) || empty($profile['realname'])) {
 			itoast('请填写完整信息！',  referer(), '');
 		}
 
@@ -86,8 +94,15 @@ if ($do == 'bind_oauth') {
 			itoast('非常抱歉，此用户名已经被注册，你需要更换注册名称！', referer(), '');
 		}
 
+		if(!empty($_W['setting']['register']['code'])) {
+			if (!checkcaptcha($_GPC['imagecode'])) {
+				itoast('你输入的验证码不正确, 请重新输入.', referer(), '');
+			}
+		}
+
 		$member['salt'] = random(8);
 		$member['password'] = user_hash($member['password'], $member['salt']);
+		pdo_update('users_profile', $profile, array('uid' => $uid));
 		$result = pdo_update('users', $member, array('uid' => $uid));
 		
 		if ($result) {

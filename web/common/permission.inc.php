@@ -224,9 +224,7 @@ $we7_file_permission = array(
 			'nav',
 			'slide',
 		),
-		'clerk' => array(
-			'nav',
-		),
+		'clerk' => array(),
 		'unbind_user' => array(),
 	),
 	'statistics' => array(
@@ -320,26 +318,6 @@ $we7_file_permission = array(
 		'expired' => array(
 			'user*',
 		)
-	),
-	'miniapp' => array(
-		'default' => '',
-		'direct' => array(),
-		'vice_founder' => array('miniapp*'),
-		'owner' => array('miniapp*'),
-		'manager' => array(
-			'display',
-			'version',
-			'post',
-		),
-		'operator' => array(
-			'display',
-			'version',
-			'post',
-		),
-		'clerk' => array(
-			'display',
-		),
-		'unbind_user' => array(),
 	),
 	'wxapp' => array(
 		'default' => '',
@@ -465,7 +443,6 @@ $we7_file_permission = array(
 			'see_user_profile_account_num',
 			'see_user_add_welcome_account',
 			'see_workorder',
-			'see_modules_deactivate',
 		),
 		'vice_founder' => array(
 			'see_account_manage_users_adduser',
@@ -498,10 +475,6 @@ $we7_file_permission = array(
 		),
 		'clerk' => array(
 
-		),
-		'unbind_user' => array(
-			'see_user_profile_welcome',
-			'see_system_updatecache',
 		)
 	),
 );

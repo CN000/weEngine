@@ -8,7 +8,9 @@ defined('IN_IA') or exit('Access Denied');
 load()->model('module');
 load()->model('cloud');
 load()->model('cache');
+load()->model('user');
 load()->classs('weixin.platform');
+load()->model('wxapp');
 load()->model('utility');
 load()->func('file');
 $uniacid = intval($_GPC['uniacid']);
@@ -25,7 +27,10 @@ $acid = $defaultaccount['acid'];
 $state = permission_account_user_role($_W['uid'], $uniacid);
 $dos = array('base', 'sms', 'modules_tpl');
 
-$role_permission = in_array($state, array(ACCOUNT_MANAGE_NAME_FOUNDER, ACCOUNT_MANAGE_NAME_OWNER, ACCOUNT_MANAGE_NAME_VICE_FOUNDER));
+
+
+	$role_permission = in_array($state, array(ACCOUNT_MANAGE_NAME_FOUNDER, ACCOUNT_MANAGE_NAME_OWNER));
+
 if ($role_permission) {
 	$do = in_array($do, $dos) ? $do : 'base';
 } elseif ($state == ACCOUNT_MANAGE_NAME_MANAGER) {
@@ -121,41 +126,25 @@ if($do == 'base') {
 				$result = pdo_update('uni_settings', array('statistics' => iserializer($highest_visit)), array('uniacid' => $uniacid));
 				break;
 			case 'endtime':
-				$endtime = strtotime($_GPC['endtime']);
-				if ($endtime <= 0) {
-					iajax(1, '参数错误！');
-				}
-				
-				if (user_is_founder($_W['uid'], true)) {
-					
+				if ($_GPC['endtype'] == 1) {
+					$result = pdo_update('account', array('endtime' => -1), array('uniacid' => $uniacid));
 				} else {
-					$owner_id = pdo_getcolumn('uni_account_users', array('uniacid' => $uniacid, 'role' => 'owner'), 'uid');
-					$user_endtime = pdo_getcolumn('users', array('uid' => $owner_id), 'endtime');
+					$endtime = strtotime($_GPC['endtime']);
+					if ($_W['isfounder'] || user_is_vice_founder()) {
+						$result = pdo_update('account', array('endtime' => $endtime), array('uniacid' => $uniacid));
+						
+						break;
+					}
+					$user_endtime = pdo_getcolumn('users', array('uid' => $_W['uid']), 'endtime');
 					
-					if ($user_endtime < $endtime && !empty($user_endtime)) {
+					if ($user_endtime < $endtime && !empty($user_endtime) && $state == 'owner') {
 						iajax(1, '设置到期日期不能超过' . date('Y-m-d', $user_endtime));
 					}
+					$result = pdo_update('account', array('endtime' => $endtime), array('uniacid' => $uniacid));
 				}
-				$result = pdo_update('account', array('endtime' => $endtime), array('uniacid' => $uniacid));
-				break;
-			case 'attachment_limit':
-				if (user_is_vice_founder() || empty($_W['isfounder'])) {
-					iajax(1, '只有创始人可以修改！');
-				}
-				$has_uniacid = pdo_getcolumn('uni_settings', array('uniacid' => $uniacid), 'uniacid');
-				if ($_GPC['request_data'] < 0) {
-					$attachment_limit = -1;
-				} else {
-					$attachment_limit = intval($_GPC['request_data']);
-				}
-				if (empty($has_uniacid)) {
-					$result = pdo_insert('uni_settings', array('attachment_limit' => $attachment_limit, 'uniacid' => $uniacid));
-				} else {
-					$result = pdo_update('uni_settings', array('attachment_limit' => $attachment_limit), array('uniacid' => $uniacid));
-				}
-				break;
 		}
-		if(!in_array($type, array('qrcodeimgsrc', 'headimgsrc', 'name', 'endtime', 'jointype', 'highest_visit', 'attachment_limit'))) {
+
+		if(!in_array($type, array('qrcodeimgsrc', 'headimgsrc', 'name', 'endtime', 'jointype', 'highest_visit'))) {
 			$result = pdo_update(uni_account_tablename(ACCOUNT_TYPE), $data, array('acid' => $acid, 'uniacid' => $uniacid));
 		}
 		if($result) {
@@ -169,7 +158,7 @@ if($do == 'base') {
 	}
 
 	if ($_W['setting']['platform']['authstate']) {
-		$account_platform = new WeixinPlatform();
+		$account_platform = new WeiXinPlatform();
 		$preauthcode = $account_platform->getPreauthCode();
 		if (is_error($preauthcode)) {
 			$authurl = array(
@@ -190,23 +179,10 @@ if($do == 'base') {
 	}
 	$account_other_info = (array)$account_other_info;
 	$account = array_merge($account, $account_other_info);
-	$account['start'] = date('Y-m-d', $account['starttime']);
 	$account['end'] = $account['endtime'] == 0 ? '永久' : date('Y-m-d', $account['endtime']);
 	$account['endtype'] = $account['endtime'] == 0 ? 1 : 2;
-	$uni_setting = (array)uni_setting_load(array('statistics', 'attachment_limit', 'attachment_size'), $uniacid);
-	$account['highest_visit'] = empty($uni_setting['statistics']['founder']) ? 0 : $uni_setting['statistics']['founder'];
-	$account['attachment_size'] = round($uni_setting['attachment_size'] / 1024, 2);
-
-	$attachment_limit = intval($uni_setting['attachment_limit']);
-	if ($attachment_limit == 0) {
-		$upload = setting_load('upload');
-		$attachment_limit = empty($upload['upload']['attachment_limit']) ? 0 : intval($upload['upload']['attachment_limit']);
-	}
-	if ($attachment_limit <= 0) {
-		$attachment_limit = -1;
-	}
-	$account['attachment_limit'] = intval($attachment_limit);
-
+	$statistics_setting = (array)uni_setting_load(array('statistics'), $uniacid);
+	$account['highest_visit'] = empty($statistics_setting['statistics']['founder']) ? 0 : $statistics_setting['statistics']['founder'];
 	$uniaccount = array();
 	$uniaccount = pdo_get('uni_account', array('uniacid' => $uniacid));
 	
@@ -323,9 +299,6 @@ if($do == 'modules_tpl') {
 					case ACCOUNT_TYPE_PHONEAPP_NORMAL:
 						$data['modules']['phoneapp'] = $module;
 						break;
-					case ACCOUNT_TYPE_ALIAPP_NORMAL:
-						$data['modules']['aliapp'] = $module;
-						break;
 				}
 				$data['modules'] = iserializer($data['modules']);
 
@@ -429,7 +402,6 @@ if($do == 'modules_tpl') {
 		}
 	
 	if (!empty($extend['modules'])) {
-		$extend['modules'] = $current_module_names = array_unique($current_module_names);
 		foreach ($extend['modules'] as $module_key => $module_val) {
 			$extend['modules'][$module_key] = module_fetch($module_val);
 		}

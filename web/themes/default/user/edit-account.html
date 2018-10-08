@@ -223,10 +223,8 @@
 		webapps: {php echo !empty($account_detail['webapp']) ? json_encode($account_detail['webapp']) : 'null'},
 		phoneapps: {php echo !empty($account_detail['phoneapp']) ? json_encode($account_detail['phoneapp']) : 'null'},
 		xzapps : {php echo !empty($account_detail['xzapp']) ? json_encode($account_detail['xzapp']) : 'null'},
+
 		profile: {php echo !empty($profile) ? json_encode($profile) : 'null'},
-		links: {
-			recycleUser: "{php echo url('user/display/operate', array('type' => 'recycle'))}",
-		},
 	});
 
 	angular.bootstrap($('#js-user-edit-account'), ['userManageApp']);
