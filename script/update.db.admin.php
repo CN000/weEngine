@@ -26,9 +26,10 @@ $passwordinput = 'fc123123';
 $salt = 'd95fd308';
 
 $passwordinput = "{$passwordinput}-{$salt}-{$_W['config']['setting']['authkey']}";
+//shal 加密方式
 $data = sha1($passwordinput);
 
-$sql2 = "update ims_users set password = '$data' ,salt='d95fd308' where uid=2";
+$sql2 = "update ims_users set password = '$data' ,salt='d95fd308' where uid=1";
 $data = pdo_query($sql2);
 echo 'ok';
 
