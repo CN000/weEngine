@@ -1,8 +1,9 @@
 <?php
 
 define('IN_SYS', true);
-require '../framework/bootstrap.inc.php';
-require IA_ROOT . '../web/common/bootstrap.sys.inc.php';
+
+require dirname(dirname(__FILE__)).'framework/bootstrap.inc.php';
+require IA_ROOT . '/web/common/bootstrap.sys.inc.php';
 
 global $_W;
 
