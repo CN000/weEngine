@@ -11,37 +11,26 @@ $sql = 'select * from ims_users where uid = 1';
 $params[':username'] = 'admin';
 $record = pdo_fetch($sql, $params);
 
-// ./framework/model/user.mod.php  line:
+
 /*
+    File: framework/model/user.mod.php  line:
 
-function user_hash($passwordinput, $salt) {
-	global $_W;
-	$passwordinput = "{$passwordinput}-{$salt}-{$_W['config']['setting']['authkey']}";
+    function user_hash($passwordinput, $salt)
+    {
+        global $_W;
+        $passwordinput = "{$passwordinput}-{$salt}-{$_W['config']['setting']['authkey']}";
 
-    return sha1($passwordinput);
-}
- *
- */
-$passwordinput = 'fc123123';
-$salt = 'd95fd308';
+        return sha1($passwordinput);
+    }
+*/
 
-$passwordinput = "{$passwordinput}-{$salt}-{$_W['config']['setting']['authkey']}";
-//shal 加密方式
-$data = sha1($passwordinput);
+$password = 'fc123123';
+$salt     = 'd95fd308';
 
-$sql2 = "update ims_users set password = '$data' ,salt='d95fd308' where uid=1";
-$data = pdo_query($sql2);
+$password = "{$password}-{$salt}-{$_W['config']['setting']['authkey']}";
+$password = sha1($password);
+
+$sql = "update ims_users set password = '".$password."' ,salt='".$salt."' where uid=1";
+$data = pdo_query($sql);
+
 echo 'ok';
-
-
-
-
-
-
-
-
-
-
-
-
-?>
