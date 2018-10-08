@@ -81,7 +81,7 @@ class DB {
 		return $statement;
 	}
 
-	
+
 	public function query($sql, $params = array()) {
 		$sqlsafe = SqlPaser::checkquery($sql);
 		if (is_error($sqlsafe)) {
@@ -108,7 +108,7 @@ class DB {
 		}
 	}
 
-	
+
 	public function fetchcolumn($sql, $params = array(), $column = 0) {
 		$starttime = microtime();
 		$statement = $this->prepare($sql);
@@ -126,7 +126,7 @@ class DB {
 		}
 	}
 
-	
+
 	public function fetch($sql, $params = array()) {
 		$starttime = microtime();
 		$statement = $this->prepare($sql);
@@ -144,7 +144,7 @@ class DB {
 		}
 	}
 
-	
+
 	public function fetchall($sql, $params = array(), $keyfield = '') {
 		$starttime = microtime();
 		$statement = $this->prepare($sql);
@@ -226,7 +226,7 @@ class DB {
 		}
 	}
 
-	
+
 	public function update($table, $data = array(), $params = array(), $glue = 'AND') {
 		$fields = SqlPaser::parseParameter($data, ',');
 		$condition = SqlPaser::parseParameter($params, $glue);
@@ -236,19 +236,19 @@ class DB {
 		return $this->query($sql, $params);
 	}
 
-	
+
 	public function insert($table, $data = array(), $replace = FALSE) {
 		$cmd = $replace ? 'REPLACE INTO' : 'INSERT INTO';
 		$condition = SqlPaser::parseParameter($data, ',');
 		return $this->query("$cmd " . $this->tablename($table) . " SET {$condition['fields']}", $condition['params']);
 	}
 
-	
+
 	public function insertid() {
 		return $this->pdo->lastInsertId();
 	}
 
-	
+
 	public function delete($table, $params = array(), $glue = 'AND') {
 		$condition = SqlPaser::parseParameter($params, $glue);
 		$sql = "DELETE FROM " . $this->tablename($table);
@@ -256,7 +256,7 @@ class DB {
 		return $this->query($sql, $condition['params']);
 	}
 
-	
+
 	public function exists($tablename, $params = array()) {
 		$row = $this->get($tablename, $params);
 		if (empty($row) || !is_array($row) || count($row) == 0) {
@@ -266,28 +266,28 @@ class DB {
 		}
 	}
 
-	
+
 	public function count($tablename, $params = array(), $cachetime = 30) {
 		$total = pdo_getcolumn($tablename, $params, 'count(*)');
 		return intval($total);
 	}
 
-	
+
 	public function begin() {
 		$this->pdo->beginTransaction();
 	}
 
-	
+
 	public function commit() {
 		$this->pdo->commit();
 	}
 
-	
+
 	public function rollback() {
 		$this->pdo->rollBack();
 	}
 
-	
+
 	public function run($sql, $stuff = 'ims_') {
 		if(!isset($sql) || empty($sql)) return;
 
@@ -307,19 +307,21 @@ class DB {
 		unset($sql);
 		foreach($ret as $query) {
 			$query = trim($query);
-			if($query) {
+            var_dump($query);die;
+
+            if($query) {
 				$this->query($query, array());
 			}
 		}
 	}
 
-	
+
 	public function fieldexists($tablename, $fieldname) {
 		$isexists = $this->fetch("DESCRIBE " . $this->tablename($tablename) . " `{$fieldname}`", array());
 		return !empty($isexists) ? true : false;
 	}
 
-	
+
 	public function fieldmatch($tablename, $fieldname, $datatype = '', $length = '') {
 		$datatype = strtolower($datatype);
 		$field_info = $this->fetch("DESCRIBE " . $this->tablename($tablename) . " `{$fieldname}`", array());
@@ -339,7 +341,7 @@ class DB {
 		return true;
 	}
 
-	
+
 	public function indexexists($tablename, $indexname) {
 		if (!empty($indexname)) {
 			$indexs = $this->fetchall("SHOW INDEX FROM " . $this->tablename($tablename), array(), '');
@@ -354,12 +356,12 @@ class DB {
 		return false;
 	}
 
-	
+
 	public function tablename($table) {
 		return (strpos($table, $this->tablepre) === 0 || strpos($table, 'ims_') === 0) ? $table : "`{$this->tablepre}{$table}`";
 	}
 
-	
+
 	public function debug($output = true, $append = array()) {
 		if(!empty($append)) {
 			$output = false;
@@ -398,7 +400,7 @@ class DB {
 		return true;
 	}
 
-	
+
 	public function tableexists($table) {
 		if(!empty($table)) {
 			$data = $this->fetch("SHOW TABLES LIKE '{$this->tablepre}{$table}'", array());
@@ -541,7 +543,7 @@ class SqlPaser {
 		return $clean;
 	}
 
-	
+
 	public static function parseParameter($params, $glue = ',', $alias = '') {
 		$result = array('fields' => ' 1 ', 'params' => array());
 		$split = '';
@@ -612,7 +614,7 @@ class SqlPaser {
 		return $result;
 	}
 
-	
+
 	private static function parsePlaceholder($field, $suffix = '') {
 		static $params_index = 0;
 		$params_index++;
@@ -634,7 +636,7 @@ class SqlPaser {
 		return $select_fields;
 	}
 
-	
+
 	public static function parseSelect($field = array(), $alias = '') {
 		if (empty($field) || $field == '*') {
 			return ' SELECT *';

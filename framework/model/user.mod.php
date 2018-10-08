@@ -138,6 +138,7 @@ function user_single($user_or_uid) {
 	if (is_numeric($user)) {
 		$user = array('uid' => $user);
 	}
+
 	if (!is_array($user)) {
 		return false;
 	}
@@ -162,21 +163,24 @@ function user_single($user_or_uid) {
 	if (empty($params)) {
 		return false;
 	}
-	$sql = 'SELECT u.*, p.avatar FROM ' . tablename('users') . ' AS u LEFT JOIN '. tablename('users_profile') . ' AS p ON u.uid = p.uid '. $where. ' LIMIT 1';
+
+    $sql = 'SELECT u.*, p.avatar FROM ' . tablename('users') . ' AS u LEFT JOIN '. tablename('users_profile') . ' AS p ON u.uid = p.uid '. $where. ' LIMIT 1';
 
 	$record = pdo_fetch($sql, $params);
 	if (empty($record)) {
 		return false;
 	}
 	if (!empty($user['password'])) {
-		$password = user_hash($user['password'], $record['salt']);
-		if ($password != $record['password']) {
+
+        $password = user_hash($user['password'], $record['salt']);
+
+        if ($password != $record['password']) {
 			return false;
 		}
 	}
 
 	$record['hash'] = md5($record['password'] . $record['salt']);
-		
+
 	if (!empty($record['owner_uid'])) {
 		$record['vice_founder_name'] = pdo_getcolumn('users', array('uid' => $record['owner_uid']), 'username');
 	}
@@ -261,7 +265,8 @@ function user_update($user) {
 function user_hash($passwordinput, $salt) {
 	global $_W;
 	$passwordinput = "{$passwordinput}-{$salt}-{$_W['config']['setting']['authkey']}";
-	return sha1($passwordinput);
+
+    return sha1($passwordinput);
 }
 
 

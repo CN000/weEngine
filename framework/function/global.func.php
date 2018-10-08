@@ -59,6 +59,7 @@ function isetcookie($key, $value, $expire = 0, $httponly = false) {
 
 function getip() {
 	static $ip = '';
+
 	$ip = $_SERVER['REMOTE_ADDR'];
 	if(isset($_SERVER['HTTP_CDN_SRC_IP'])) {
 		$ip = $_SERVER['HTTP_CDN_SRC_IP'];
@@ -330,7 +331,7 @@ function wurl($segment, $params = array()) {
 }
 
 if (!function_exists('murl')) {
-	
+
 	function murl($segment, $params = array(), $noredirect = true, $addhost = false) {
 		global $_W;
 		list($controller, $action, $do) = explode('/', $segment);

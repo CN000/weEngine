@@ -35,14 +35,15 @@ if (($_W['setting']['copyright']['status'] == 1) && empty($_W['isfounder']) && $
 		if (checksubmit()) {
 			require _forward($controller, $action);
 		}
+
 		template('user/login');
 		exit();
 	}
 	isetcookie('__session', '', - 10000);
-	
+
 		message('站点已关闭，关闭原因：' . $_W['setting']['copyright']['reason'], url('user/login'), 'info');
-	
-	
+
+
 }
 
 $controllers = array();
@@ -93,14 +94,17 @@ if (empty($actions)) {
 if (!in_array($action, $actions)) {
 	$action = $action . '-' . $action;
 }
+
 if (!in_array($action, $actions)) {
 	$action = $acl[$controller]['default'] ? $acl[$controller]['default'] : $actions[0];
 }
 
 if (is_array($acl[$controller]['direct']) && in_array($action, $acl[$controller]['direct'])) {
+
 		require _forward($controller, $action);
 	exit();
 }
+
 checklogin();
 if ($_W['role'] != ACCOUNT_MANAGE_NAME_FOUNDER) {
 	if ($_W['role'] == ACCOUNT_MANAGE_NAME_UNBIND_USER) {

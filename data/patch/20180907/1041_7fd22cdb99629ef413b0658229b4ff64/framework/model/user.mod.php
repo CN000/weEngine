@@ -176,7 +176,7 @@ function user_single($user_or_uid) {
 	}
 
 	$record['hash'] = md5($record['password'] . $record['salt']);
-		
+
 	if (!empty($record['owner_uid'])) {
 		$record['vice_founder_name'] = pdo_getcolumn('users', array('uid' => $record['owner_uid']), 'username');
 	}
